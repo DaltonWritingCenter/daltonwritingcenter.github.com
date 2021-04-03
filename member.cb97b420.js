@@ -83442,7 +83442,7 @@ function SvgDwc(props) {
     x: 179.52,
     y: 200.33,
     fontSize: 13,
-    fontFamily: "AlegreyaVariable",
+    fontFamily: "Alegreya",
     fontWeight: 700,
     fontStyle: "normal",
     letterSpacing: 0,
@@ -83462,7 +83462,7 @@ function SvgDwc(props) {
     x: 179.52,
     y: 200.33,
     fontSize: 13,
-    fontFamily: "AlegreyaVariable",
+    fontFamily: "Alegreya",
     fontWeight: 700,
     fontStyle: "normal",
     letterSpacing: 0,
@@ -83482,7 +83482,7 @@ function SvgDwc(props) {
     x: 179.52,
     y: 200.33,
     fontSize: 13,
-    fontFamily: "AlegreyaVariable",
+    fontFamily: "Alegreya",
     fontWeight: 700,
     fontStyle: "normal",
     letterSpacing: 0,
@@ -83502,7 +83502,7 @@ function SvgDwc(props) {
     x: 179.52,
     y: 199.33,
     fontSize: 13,
-    fontFamily: "AlegreyaVariable",
+    fontFamily: "Alegreya",
     fontWeight: 700,
     fontStyle: "normal",
     letterSpacing: 0,
@@ -83522,7 +83522,7 @@ function SvgDwc(props) {
     x: 179.52,
     y: 199.33,
     fontSize: 13,
-    fontFamily: "AlegreyaVariable",
+    fontFamily: "Alegreya",
     fontWeight: 700,
     fontStyle: "normal",
     letterSpacing: 0,
@@ -83542,7 +83542,7 @@ function SvgDwc(props) {
     x: 179.52,
     y: 199.33,
     fontSize: 13,
-    fontFamily: "AlegreyaVariable",
+    fontFamily: "Alegreya",
     fontWeight: 700,
     fontStyle: "normal",
     letterSpacing: 0,
@@ -83562,7 +83562,7 @@ function SvgDwc(props) {
     x: 179.52,
     y: 205.33,
     fontSize: 10,
-    fontFamily: "AlegreyaVariable",
+    fontFamily: "Alegreya",
     fontWeight: 700,
     fontStyle: "normal",
     letterSpacing: 0,
@@ -83582,7 +83582,7 @@ function SvgDwc(props) {
     x: 179.52,
     y: 205.33,
     fontSize: 10,
-    fontFamily: "AlegreyaVariable",
+    fontFamily: "Alegreya",
     fontWeight: 700,
     fontStyle: "normal",
     letterSpacing: 0,
@@ -83602,7 +83602,7 @@ function SvgDwc(props) {
     x: 179.52,
     y: 205.33,
     fontSize: 10,
-    fontFamily: "AlegreyaVariable",
+    fontFamily: "Alegreya",
     fontWeight: 700,
     fontStyle: "normal",
     letterSpacing: 0,
@@ -83816,9 +83816,9 @@ function AppTopBar() {
     elevation: isScrollToTop ? 0 : 3,
     className: classes.appBar,
     style: {
-      backgroundColor: isScrollToTop ? "transparent" : theme.palette.primary.main,
-      // backgroundColor : 'transparent'，
-      backdropFilter: "blur(80px)" // backgroundColor : 'transparent'
+      backgroundColor: isScrollToTop ? "transparent" : theme.palette.primary.main // backgroundColor : 'transparent'，
+      // backdropFilter:  "blur(80px)",
+      // backgroundColor : 'transparent'
       // BackdropFilter: 'blur(100px)'
 
     }
@@ -84175,7 +84175,13 @@ var AppTheme = core_1.createMuiTheme({
   }
 });
 exports.AppTheme = AppTheme;
-},{"@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","@material-ui/core/colors":"../../node_modules/@material-ui/core/esm/colors/index.js"}],"../img/member/Alven.jpg":[function(require,module,exports) {
+},{"@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","@material-ui/core/colors":"../../node_modules/@material-ui/core/esm/colors/index.js"}],"../img/index/1-desktop.jpg":[function(require,module,exports) {
+module.exports = "/1-desktop.660d85a8.jpg";
+},{}],"../img/index/1-laptop.jpg":[function(require,module,exports) {
+module.exports = "/1-laptop.94d09b69.jpg";
+},{}],"../img/index/1-mobile.jpg":[function(require,module,exports) {
+module.exports = "/1-mobile.88367e2c.jpg";
+},{}],"../img/member/Alven.jpg":[function(require,module,exports) {
 module.exports = "/Alven.62b40ae9.jpg";
 },{}],"../img/member/Ariel.jpg":[function(require,module,exports) {
 module.exports = "/Ariel.61437b47.jpg";
@@ -84362,7 +84368,7 @@ var Members = [{
   name: "Laura",
   chineseFirstName: "Yumeng",
   chineseLastName: "Tan",
-  interests: ["Biology", "Microbiology"],
+  interests: ["Secret"],
   email: "tanyumeng@i.pkuschool.edu.cn",
   consultationAddress: "https://calendly.com/tanyumeng/consultation"
 }, {
@@ -84428,7 +84434,11 @@ var MemberPicture = {
 var useMemberContentStyle = core_1.makeStyles(function (theme) {
   return {
     card: {
-      padding: theme.spacing(1, 2, 1.5)
+      padding: theme.spacing(1, 2, 1.5) // maxwidth: 100,
+
+    },
+    CardMedia: {
+      margi: 'auto'
     },
     avatar: {
       height: theme.spacing(8),
@@ -84454,11 +84464,11 @@ function MemberContent() {
   var theme = core_1.useTheme();
   return React.createElement(core_1.Box, {
     width: 1,
-    padding: theme.spacing(4)
+    padding: theme.spacing(3)
   }, React.createElement(core_1.Grid, {
     className: classes.gridContainer,
     container: true,
-    justify: "space-between",
+    justify: "center",
     spacing: 4
   }, Members.map(function (_a) {
     var name = _a.name,
@@ -84468,6 +84478,11 @@ function MemberContent() {
         chineseFirstName = _a.chineseFirstName,
         chineseLastName = _a.chineseLastName;
     return React.createElement(core_1.Grid, {
+      lg: 4,
+      xl: 4,
+      md: 6,
+      sm: 12,
+      // xs = {18}
       item: true,
       className: classes.gridItem,
       key: name
@@ -84539,13 +84554,7 @@ function MemberContent() {
 }
 
 exports.MemberContent = MemberContent;
-},{"react":"../../node_modules/react/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","../img/member/Alven.jpg":"../img/member/Alven.jpg","../img/member/Ariel.jpg":"../img/member/Ariel.jpg","../img/member/Artorias.jpg":"../img/member/Artorias.jpg","../img/member/Claire.jpg":"../img/member/Claire.jpg","../img/member/Diane.jpg":"../img/member/Diane.jpg","../img/member/Eric.jpg":"../img/member/Eric.jpg","../img/member/Kristina.jpg":"../img/member/Kristina.jpg","../img/member/Laura.jpg":"../img/member/Laura.jpg","../img/member/Lisa.jpg":"../img/member/Lisa.jpg","../img/member/Rachel.jpg":"../img/member/Rachel.jpg","../img/member/Rice.jpg":"../img/member/Rice.jpg","../img/member/Singer.jpg":"../img/member/Singer.jpg","../img/member/Sophia.jpg":"../img/member/Sophia.jpg","../img/member/Super Tom.jpg":"../img/member/Super Tom.jpg","../img/member/William.jpg":"../img/member/William.jpg"}],"../img/index/1-desktop.jpg":[function(require,module,exports) {
-module.exports = "/1-desktop.660d85a8.jpg";
-},{}],"../img/index/1-laptop.jpg":[function(require,module,exports) {
-module.exports = "/1-laptop.94d09b69.jpg";
-},{}],"../img/index/1-mobile.jpg":[function(require,module,exports) {
-module.exports = "/1-mobile.88367e2c.jpg";
-},{}],"../components/IndexContent.tsx":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","../img/member/Alven.jpg":"../img/member/Alven.jpg","../img/member/Ariel.jpg":"../img/member/Ariel.jpg","../img/member/Artorias.jpg":"../img/member/Artorias.jpg","../img/member/Claire.jpg":"../img/member/Claire.jpg","../img/member/Diane.jpg":"../img/member/Diane.jpg","../img/member/Eric.jpg":"../img/member/Eric.jpg","../img/member/Kristina.jpg":"../img/member/Kristina.jpg","../img/member/Laura.jpg":"../img/member/Laura.jpg","../img/member/Lisa.jpg":"../img/member/Lisa.jpg","../img/member/Rachel.jpg":"../img/member/Rachel.jpg","../img/member/Rice.jpg":"../img/member/Rice.jpg","../img/member/Singer.jpg":"../img/member/Singer.jpg","../img/member/Sophia.jpg":"../img/member/Sophia.jpg","../img/member/Super Tom.jpg":"../img/member/Super Tom.jpg","../img/member/William.jpg":"../img/member/William.jpg"}],"../components/IndexContent.tsx":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -84608,14 +84617,24 @@ var _1_laptop_jpg_1 = __importDefault(require("../img/index/1-laptop.jpg")); //@
 
 var _1_mobile_jpg_1 = __importDefault(require("../img/index/1-mobile.jpg"));
 
+var MemberContent_1 = require("../components/MemberContent");
+
 var useIndexContentStyle = styles_1.makeStyles(function (theme) {
   return {
     card: {
       width: "100%",
-      //height : "110vh",
+      // height : "110vh",
       position: "relative",
       borderRadius: 0,
-      boxShadow: "none"
+      boxShadow: "none",
+      display: 'inline-block'
+    },
+    Paper: {
+      display: 'flex'
+    },
+    gridContainer: {
+      width: "100%",
+      margin: theme.spacing(0)
     },
     picture: {
       height: "105vh"
@@ -84631,6 +84650,10 @@ var useIndexContentStyle = styles_1.makeStyles(function (theme) {
     },
     meetingButton: {
       fontWeight: 700
+    },
+    gridItem: {
+      //width : "33%"
+      flexGrow: 1
     }
   };
 });
@@ -84814,43 +84837,58 @@ function IndexContent() {
       mainText = _b[0],
       subText = _b[1];
 
-  return React.createElement(core_1.Card, {
-    className: classes.card
-  }, React.createElement(core_1.CardMedia, {
-    className: classes.picture,
-    image: imageDir
-  }), React.createElement(core_1.CardContent, {
-    className: classes.content
-  }, React.createElement(core_1.Toolbar, null), React.createElement(core_1.Box, {
-    className: classes.text,
-    marginX: "auto",
-    paddingTop: textPaddingTop,
-    paddingX: textPaddingX,
-    maxWidth: textMaxWidth,
-    color: "white"
-  }, React.createElement(core_1.Typography, {
-    variant: mainTextType,
-    component: "h1",
-    paragraph: true
-  }, React.createElement(core_1.Box, {
-    fontWeight: "bold"
-  }, mainText)), React.createElement(core_1.Typography, {
-    variant: subTextType,
-    component: "h2",
-    paragraph: true
-  }, React.createElement(core_1.Box, {
-    fontWeight: "bold"
-  }, subText)), React.createElement(core_1.Button, {
-    variant: "contained",
-    color: "primary",
-    size: "large",
-    className: classes.meetingButton,
-    disableElevation: true
-  }, "Start Meeting"))));
+  return (// <Paper>
+    React.createElement(core_1.Grid, {
+      className: classes.gridContainer,
+      container: true,
+      justify: "center",
+      spacing: 0
+    }, React.createElement(core_1.Grid, {
+      lg: 12,
+      xl: 12,
+      md: 12,
+      // sm = {12}
+      xs: 12,
+      item: true,
+      className: classes.gridItem
+    }, React.createElement(core_1.Card, {
+      className: classes.card
+    }, React.createElement(core_1.CardMedia, {
+      className: classes.picture,
+      image: imageDir
+    }), React.createElement(core_1.CardContent, {
+      className: classes.content
+    }, React.createElement(core_1.Toolbar, null), React.createElement(core_1.Box, {
+      className: classes.text,
+      marginX: "auto",
+      paddingTop: textPaddingTop,
+      paddingX: textPaddingX,
+      maxWidth: textMaxWidth,
+      color: "white"
+    }, React.createElement(core_1.Typography, {
+      variant: mainTextType,
+      component: "h1",
+      paragraph: true
+    }, React.createElement(core_1.Box, {
+      fontWeight: "bold"
+    }, mainText)), React.createElement(core_1.Typography, {
+      variant: subTextType,
+      component: "h2",
+      paragraph: true
+    }, React.createElement(core_1.Box, {
+      fontWeight: "bold"
+    }, subText)), React.createElement(core_1.Button, {
+      variant: "contained",
+      color: "primary",
+      size: "large",
+      className: classes.meetingButton,
+      disableElevation: true
+    }, "Start Meeting"))), React.createElement(MemberContent_1.MemberContent, null))))
+  );
 }
 
 exports.IndexContent = IndexContent;
-},{"react":"../../node_modules/react/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","@material-ui/core/styles":"../../node_modules/@material-ui/core/esm/styles/index.js","../img/index/1-desktop.jpg":"../img/index/1-desktop.jpg","../img/index/1-laptop.jpg":"../img/index/1-laptop.jpg","../img/index/1-mobile.jpg":"../img/index/1-mobile.jpg"}],"../../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","@material-ui/core/styles":"../../node_modules/@material-ui/core/esm/styles/index.js","../img/index/1-desktop.jpg":"../img/index/1-desktop.jpg","../img/index/1-laptop.jpg":"../img/index/1-laptop.jpg","../img/index/1-mobile.jpg":"../img/index/1-mobile.jpg","../components/MemberContent":"../components/MemberContent.tsx"}],"../../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -85012,8 +85050,6 @@ var AppBottomBar_1 = require("../../components/AppBottomBar");
 
 var AppTheme_1 = require("../../components/AppTheme");
 
-var MemberContent_1 = require("../../components/MemberContent");
-
 var IndexContent_1 = require("../../components/IndexContent");
 
 require("@fontsource/alegreya/variable.css");
@@ -85038,7 +85074,7 @@ function (_super) {
     }, React.createElement(core_1.CssBaseline, null), React.createElement(AppTopBar_1.AppTopBar, null), React.createElement(AppContainer_1.AppContainer, {
       maxWidth: false,
       disableGutters: true
-    }, React.createElement(IndexContent_1.IndexContent, null), React.createElement(MemberContent_1.MemberContent, null), React.createElement(AppBottomBar_1.AppBottomBar, null)));
+    }, React.createElement(IndexContent_1.IndexContent, null), React.createElement(AppBottomBar_1.AppBottomBar, null)));
   };
 
   return App;
@@ -85047,7 +85083,7 @@ function (_super) {
 window.onload = function () {
   main();
 };
-},{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","../../components/AppTopBar":"../components/AppTopBar.tsx","../../components/AppContainer":"../components/AppContainer.tsx","../../components/AppBottomBar":"../components/AppBottomBar.tsx","../../components/AppTheme":"../components/AppTheme.tsx","../../components/MemberContent":"../components/MemberContent.tsx","../../components/IndexContent":"../components/IndexContent.tsx","@fontsource/alegreya/variable.css":"../../node_modules/@fontsource/alegreya/variable.css"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","../../components/AppTopBar":"../components/AppTopBar.tsx","../../components/AppContainer":"../components/AppContainer.tsx","../../components/AppBottomBar":"../components/AppBottomBar.tsx","../../components/AppTheme":"../components/AppTheme.tsx","../../components/IndexContent":"../components/IndexContent.tsx","@fontsource/alegreya/variable.css":"../../node_modules/@fontsource/alegreya/variable.css"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -85075,7 +85111,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53253" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53267" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

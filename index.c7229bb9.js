@@ -83255,7 +83255,380 @@ module.exports = "/1-desktop.660d85a8.jpg";
 module.exports = "/1-laptop.94d09b69.jpg";
 },{}],"../img/index/1-mobile.jpg":[function(require,module,exports) {
 module.exports = "/1-mobile.88367e2c.jpg";
-},{}],"../components/IndexContent.tsx":[function(require,module,exports) {
+},{}],"../img/member/Alven.jpg":[function(require,module,exports) {
+module.exports = "/Alven.62b40ae9.jpg";
+},{}],"../img/member/Ariel.jpg":[function(require,module,exports) {
+module.exports = "/Ariel.61437b47.jpg";
+},{}],"../img/member/Artorias.jpg":[function(require,module,exports) {
+module.exports = "/Artorias.794474f4.jpg";
+},{}],"../img/member/Claire.jpg":[function(require,module,exports) {
+module.exports = "/Claire.829ff93f.jpg";
+},{}],"../img/member/Diane.jpg":[function(require,module,exports) {
+module.exports = "/Diane.ba9b8e03.jpg";
+},{}],"../img/member/Eric.jpg":[function(require,module,exports) {
+module.exports = "/Eric.03a64074.jpg";
+},{}],"../img/member/Kristina.jpg":[function(require,module,exports) {
+module.exports = "/Kristina.9820cb82.jpg";
+},{}],"../img/member/Laura.jpg":[function(require,module,exports) {
+module.exports = "/Laura.3e8739e9.jpg";
+},{}],"../img/member/Lisa.jpg":[function(require,module,exports) {
+module.exports = "/Lisa.5634dea8.jpg";
+},{}],"../img/member/Rachel.jpg":[function(require,module,exports) {
+module.exports = "/Rachel.cce4a1b3.jpg";
+},{}],"../img/member/Rice.jpg":[function(require,module,exports) {
+module.exports = "/Rice.64d6b1f4.jpg";
+},{}],"../img/member/Singer.jpg":[function(require,module,exports) {
+module.exports = "/Singer.ca39d0b2.jpg";
+},{}],"../img/member/Sophia.jpg":[function(require,module,exports) {
+module.exports = "/Sophia.f5b1e97f.jpg";
+},{}],"../img/member/Super Tom.jpg":[function(require,module,exports) {
+module.exports = "/Super Tom.5b528f76.jpg";
+},{}],"../img/member/William.jpg":[function(require,module,exports) {
+module.exports = "/William.974b51ab.jpg";
+},{}],"../components/MemberContent.tsx":[function(require,module,exports) {
+"use strict";
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MemberContent = void 0;
+
+var React = __importStar(require("react"));
+
+var core_1 = require("@material-ui/core"); //@ts-ignore
+
+
+var Alven_jpg_1 = __importDefault(require("../img/member/Alven.jpg")); //@ts-ignore
+
+
+var Ariel_jpg_1 = __importDefault(require("../img/member/Ariel.jpg")); //@ts-ignore
+
+
+var Artorias_jpg_1 = __importDefault(require("../img/member/Artorias.jpg")); //@ts-ignore
+
+
+var Claire_jpg_1 = __importDefault(require("../img/member/Claire.jpg")); //@ts-ignore
+
+
+var Diane_jpg_1 = __importDefault(require("../img/member/Diane.jpg")); //@ts-ignore
+
+
+var Eric_jpg_1 = __importDefault(require("../img/member/Eric.jpg")); //@ts-ignore
+
+
+var Kristina_jpg_1 = __importDefault(require("../img/member/Kristina.jpg")); //@ts-ignore
+
+
+var Laura_jpg_1 = __importDefault(require("../img/member/Laura.jpg")); //@ts-ignore
+
+
+var Lisa_jpg_1 = __importDefault(require("../img/member/Lisa.jpg")); //@ts-ignore
+
+
+var Rachel_jpg_1 = __importDefault(require("../img/member/Rachel.jpg")); //@ts-ignore
+
+
+var Rice_jpg_1 = __importDefault(require("../img/member/Rice.jpg")); //@ts-ignore
+
+
+var Singer_jpg_1 = __importDefault(require("../img/member/Singer.jpg")); //@ts-ignore
+
+
+var Sophia_jpg_1 = __importDefault(require("../img/member/Sophia.jpg")); //@ts-ignore
+
+
+var Super_Tom_jpg_1 = __importDefault(require("../img/member/Super Tom.jpg")); //@ts-ignore
+
+
+var William_jpg_1 = __importDefault(require("../img/member/William.jpg"));
+
+var Members = [{
+  name: "Super Tom",
+  chineseFirstName: "Chuping",
+  chineseLastName: "Tan",
+  interests: ["Computer Science", "Art", "Drama"],
+  email: "tanchuping@i.pkuschool.edu.cn",
+  consultationAddress: "https://calendly.com/tanchuping/consultation"
+}, {
+  name: "Alven",
+  chineseFirstName: "Shuyang",
+  chineseLastName: "Chang",
+  interests: ["Psychology", "Sociology", "Political Science"],
+  email: "changshuyang@i.pkuschool.edu.cn",
+  consultationAddress: "https://calendly.com/consultation-wit-alven"
+}, {
+  name: "Artorias",
+  chineseFirstName: "Yuqiao",
+  chineseLastName: "Guan",
+  interests: ["Social Science", "Political Philosophy", "History"],
+  email: "guanyuqiao@i.pkuschool.edu.cn",
+  consultationAddress: "https://calendly.com/guanyuqiao/regular-consultation"
+}, {
+  name: "Ariel",
+  chineseFirstName: "Jingxuan",
+  chineseLastName: "Tian",
+  interests: ["Social Science", "Film Studies"],
+  email: "tianjingxuan@i.pkuschool.edu.cn",
+  consultationAddress: "https://calendly.com/tianjingxuan/consultation"
+}, {
+  name: "Claire",
+  chineseFirstName: "Yixuan",
+  chineseLastName: "Chen",
+  interests: ["Astronomy", "Physics", "Python"],
+  email: "chenyixuan@i.pkuschool.edu.cn",
+  consultationAddress: "https://calendly.com/clairechenyixuan/claire-chen-yixuan-consultation"
+}, {
+  name: "Diane",
+  chineseFirstName: "Yimei",
+  chineseLastName: "Qiu",
+  interests: ["Literature", "Philosophy", "Psychology"],
+  email: "qiuyimei@i.pkuschool.edu.cn",
+  consultationAddress: "https://calendly.com/yimeiqiu/regular-consultation"
+}, {
+  name: "Eric",
+  chineseFirstName: "Siqiao",
+  chineseLastName: "Liang",
+  interests: ["Economy", "Sociology", "Public Policy"],
+  email: "liangsiqiao@i.pkuschool.edu.cn",
+  consultationAddress: "https://calendly.com/liangsiqiao/happy"
+}, {
+  name: "Kristina",
+  chineseFirstName: "Yufei",
+  chineseLastName: "Mao",
+  interests: ["Humanities", "Social Science"],
+  email: "maoyufei@i.pkuschool.edu.cn",
+  consultationAddress: "https://calendly.com/maoyufei/dwc-consultation"
+}, {
+  name: "Laura",
+  chineseFirstName: "Yumeng",
+  chineseLastName: "Tan",
+  interests: ["Secret"],
+  email: "tanyumeng@i.pkuschool.edu.cn",
+  consultationAddress: "https://calendly.com/tanyumeng/consultation"
+}, {
+  name: "Lisa",
+  chineseFirstName: "Suqi",
+  chineseLastName: "Chen",
+  interests: ["Psychology", "Liberal Art"],
+  email: "chensuqi@i.pkuschool.edu.cn",
+  consultationAddress: "https://calendly.com/chensuqi/lisa-s-consultation"
+}, {
+  name: "Rachel",
+  chineseFirstName: "Lu'ning",
+  chineseLastName: "Zhang",
+  interests: ["World Culture", "History"],
+  email: "zhangluning@i.pkuschool.edu.cn",
+  consultationAddress: "https://calendly.com/zhangluning/consulation"
+}, {
+  name: "Rice",
+  chineseFirstName: "Xilin",
+  chineseLastName: "Wang",
+  interests: ["Mathematics", "Economy", "History"],
+  email: "wangxilin@i.pkuschool.edu.cn",
+  consultationAddress: "https://calendly.com/wangxilin/rice-consultation"
+}, {
+  name: "Singer",
+  chineseFirstName: "Zi'an",
+  chineseLastName: "Hao",
+  interests: ["Biology", "Chemistry", "Theatre", "Music", "Geography"],
+  email: "haozian@i.pkuschool.edu.cn",
+  consultationAddress: "https://calendly.com/haozian/singer-consultation"
+}, {
+  name: "Sophia",
+  chineseFirstName: "Jiarui",
+  chineseLastName: "Yang",
+  interests: ["Biology", "Chemistry", "Mathematics"],
+  email: "yangjiarui@i.pkuschool.edu.cn",
+  consultationAddress: "https://calendly.com/yangjiarui/consultation"
+}, {
+  name: "William",
+  chineseFirstName: "Wenqing",
+  chineseLastName: "Ge",
+  interests: ["Politics", "Economy", "Poetry"],
+  email: "gewenqing@i.pkuschool.edu.cn",
+  consultationAddress: "https://calendly.com/gewenqing/dwc-consultation"
+}];
+var MemberPicture = {
+  Alven: Alven_jpg_1.default,
+  Ariel: Ariel_jpg_1.default,
+  Artorias: Artorias_jpg_1.default,
+  Claire: Claire_jpg_1.default,
+  Diane: Diane_jpg_1.default,
+  Eric: Eric_jpg_1.default,
+  Kristina: Kristina_jpg_1.default,
+  Laura: Laura_jpg_1.default,
+  Lisa: Lisa_jpg_1.default,
+  Rachel: Rachel_jpg_1.default,
+  Rice: Rice_jpg_1.default,
+  Singer: Singer_jpg_1.default,
+  Sophia: Sophia_jpg_1.default,
+  "Super Tom": Super_Tom_jpg_1.default,
+  William: William_jpg_1.default
+};
+var useMemberContentStyle = core_1.makeStyles(function (theme) {
+  return {
+    card: {
+      padding: theme.spacing(1, 2, 1.5) // maxwidth: 100,
+
+    },
+    CardMedia: {
+      margi: 'auto'
+    },
+    avatar: {
+      height: theme.spacing(8),
+      width: theme.spacing(8)
+    },
+    chip: {
+      userSelect: "none",
+      boxShadow: "none !important"
+    },
+    gridContainer: {
+      width: "100%",
+      margin: theme.spacing(0)
+    },
+    gridItem: {
+      //width : "33%"
+      flexGrow: 1
+    }
+  };
+});
+
+function MemberContent() {
+  var classes = useMemberContentStyle();
+  var theme = core_1.useTheme();
+  return React.createElement(core_1.Box, {
+    width: 1,
+    padding: theme.spacing(3)
+  }, React.createElement(core_1.Grid, {
+    className: classes.gridContainer,
+    container: true,
+    justify: "center",
+    spacing: 4
+  }, Members.map(function (_a) {
+    var name = _a.name,
+        interests = _a.interests,
+        email = _a.email,
+        consultationAddress = _a.consultationAddress,
+        chineseFirstName = _a.chineseFirstName,
+        chineseLastName = _a.chineseLastName;
+    return React.createElement(core_1.Grid, {
+      lg: 4,
+      xl: 4,
+      md: 6,
+      sm: 12,
+      // xs = {18}
+      item: true,
+      className: classes.gridItem,
+      key: name
+    }, React.createElement(core_1.Card, {
+      variant: "outlined",
+      className: classes.card
+    }, React.createElement(core_1.CardHeader, {
+      avatar: React.createElement(core_1.Avatar, {
+        className: classes.avatar,
+        src: MemberPicture[name]
+      }),
+      title: React.createElement(core_1.Box, {
+        paddingBottom: theme.spacing(0.5)
+      }, React.createElement(core_1.Grid, {
+        container: true,
+        spacing: 1,
+        wrap: "nowrap"
+      }, React.createElement(core_1.Grid, {
+        item: true
+      }, React.createElement(core_1.Box, {
+        fontWeight: "bold",
+        component: "span",
+        whiteSpace: "nowrap"
+      }, name)), React.createElement(core_1.Grid, {
+        item: true
+      }, React.createElement(core_1.Box, {
+        fontSize: "0.5em",
+        component: "span",
+        whiteSpace: "nowrap",
+        color: theme.palette.text.secondary
+      }, "/ " + chineseLastName + " " + chineseFirstName)))),
+      subheader: React.createElement(core_1.Grid, {
+        container: true,
+        spacing: 1
+      }, interests.map(function (interest, index) {
+        return React.createElement(core_1.Grid, {
+          item: true,
+          key: interest
+        }, React.createElement(core_1.Chip, {
+          label: interest,
+          className: classes.chip,
+          clickable: true,
+          size: "small",
+          variant: "outlined",
+          color: index % 2 == 0 ? "primary" : "secondary"
+        }));
+      })),
+      titleTypographyProps: {
+        variant: "h4"
+      }
+    }), React.createElement(core_1.CardContent, null, React.createElement(core_1.Grid, {
+      container: true,
+      spacing: 2
+    }, React.createElement(core_1.Grid, {
+      item: true
+    }, React.createElement(core_1.Typography, null, "Contact: ", React.createElement(core_1.Box, {
+      component: "span",
+      fontWeight: "bold"
+    }, email))))), React.createElement(core_1.CardActions, null, React.createElement(core_1.Grid, {
+      container: true,
+      justify: "flex-end"
+    }, React.createElement(core_1.Button, {
+      color: "primary",
+      disableElevation: true,
+      variant: "contained",
+      href: consultationAddress
+    }, "Consultation meeting")))));
+  })));
+}
+
+exports.MemberContent = MemberContent;
+},{"react":"../../node_modules/react/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","../img/member/Alven.jpg":"../img/member/Alven.jpg","../img/member/Ariel.jpg":"../img/member/Ariel.jpg","../img/member/Artorias.jpg":"../img/member/Artorias.jpg","../img/member/Claire.jpg":"../img/member/Claire.jpg","../img/member/Diane.jpg":"../img/member/Diane.jpg","../img/member/Eric.jpg":"../img/member/Eric.jpg","../img/member/Kristina.jpg":"../img/member/Kristina.jpg","../img/member/Laura.jpg":"../img/member/Laura.jpg","../img/member/Lisa.jpg":"../img/member/Lisa.jpg","../img/member/Rachel.jpg":"../img/member/Rachel.jpg","../img/member/Rice.jpg":"../img/member/Rice.jpg","../img/member/Singer.jpg":"../img/member/Singer.jpg","../img/member/Sophia.jpg":"../img/member/Sophia.jpg","../img/member/Super Tom.jpg":"../img/member/Super Tom.jpg","../img/member/William.jpg":"../img/member/William.jpg"}],"../components/IndexContent.tsx":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -83318,14 +83691,24 @@ var _1_laptop_jpg_1 = __importDefault(require("../img/index/1-laptop.jpg")); //@
 
 var _1_mobile_jpg_1 = __importDefault(require("../img/index/1-mobile.jpg"));
 
+var MemberContent_1 = require("../components/MemberContent");
+
 var useIndexContentStyle = styles_1.makeStyles(function (theme) {
   return {
     card: {
       width: "100%",
-      //height : "110vh",
+      // height : "110vh",
       position: "relative",
       borderRadius: 0,
-      boxShadow: "none"
+      boxShadow: "none",
+      display: 'inline-block'
+    },
+    Paper: {
+      display: 'flex'
+    },
+    gridContainer: {
+      width: "100%",
+      margin: theme.spacing(0)
     },
     picture: {
       height: "105vh"
@@ -83341,6 +83724,10 @@ var useIndexContentStyle = styles_1.makeStyles(function (theme) {
     },
     meetingButton: {
       fontWeight: 700
+    },
+    gridItem: {
+      //width : "33%"
+      flexGrow: 1
     }
   };
 });
@@ -83524,43 +83911,58 @@ function IndexContent() {
       mainText = _b[0],
       subText = _b[1];
 
-  return React.createElement(core_1.Card, {
-    className: classes.card
-  }, React.createElement(core_1.CardMedia, {
-    className: classes.picture,
-    image: imageDir
-  }), React.createElement(core_1.CardContent, {
-    className: classes.content
-  }, React.createElement(core_1.Toolbar, null), React.createElement(core_1.Box, {
-    className: classes.text,
-    marginX: "auto",
-    paddingTop: textPaddingTop,
-    paddingX: textPaddingX,
-    maxWidth: textMaxWidth,
-    color: "white"
-  }, React.createElement(core_1.Typography, {
-    variant: mainTextType,
-    component: "h1",
-    paragraph: true
-  }, React.createElement(core_1.Box, {
-    fontWeight: "bold"
-  }, mainText)), React.createElement(core_1.Typography, {
-    variant: subTextType,
-    component: "h2",
-    paragraph: true
-  }, React.createElement(core_1.Box, {
-    fontWeight: "bold"
-  }, subText)), React.createElement(core_1.Button, {
-    variant: "contained",
-    color: "primary",
-    size: "large",
-    className: classes.meetingButton,
-    disableElevation: true
-  }, "Start Meeting"))));
+  return (// <Paper>
+    React.createElement(core_1.Grid, {
+      className: classes.gridContainer,
+      container: true,
+      justify: "center",
+      spacing: 0
+    }, React.createElement(core_1.Grid, {
+      lg: 12,
+      xl: 12,
+      md: 12,
+      // sm = {12}
+      xs: 12,
+      item: true,
+      className: classes.gridItem
+    }, React.createElement(core_1.Card, {
+      className: classes.card
+    }, React.createElement(core_1.CardMedia, {
+      className: classes.picture,
+      image: imageDir
+    }), React.createElement(core_1.CardContent, {
+      className: classes.content
+    }, React.createElement(core_1.Toolbar, null), React.createElement(core_1.Box, {
+      className: classes.text,
+      marginX: "auto",
+      paddingTop: textPaddingTop,
+      paddingX: textPaddingX,
+      maxWidth: textMaxWidth,
+      color: "white"
+    }, React.createElement(core_1.Typography, {
+      variant: mainTextType,
+      component: "h1",
+      paragraph: true
+    }, React.createElement(core_1.Box, {
+      fontWeight: "bold"
+    }, mainText)), React.createElement(core_1.Typography, {
+      variant: subTextType,
+      component: "h2",
+      paragraph: true
+    }, React.createElement(core_1.Box, {
+      fontWeight: "bold"
+    }, subText)), React.createElement(core_1.Button, {
+      variant: "contained",
+      color: "primary",
+      size: "large",
+      className: classes.meetingButton,
+      disableElevation: true
+    }, "Start Meeting"))), React.createElement(MemberContent_1.MemberContent, null))))
+  );
 }
 
 exports.IndexContent = IndexContent;
-},{"react":"../../node_modules/react/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","@material-ui/core/styles":"../../node_modules/@material-ui/core/esm/styles/index.js","../img/index/1-desktop.jpg":"../img/index/1-desktop.jpg","../img/index/1-laptop.jpg":"../img/index/1-laptop.jpg","../img/index/1-mobile.jpg":"../img/index/1-mobile.jpg"}],"../../node_modules/@babel/runtime/helpers/interopRequireDefault/index.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","@material-ui/core/styles":"../../node_modules/@material-ui/core/esm/styles/index.js","../img/index/1-desktop.jpg":"../img/index/1-desktop.jpg","../img/index/1-laptop.jpg":"../img/index/1-laptop.jpg","../img/index/1-mobile.jpg":"../img/index/1-mobile.jpg","../components/MemberContent":"../components/MemberContent.tsx"}],"../../node_modules/@babel/runtime/helpers/interopRequireDefault/index.js":[function(require,module,exports) {
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {
     "default": obj
@@ -83753,7 +84155,7 @@ function SvgDwc(props) {
     x: 179.52,
     y: 200.33,
     fontSize: 13,
-    fontFamily: "AlegreyaVariable",
+    fontFamily: "Alegreya",
     fontWeight: 700,
     fontStyle: "normal",
     letterSpacing: 0,
@@ -83773,7 +84175,7 @@ function SvgDwc(props) {
     x: 179.52,
     y: 200.33,
     fontSize: 13,
-    fontFamily: "AlegreyaVariable",
+    fontFamily: "Alegreya",
     fontWeight: 700,
     fontStyle: "normal",
     letterSpacing: 0,
@@ -83793,7 +84195,7 @@ function SvgDwc(props) {
     x: 179.52,
     y: 200.33,
     fontSize: 13,
-    fontFamily: "AlegreyaVariable",
+    fontFamily: "Alegreya",
     fontWeight: 700,
     fontStyle: "normal",
     letterSpacing: 0,
@@ -83813,7 +84215,7 @@ function SvgDwc(props) {
     x: 179.52,
     y: 199.33,
     fontSize: 13,
-    fontFamily: "AlegreyaVariable",
+    fontFamily: "Alegreya",
     fontWeight: 700,
     fontStyle: "normal",
     letterSpacing: 0,
@@ -83833,7 +84235,7 @@ function SvgDwc(props) {
     x: 179.52,
     y: 199.33,
     fontSize: 13,
-    fontFamily: "AlegreyaVariable",
+    fontFamily: "Alegreya",
     fontWeight: 700,
     fontStyle: "normal",
     letterSpacing: 0,
@@ -83853,7 +84255,7 @@ function SvgDwc(props) {
     x: 179.52,
     y: 199.33,
     fontSize: 13,
-    fontFamily: "AlegreyaVariable",
+    fontFamily: "Alegreya",
     fontWeight: 700,
     fontStyle: "normal",
     letterSpacing: 0,
@@ -83873,7 +84275,7 @@ function SvgDwc(props) {
     x: 179.52,
     y: 205.33,
     fontSize: 10,
-    fontFamily: "AlegreyaVariable",
+    fontFamily: "Alegreya",
     fontWeight: 700,
     fontStyle: "normal",
     letterSpacing: 0,
@@ -83893,7 +84295,7 @@ function SvgDwc(props) {
     x: 179.52,
     y: 205.33,
     fontSize: 10,
-    fontFamily: "AlegreyaVariable",
+    fontFamily: "Alegreya",
     fontWeight: 700,
     fontStyle: "normal",
     letterSpacing: 0,
@@ -83913,7 +84315,7 @@ function SvgDwc(props) {
     x: 179.52,
     y: 205.33,
     fontSize: 10,
-    fontFamily: "AlegreyaVariable",
+    fontFamily: "Alegreya",
     fontWeight: 700,
     fontStyle: "normal",
     letterSpacing: 0,
@@ -84127,9 +84529,9 @@ function AppTopBar() {
     elevation: isScrollToTop ? 0 : 3,
     className: classes.appBar,
     style: {
-      backgroundColor: isScrollToTop ? "transparent" : theme.palette.primary.main,
-      // backgroundColor : 'transparent'，
-      backdropFilter: "blur(80px)" // backgroundColor : 'transparent'
+      backgroundColor: isScrollToTop ? "transparent" : theme.palette.primary.main // backgroundColor : 'transparent'，
+      // backdropFilter:  "blur(80px)",
+      // backgroundColor : 'transparent'
       // BackdropFilter: 'blur(100px)'
 
     }
@@ -84669,10 +85071,10 @@ function (_super) {
   App.prototype.render = function () {
     return React.createElement(core_1.ThemeProvider, {
       theme: AppTheme_1.AppTheme
-    }, React.createElement(core_1.CssBaseline, null), React.createElement(AppTopBar_1.AppTopBar, null), React.createElement(AppContainer_1.AppContainer, {
+    }, React.createElement(core_1.CssBaseline, null), React.createElement(AppContainer_1.AppContainer, {
       maxWidth: false,
       disableGutters: true
-    }, React.createElement(IndexContent_1.IndexContent, null), React.createElement(AppBottomBar_1.AppBottomBar, null)));
+    }, React.createElement(IndexContent_1.IndexContent, null), React.createElement(AppBottomBar_1.AppBottomBar, null)), React.createElement(AppTopBar_1.AppTopBar, null));
   };
 
   return App;
@@ -84709,7 +85111,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53253" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53267" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
