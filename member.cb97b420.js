@@ -83816,9 +83816,9 @@ function AppTopBar() {
     elevation: isScrollToTop ? 0 : 3,
     className: classes.appBar,
     style: {
-      backgroundColor: isScrollToTop ? "transparent" : theme.palette.primary.main // backgroundColor : 'transparent'，
-      // backdropFilter:  "blur(80px)",
-      // backgroundColor : 'transparent'
+      backgroundColor: isScrollToTop ? "transparent" : theme.palette.primary.main,
+      // backgroundColor : 'transparent'，
+      backdropFilter: "blur(80px)" // backgroundColor : 'transparent'
       // BackdropFilter: 'blur(100px)'
 
     }
@@ -85075,7 +85075,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50692" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53253" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
