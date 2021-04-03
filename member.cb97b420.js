@@ -84554,7 +84554,7 @@ function MemberContent() {
 }
 
 exports.MemberContent = MemberContent;
-},{"react":"../../node_modules/react/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","../img/member/Alven.jpg":"../img/member/Alven.jpg","../img/member/Ariel.jpg":"../img/member/Ariel.jpg","../img/member/Artorias.jpg":"../img/member/Artorias.jpg","../img/member/Claire.jpg":"../img/member/Claire.jpg","../img/member/Diane.jpg":"../img/member/Diane.jpg","../img/member/Eric.jpg":"../img/member/Eric.jpg","../img/member/Kristina.jpg":"../img/member/Kristina.jpg","../img/member/Laura.jpg":"../img/member/Laura.jpg","../img/member/Lisa.jpg":"../img/member/Lisa.jpg","../img/member/Rachel.jpg":"../img/member/Rachel.jpg","../img/member/Rice.jpg":"../img/member/Rice.jpg","../img/member/Singer.jpg":"../img/member/Singer.jpg","../img/member/Sophia.jpg":"../img/member/Sophia.jpg","../img/member/Super Tom.jpg":"../img/member/Super Tom.jpg","../img/member/William.jpg":"../img/member/William.jpg"}],"../components/IndexContent.tsx":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","../img/member/Alven.jpg":"../img/member/Alven.jpg","../img/member/Ariel.jpg":"../img/member/Ariel.jpg","../img/member/Artorias.jpg":"../img/member/Artorias.jpg","../img/member/Claire.jpg":"../img/member/Claire.jpg","../img/member/Diane.jpg":"../img/member/Diane.jpg","../img/member/Eric.jpg":"../img/member/Eric.jpg","../img/member/Kristina.jpg":"../img/member/Kristina.jpg","../img/member/Laura.jpg":"../img/member/Laura.jpg","../img/member/Lisa.jpg":"../img/member/Lisa.jpg","../img/member/Rachel.jpg":"../img/member/Rachel.jpg","../img/member/Rice.jpg":"../img/member/Rice.jpg","../img/member/Singer.jpg":"../img/member/Singer.jpg","../img/member/Sophia.jpg":"../img/member/Sophia.jpg","../img/member/Super Tom.jpg":"../img/member/Super Tom.jpg","../img/member/William.jpg":"../img/member/William.jpg"}],"../components/MemberWhole.tsx":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -84600,7 +84600,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.IndexContent = void 0;
+exports.MemberWhole = void 0;
 
 var React = __importStar(require("react"));
 
@@ -84821,7 +84821,7 @@ function useImageDir() {
   }
 }
 
-function IndexContent() {
+function MemberWhole() {
   var theme = styles_1.useTheme();
   var classes = useIndexContentStyle();
   var textPaddingX = useTextPaddingX();
@@ -84887,7 +84887,7 @@ function IndexContent() {
   );
 }
 
-exports.IndexContent = IndexContent;
+exports.MemberWhole = MemberWhole;
 },{"react":"../../node_modules/react/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","@material-ui/core/styles":"../../node_modules/@material-ui/core/esm/styles/index.js","../img/index/1-desktop.jpg":"../img/index/1-desktop.jpg","../img/index/1-laptop.jpg":"../img/index/1-laptop.jpg","../img/index/1-mobile.jpg":"../img/index/1-mobile.jpg","../components/MemberContent":"../components/MemberContent.tsx"}],"../../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
@@ -85050,7 +85050,7 @@ var AppBottomBar_1 = require("../../components/AppBottomBar");
 
 var AppTheme_1 = require("../../components/AppTheme");
 
-var IndexContent_1 = require("../../components/IndexContent");
+var MemberWhole_1 = require("../../components/MemberWhole");
 
 require("@fontsource/alegreya/variable.css");
 
@@ -85074,7 +85074,7 @@ function (_super) {
     }, React.createElement(core_1.CssBaseline, null), React.createElement(AppTopBar_1.AppTopBar, null), React.createElement(AppContainer_1.AppContainer, {
       maxWidth: false,
       disableGutters: true
-    }, React.createElement(IndexContent_1.IndexContent, null), React.createElement(AppBottomBar_1.AppBottomBar, null)));
+    }, React.createElement(MemberWhole_1.MemberWhole, null), React.createElement(AppBottomBar_1.AppBottomBar, null)));
   };
 
   return App;
@@ -85083,7 +85083,7 @@ function (_super) {
 window.onload = function () {
   main();
 };
-},{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","../../components/AppTopBar":"../components/AppTopBar.tsx","../../components/AppContainer":"../components/AppContainer.tsx","../../components/AppBottomBar":"../components/AppBottomBar.tsx","../../components/AppTheme":"../components/AppTheme.tsx","../../components/IndexContent":"../components/IndexContent.tsx","@fontsource/alegreya/variable.css":"../../node_modules/@fontsource/alegreya/variable.css"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","../../components/AppTopBar":"../components/AppTopBar.tsx","../../components/AppContainer":"../components/AppContainer.tsx","../../components/AppBottomBar":"../components/AppBottomBar.tsx","../../components/AppTheme":"../components/AppTheme.tsx","../../components/MemberWhole":"../components/MemberWhole.tsx","@fontsource/alegreya/variable.css":"../../node_modules/@fontsource/alegreya/variable.css"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
