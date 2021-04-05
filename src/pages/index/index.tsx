@@ -24,14 +24,11 @@ class App extends React.Component{
         return (
             <ThemeProvider theme = { AppTheme }>
                 <CssBaseline/>
-           
-                     <AppContainer maxWidth = { false } disableGutters>
+                <AppTopBar />
+                <AppContainer maxWidth = { false } disableGutters>
                     <IndexContent></IndexContent>
                     <AppBottomBar />
-                </AppContainer> 
-   
-                <AppTopBar />
-
+                </AppContainer>
             </ThemeProvider>
         )
     }

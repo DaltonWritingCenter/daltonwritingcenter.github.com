@@ -13,8 +13,22 @@ import MenuIcon from "@material-ui/icons/Menu";
 import DWCIcon from "./Dwc";
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import InvertColorsIcon from '@material-ui/icons/InvertColors';
-
-
+import clsx from 'clsx';
+import Drawer from '@material-ui/core/Drawer';
+import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import {ThemeProvider, responsiveFontSizes,createMuiTheme} from "@material-ui/core";
+import HomeIcon from '@material-ui/icons/Home';
+import EventSeatIcon from '@material-ui/icons/EventSeat';
+import DateRangeIcon from '@material-ui/icons/DateRange';
+import PolicyIcon from '@material-ui/icons/Policy';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import ContactSupportIcon from '@material-ui/icons/ContactSupport';
 const useAppBarStyle = makeStyles((theme) => ({
     appBar : {
         width : "100%",
@@ -51,13 +65,111 @@ const useAppBarStyle = makeStyles((theme) => ({
         backdropFilter: "blur(3px)",
         backgroundColor:'rgba(0,0,30,0.4)'
     },
+    fullList: {
+        width: 'auto',
+    },
+    list: {
+        width: 250,
+    },
+    navigateButton : {
+        color: "white",
+        fontWeight : "bold",
+        fontSize : "1rem",
+        margin :  theme.spacing(0, 1)
+    }
 }))
 
 function AppTopBar(){
     const classes = useAppBarStyle();
     const theme = useTheme();
-
+    const [state, setState] = React.useState({
+  
+        left: false,
+    
+      });
     const [isScrollToTop, setIsScrollToTop] = useState(false);
+    const toggleDrawer = (anchor, open) => (event) => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+          return;
+        }
+    
+        setState({ ...state, [anchor]: open });
+      };
+    
+      const list = (anchor) => (
+        <div
+          className={clsx(classes.list, {
+            [classes.fullList]: anchor === 'top' || anchor === 'bottom',
+          })}
+          role="presentation"
+          onClick={toggleDrawer(anchor, false)}
+          onKeyDown={toggleDrawer(anchor, false)}
+        >
+          <List>
+            {['HomePage'].map((text, index) => (
+              <ListItem key={text} >
+                {/* <ListItemIcon> */}
+                    <Button href="../homepage/homepage.html">
+                            <HomeIcon></HomeIcon>      
+                    </Button>
+
+                {/* </ListItemIcon> */}
+                
+              <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+          <List>
+            {['Book meeting　'].map((text, index) => (
+              <ListItem key={text}>
+                    <Button href="../member/member.html">
+                        <EventSeatIcon></EventSeatIcon>
+                    </Button>
+                
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+          <List>
+            {['Events'].map((text, index) => (
+              <ListItem key={text}>
+                    <Button href="../Events/Events.html">
+                        <DateRangeIcon></DateRangeIcon>
+                    </Button>
+                
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+    
+          <Divider />
+    
+          <List>
+            {['Policy'].map((text, index) => (
+
+               <ListItem key={text}>
+                    <Button href="../Policy/Policy.html">
+                    < PolicyIcon />
+                    </Button>
+                
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+          <List>
+            {['FAQs'].map((text, index) => (
+
+               <ListItem key={text}>
+                    <Button href="../FAQs/FAQs.html">
+                        <ContactSupportIcon></ContactSupportIcon>
+                    </Button>
+                
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+        </div>
+      );
 
     useEffect(() => {
         let changeAppBarColor = () => {
@@ -84,12 +196,16 @@ function AppTopBar(){
             style = {{
                 backgroundColor : isScrollToTop ? "transparent" : theme.palette.primary.main,
                 // backgroundColor : 'transparent'，
-                // backdropFilter:  "blur(80px)",
+                backdropFilter:  "blur(80px)",
                 // backgroundColor : 'transparent'
                 // BackdropFilter: 'blur(100px)'
 
             }}>
+                            
             <Toolbar className = { classes.toolBar }>
+            
+   
+                
                 <SvgIcon className = { classes.dwcIcon } component = { DWCIcon } />
                 <Typography variant = "button" component = "div" className = { classes.title }>
                     symposium
@@ -100,9 +216,21 @@ function AppTopBar(){
                 <IconButton edge="end" color = "inherit" className = { classes.icons }>
                     <InvertColorsIcon />
                 </IconButton>
-                <IconButton edge="end" color = "inherit" className = { classes.icons }>
-                    <MenuIcon />
-                </IconButton>
+
+            {[''].map((anchor) => (
+            <React.Fragment key={anchor}>
+              <IconButton edge="end" color = "inherit" onClick={toggleDrawer(anchor, true) }>{anchor}<FormatListBulletedIcon /></IconButton>
+                <Drawer  open={state[anchor]} onClose={toggleDrawer(anchor, false)} style = {{backdropFilter:  "blur(80px)"}}>
+                  {list(anchor)}
+                </Drawer>
+    
+            </React.Fragment>
+          ))}
+                        <Toolbar >
+          
+          
+        </Toolbar >
+
             </Toolbar>
         </AppBar>
     )
