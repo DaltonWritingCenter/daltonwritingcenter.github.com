@@ -84323,7 +84323,7 @@ function AppTopBar() {
       return React.createElement(ListItem_1.default, {
         key: text
       }, React.createElement(Button_1.default, {
-        href: "../Policy/Policy.html"
+        href: "../policy/policy.html"
       }, React.createElement(Policy_1.default, null)), React.createElement(ListItemText_1.default, {
         primary: text
       }));
@@ -85046,7 +85046,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65436" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50010" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
