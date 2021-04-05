@@ -1,6 +1,5 @@
 import * as React from 'react'
 import {
-    Container,
     Box,
     Button,
     Card,
@@ -9,10 +8,7 @@ import {
     Toolbar,
     CardHeader,
     Typography,
-    useMediaQuery,
-    Paper,
-    CssBaseline,
-    Grid,
+    useMediaQuery
 } from "@material-ui/core"
 import {
     makeStyles,
@@ -20,29 +16,20 @@ import {
 } from "@material-ui/core/styles";
 
 //@ts-ignore
-import indexImageHeadDesktop from "../img/index/1-desktop.jpg";
+import indexImageHeadDesktop from "../img/indexPage/1-desktop.jpg";
 //@ts-ignore
-import indexImageHeadLaptop from "../img/index/1-laptop.jpg";
+import indexImageHeadLaptop from "../img/indexPage/1-laptop.jpg";
 //@ts-ignore
-import indexImageHeadMobile from "../img/index/1-mobile.jpg";
+import indexImageHeadMobile from "../img/indexPage/1-mobile.jpg";
 
-import { MemberContent } from "../components/MemberContent";
 const useIndexContentStyle = makeStyles((theme) => ({
     card : {
         width : "100%",
-        // height : "110vh",
+        //height : "110vh",
         position : "relative",
         borderRadius : 0,
-        boxShadow : "none",
-        display: 'inline-block',
+        boxShadow : "none"
     },
-    Paper : {
-        display: 'flex',
-
-    },
-    gridContainer : {
-        width : "100%",
-        margin : theme.spacing(0)},
     picture : {
         height : "105vh"
     },
@@ -57,11 +44,7 @@ const useIndexContentStyle = makeStyles((theme) => ({
     },
     meetingButton : {
         fontWeight : 700,
-    },
-    gridItem : {
-        //width : "33%"
-        flexGrow : 1
-    },
+    }
 }))
 
 function useTextPaddingX(){
@@ -228,6 +211,7 @@ function useImageDir(){
 function IndexContent(){
     let theme = useTheme();
     let classes = useIndexContentStyle();
+
     let textPaddingX = useTextPaddingX();
     let textMaxWidth = useTextMaxWidth();
     let textPaddingTop = useTextPaddingTop();
@@ -235,69 +219,43 @@ function IndexContent(){
     let [mainTextType, subTextType] = useTextType();
     let [mainText, subText] = useText();
 
-    return (
-    // <Paper>
-    <Grid
-         
-
-            className = { classes.gridContainer }
-            container
-            justify="center"
-            spacing = { 0 }>
-        <Grid
-                        lg = {12}
-                        xl = {12}
-                        md = {12}
-                        // sm = {12}
-                        xs = {12}
-                        item
-                        className = { classes.gridItem }>
-            <Card className = { classes.card }>
-    
-                <CardMedia
-                    className = { classes.picture }
-                    image = { imageDir } />
-                <CardContent className = { classes.content }>
-                    <Toolbar></Toolbar>
-                    <Box
-                        className = { classes.text }
-                        marginX = "auto"
-                        paddingTop = { textPaddingTop }
-                        paddingX = { textPaddingX }
-                        maxWidth = { textMaxWidth }
-                        color = "white">
-                        <Typography
-                            variant = { mainTextType }
-                            component = "h1"
-                            paragraph><Box fontWeight = "bold">{
-                            mainText
-                        }</Box></Typography>
-                        <Typography
-                            variant = { subTextType }
-                            component = "h2"
-                            paragraph><Box fontWeight = "bold">{
-                            subText
-                        }</Box></Typography>
-                        <Button
-                            variant = "contained"
-                            color = "primary"
-                            size = "large"
-                            className = { classes.meetingButton }
-                            disableElevation>
-                            Start Meeting
-                        </Button>
-                    </Box>
-                </CardContent>
-                        
-        {/* <MemberContent/> */}
-            </Card>
-        </Grid>
-
-
-    </Grid>
-
-        
-    )
+    return (<Card className = { classes.card }>
+        <CardMedia
+            className = { classes.picture }
+            image = { imageDir } />
+        <CardContent className = { classes.content }>
+            <Toolbar></Toolbar>
+            <Box
+                className = { classes.text }
+                marginX = "auto"
+                paddingTop = { textPaddingTop }
+                paddingX = { textPaddingX }
+                maxWidth = { textMaxWidth }
+                color = "white">
+                <Typography
+                    variant = { mainTextType }
+                    component = "h1"
+                    paragraph><Box fontWeight = "bold">{
+                    mainText
+                }</Box></Typography>
+                <Typography
+                    variant = { subTextType }
+                    component = "h2"
+                    paragraph><Box fontWeight = "bold">{
+                    subText
+                }</Box></Typography>
+                <Button
+                    variant = "contained"
+                    color = "primary"
+                    size = "large"
+                    href = "/member/member.html"
+                    className = { classes.meetingButton }
+                    disableElevation>
+                    Start Meeting
+                </Button>
+            </Box>
+        </CardContent>
+    </Card>)
 }
 
 export { IndexContent };
