@@ -83945,6 +83945,9 @@ var useAppBarStyle = styles_1.makeStyles(function (theme) {
       fontWeight: "bold",
       fontSize: "1rem",
       margin: theme.spacing(0, 1)
+    },
+    button: {
+      margin: theme.spacing(1)
     }
   };
 });
@@ -83983,44 +83986,56 @@ function AppTopBar() {
       role: "presentation",
       onClick: toggleDrawer(anchor, false),
       onKeyDown: toggleDrawer(anchor, false)
-    }, React.createElement(List_1.default, null, ['HomePage'].map(function (text, index) {
+    }, React.createElement(List_1.default, null, [' '].map(function (text, index) {
       return React.createElement(ListItem_1.default, {
         key: text
       }, React.createElement(Button_1.default, {
-        href: "../homepage/homepage.html"
-      }, React.createElement(Home_1.default, null)), React.createElement(ListItemText_1.default, {
+        href: "../homepage/homepage.html",
+        startIcon: React.createElement(Home_1.default, null),
+        ClassName: classes.button
+      }, React.createElement(core_1.Typography, {
+        display: 'inline'
+      }, "Homepage\u3000\u3000\u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
         primary: text
       }));
-    })), React.createElement(List_1.default, null, ['Book meeting　'].map(function (text, index) {
+    })), React.createElement(List_1.default, null, [''].map(function (text, index) {
       return React.createElement(ListItem_1.default, {
         key: text
       }, React.createElement(Button_1.default, {
-        href: "../member/member.html"
-      }, React.createElement(EventSeat_1.default, null)), React.createElement(ListItemText_1.default, {
+        href: "../member/member.html",
+        startIcon: React.createElement(EventSeat_1.default, null),
+        ClassName: classes.button
+      }, React.createElement(core_1.Typography, null, "Book meeting\u3000\u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
         primary: text
       }));
-    })), React.createElement(List_1.default, null, ['Events'].map(function (text, index) {
+    })), React.createElement(List_1.default, null, [''].map(function (text, index) {
       return React.createElement(ListItem_1.default, {
         key: text
       }, React.createElement(Button_1.default, {
-        href: "../Events/Events.html"
-      }, React.createElement(DateRange_1.default, null)), React.createElement(ListItemText_1.default, {
+        href: "../Events/Events.html",
+        startIcon: React.createElement(DateRange_1.default, null),
+        ClassName: classes.button
+      }, React.createElement(core_1.Typography, null, "Events\u3000\u3000\u3000\u3000\u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
         primary: text
       }));
-    })), React.createElement(Divider_1.default, null), React.createElement(List_1.default, null, ['Policy'].map(function (text, index) {
+    })), React.createElement(Divider_1.default, null), React.createElement(List_1.default, null, [''].map(function (text, index) {
       return React.createElement(ListItem_1.default, {
         key: text
       }, React.createElement(Button_1.default, {
-        href: "../policy/policy.html"
-      }, React.createElement(Policy_1.default, null)), React.createElement(ListItemText_1.default, {
+        href: "../policy/policy.html",
+        startIcon: React.createElement(Policy_1.default, null),
+        ClassName: classes.button
+      }, React.createElement(core_1.Typography, null, "Policy\u3000\u3000\u3000\u3000\u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
         primary: text
       }));
-    })), React.createElement(List_1.default, null, ['FAQs'].map(function (text, index) {
+    })), React.createElement(List_1.default, null, [''].map(function (text, index) {
       return React.createElement(ListItem_1.default, {
         key: text
       }, React.createElement(Button_1.default, {
-        href: "../FAQs/FAQs.html"
-      }, React.createElement(ContactSupport_1.default, null)), React.createElement(ListItemText_1.default, {
+        href: "../FAQs/FAQs.html",
+        startIcon: React.createElement(ContactSupport_1.default, null),
+        ClassName: classes.button
+      }, React.createElement(core_1.Typography, null, "FAQs\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
         primary: text
       }));
     })));
@@ -85094,7 +85109,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50010" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54417" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

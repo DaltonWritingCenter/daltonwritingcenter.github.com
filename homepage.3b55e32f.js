@@ -83249,319 +83249,7 @@ Object.keys(_Zoom).forEach(function (key) {
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-},{"./colors":"../../node_modules/@material-ui/core/esm/colors/index.js","./styles":"../../node_modules/@material-ui/core/esm/styles/index.js","./utils":"../../node_modules/@material-ui/core/esm/utils/index.js","./Accordion":"../../node_modules/@material-ui/core/esm/Accordion/index.js","./AccordionActions":"../../node_modules/@material-ui/core/esm/AccordionActions/index.js","./AccordionDetails":"../../node_modules/@material-ui/core/esm/AccordionDetails/index.js","./AccordionSummary":"../../node_modules/@material-ui/core/esm/AccordionSummary/index.js","./AppBar":"../../node_modules/@material-ui/core/esm/AppBar/index.js","./Avatar":"../../node_modules/@material-ui/core/esm/Avatar/index.js","./Backdrop":"../../node_modules/@material-ui/core/esm/Backdrop/index.js","./Badge":"../../node_modules/@material-ui/core/esm/Badge/index.js","./BottomNavigation":"../../node_modules/@material-ui/core/esm/BottomNavigation/index.js","./BottomNavigationAction":"../../node_modules/@material-ui/core/esm/BottomNavigationAction/index.js","./Box":"../../node_modules/@material-ui/core/esm/Box/index.js","./Breadcrumbs":"../../node_modules/@material-ui/core/esm/Breadcrumbs/index.js","./Button":"../../node_modules/@material-ui/core/esm/Button/index.js","./ButtonBase":"../../node_modules/@material-ui/core/esm/ButtonBase/index.js","./ButtonGroup":"../../node_modules/@material-ui/core/esm/ButtonGroup/index.js","./Card":"../../node_modules/@material-ui/core/esm/Card/index.js","./CardActionArea":"../../node_modules/@material-ui/core/esm/CardActionArea/index.js","./CardActions":"../../node_modules/@material-ui/core/esm/CardActions/index.js","./CardContent":"../../node_modules/@material-ui/core/esm/CardContent/index.js","./CardHeader":"../../node_modules/@material-ui/core/esm/CardHeader/index.js","./CardMedia":"../../node_modules/@material-ui/core/esm/CardMedia/index.js","./Checkbox":"../../node_modules/@material-ui/core/esm/Checkbox/index.js","./Chip":"../../node_modules/@material-ui/core/esm/Chip/index.js","./CircularProgress":"../../node_modules/@material-ui/core/esm/CircularProgress/index.js","./ClickAwayListener":"../../node_modules/@material-ui/core/esm/ClickAwayListener/index.js","./Collapse":"../../node_modules/@material-ui/core/esm/Collapse/index.js","./Container":"../../node_modules/@material-ui/core/esm/Container/index.js","./CssBaseline":"../../node_modules/@material-ui/core/esm/CssBaseline/index.js","./Dialog":"../../node_modules/@material-ui/core/esm/Dialog/index.js","./DialogActions":"../../node_modules/@material-ui/core/esm/DialogActions/index.js","./DialogContent":"../../node_modules/@material-ui/core/esm/DialogContent/index.js","./DialogContentText":"../../node_modules/@material-ui/core/esm/DialogContentText/index.js","./DialogTitle":"../../node_modules/@material-ui/core/esm/DialogTitle/index.js","./Divider":"../../node_modules/@material-ui/core/esm/Divider/index.js","./Drawer":"../../node_modules/@material-ui/core/esm/Drawer/index.js","./ExpansionPanel":"../../node_modules/@material-ui/core/esm/ExpansionPanel/index.js","./ExpansionPanelActions":"../../node_modules/@material-ui/core/esm/ExpansionPanelActions/index.js","./ExpansionPanelDetails":"../../node_modules/@material-ui/core/esm/ExpansionPanelDetails/index.js","./ExpansionPanelSummary":"../../node_modules/@material-ui/core/esm/ExpansionPanelSummary/index.js","./Fab":"../../node_modules/@material-ui/core/esm/Fab/index.js","./Fade":"../../node_modules/@material-ui/core/esm/Fade/index.js","./FilledInput":"../../node_modules/@material-ui/core/esm/FilledInput/index.js","./FormControl":"../../node_modules/@material-ui/core/esm/FormControl/index.js","./FormControlLabel":"../../node_modules/@material-ui/core/esm/FormControlLabel/index.js","./FormGroup":"../../node_modules/@material-ui/core/esm/FormGroup/index.js","./FormHelperText":"../../node_modules/@material-ui/core/esm/FormHelperText/index.js","./FormLabel":"../../node_modules/@material-ui/core/esm/FormLabel/index.js","./Grid":"../../node_modules/@material-ui/core/esm/Grid/index.js","./GridList":"../../node_modules/@material-ui/core/esm/GridList/index.js","./GridListTile":"../../node_modules/@material-ui/core/esm/GridListTile/index.js","./GridListTileBar":"../../node_modules/@material-ui/core/esm/GridListTileBar/index.js","./Grow":"../../node_modules/@material-ui/core/esm/Grow/index.js","./Hidden":"../../node_modules/@material-ui/core/esm/Hidden/index.js","./Icon":"../../node_modules/@material-ui/core/esm/Icon/index.js","./IconButton":"../../node_modules/@material-ui/core/esm/IconButton/index.js","./Input":"../../node_modules/@material-ui/core/esm/Input/index.js","./InputAdornment":"../../node_modules/@material-ui/core/esm/InputAdornment/index.js","./InputBase":"../../node_modules/@material-ui/core/esm/InputBase/index.js","./InputLabel":"../../node_modules/@material-ui/core/esm/InputLabel/index.js","./LinearProgress":"../../node_modules/@material-ui/core/esm/LinearProgress/index.js","./Link":"../../node_modules/@material-ui/core/esm/Link/index.js","./List":"../../node_modules/@material-ui/core/esm/List/index.js","./ListItem":"../../node_modules/@material-ui/core/esm/ListItem/index.js","./ListItemAvatar":"../../node_modules/@material-ui/core/esm/ListItemAvatar/index.js","./ListItemIcon":"../../node_modules/@material-ui/core/esm/ListItemIcon/index.js","./ListItemSecondaryAction":"../../node_modules/@material-ui/core/esm/ListItemSecondaryAction/index.js","./ListItemText":"../../node_modules/@material-ui/core/esm/ListItemText/index.js","./ListSubheader":"../../node_modules/@material-ui/core/esm/ListSubheader/index.js","./Menu":"../../node_modules/@material-ui/core/esm/Menu/index.js","./MenuItem":"../../node_modules/@material-ui/core/esm/MenuItem/index.js","./MenuList":"../../node_modules/@material-ui/core/esm/MenuList/index.js","./MobileStepper":"../../node_modules/@material-ui/core/esm/MobileStepper/index.js","./Modal":"../../node_modules/@material-ui/core/esm/Modal/index.js","./NativeSelect":"../../node_modules/@material-ui/core/esm/NativeSelect/index.js","./NoSsr":"../../node_modules/@material-ui/core/esm/NoSsr/index.js","./OutlinedInput":"../../node_modules/@material-ui/core/esm/OutlinedInput/index.js","./Paper":"../../node_modules/@material-ui/core/esm/Paper/index.js","./Popover":"../../node_modules/@material-ui/core/esm/Popover/index.js","./Popper":"../../node_modules/@material-ui/core/esm/Popper/index.js","./Portal":"../../node_modules/@material-ui/core/esm/Portal/index.js","./Radio":"../../node_modules/@material-ui/core/esm/Radio/index.js","./RadioGroup":"../../node_modules/@material-ui/core/esm/RadioGroup/index.js","./RootRef":"../../node_modules/@material-ui/core/esm/RootRef/index.js","./Select":"../../node_modules/@material-ui/core/esm/Select/index.js","./Slide":"../../node_modules/@material-ui/core/esm/Slide/index.js","./Slider":"../../node_modules/@material-ui/core/esm/Slider/index.js","./Snackbar":"../../node_modules/@material-ui/core/esm/Snackbar/index.js","./SnackbarContent":"../../node_modules/@material-ui/core/esm/SnackbarContent/index.js","./Step":"../../node_modules/@material-ui/core/esm/Step/index.js","./StepButton":"../../node_modules/@material-ui/core/esm/StepButton/index.js","./StepConnector":"../../node_modules/@material-ui/core/esm/StepConnector/index.js","./StepContent":"../../node_modules/@material-ui/core/esm/StepContent/index.js","./StepIcon":"../../node_modules/@material-ui/core/esm/StepIcon/index.js","./StepLabel":"../../node_modules/@material-ui/core/esm/StepLabel/index.js","./Stepper":"../../node_modules/@material-ui/core/esm/Stepper/index.js","./SvgIcon":"../../node_modules/@material-ui/core/esm/SvgIcon/index.js","./SwipeableDrawer":"../../node_modules/@material-ui/core/esm/SwipeableDrawer/index.js","./Switch":"../../node_modules/@material-ui/core/esm/Switch/index.js","./Tab":"../../node_modules/@material-ui/core/esm/Tab/index.js","./Table":"../../node_modules/@material-ui/core/esm/Table/index.js","./TableBody":"../../node_modules/@material-ui/core/esm/TableBody/index.js","./TableCell":"../../node_modules/@material-ui/core/esm/TableCell/index.js","./TableContainer":"../../node_modules/@material-ui/core/esm/TableContainer/index.js","./TableFooter":"../../node_modules/@material-ui/core/esm/TableFooter/index.js","./TableHead":"../../node_modules/@material-ui/core/esm/TableHead/index.js","./TablePagination":"../../node_modules/@material-ui/core/esm/TablePagination/index.js","./TableRow":"../../node_modules/@material-ui/core/esm/TableRow/index.js","./TableSortLabel":"../../node_modules/@material-ui/core/esm/TableSortLabel/index.js","./Tabs":"../../node_modules/@material-ui/core/esm/Tabs/index.js","./TabScrollButton":"../../node_modules/@material-ui/core/esm/TabScrollButton/index.js","./TextField":"../../node_modules/@material-ui/core/esm/TextField/index.js","./TextareaAutosize":"../../node_modules/@material-ui/core/esm/TextareaAutosize/index.js","./Toolbar":"../../node_modules/@material-ui/core/esm/Toolbar/index.js","./Tooltip":"../../node_modules/@material-ui/core/esm/Tooltip/index.js","./Typography":"../../node_modules/@material-ui/core/esm/Typography/index.js","./Unstable_TrapFocus":"../../node_modules/@material-ui/core/esm/Unstable_TrapFocus/index.js","./useMediaQuery":"../../node_modules/@material-ui/core/esm/useMediaQuery/index.js","./useScrollTrigger":"../../node_modules/@material-ui/core/esm/useScrollTrigger/index.js","./withMobileDialog":"../../node_modules/@material-ui/core/esm/withMobileDialog/index.js","./withWidth":"../../node_modules/@material-ui/core/esm/withWidth/index.js","./Zoom":"../../node_modules/@material-ui/core/esm/Zoom/index.js"}],"../img/indexPage/1-desktop.jpg":[function(require,module,exports) {
-module.exports = "/1-desktop.f50c28c3.jpg";
-},{}],"../img/indexPage/1-laptop.jpg":[function(require,module,exports) {
-module.exports = "/1-laptop.336f929e.jpg";
-},{}],"../img/indexPage/1-mobile.jpg":[function(require,module,exports) {
-module.exports = "/1-mobile.cf18603b.jpg";
-},{}],"../components/IndexContent.tsx":[function(require,module,exports) {
-"use strict";
-
-var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
-} : function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  o[k2] = m[k];
-});
-
-var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
-  Object.defineProperty(o, "default", {
-    enumerable: true,
-    value: v
-  });
-} : function (o, v) {
-  o["default"] = v;
-});
-
-var __importStar = this && this.__importStar || function (mod) {
-  if (mod && mod.__esModule) return mod;
-  var result = {};
-  if (mod != null) for (var k in mod) {
-    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-  }
-
-  __setModuleDefault(result, mod);
-
-  return result;
-};
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.IndexContent = void 0;
-
-var React = __importStar(require("react"));
-
-var core_1 = require("@material-ui/core");
-
-var styles_1 = require("@material-ui/core/styles"); //@ts-ignore
-
-
-var _1_desktop_jpg_1 = __importDefault(require("../img/indexPage/1-desktop.jpg")); //@ts-ignore
-
-
-var _1_laptop_jpg_1 = __importDefault(require("../img/indexPage/1-laptop.jpg")); //@ts-ignore
-
-
-var _1_mobile_jpg_1 = __importDefault(require("../img/indexPage/1-mobile.jpg"));
-
-var useIndexContentStyle = styles_1.makeStyles(function (theme) {
-  return {
-    card: {
-      width: "100%",
-      //height : "110vh",
-      position: "relative",
-      borderRadius: 0,
-      boxShadow: "none"
-    },
-    picture: {
-      height: "105vh"
-    },
-    content: {
-      position: "absolute",
-      top: 0,
-      paddingTop: 0,
-      width: "100%"
-    },
-    text: {
-      userSelect: "none"
-    },
-    meetingButton: {
-      fontWeight: 700
-    }
-  };
-});
-
-function useTextPaddingX() {
-  var theme = styles_1.useTheme();
-  var _a = theme.breakpoints,
-      between = _a.between,
-      down = _a.down,
-      up = _a.up,
-      values = _a.values;
-  var mobileS = values.mobileS,
-      mobileL = values.mobileL;
-  var isLargerThanMobileLarge = core_1.useMediaQuery(up(mobileL));
-  var isMobileMediumOrLarge = core_1.useMediaQuery(between(mobileS, mobileL));
-  var isMobileSmall = core_1.useMediaQuery(down(mobileS));
-
-  if (isLargerThanMobileLarge) {
-    return theme.spacing(4);
-  } else if (isMobileMediumOrLarge) {
-    return theme.spacing(2);
-  } else if (isMobileSmall) {
-    return theme.spacing(1);
-  } else {
-    return theme.spacing(4);
-  }
-}
-
-function useTextMaxWidth() {
-  var theme = styles_1.useTheme();
-  var _a = theme.breakpoints,
-      between = _a.between,
-      down = _a.down,
-      up = _a.up,
-      values = _a.values;
-  var laptop = values.laptop,
-      desktop = values.desktop,
-      lg = values.lg;
-  var isDesktop = core_1.useMediaQuery(between(laptop, desktop));
-  var isLargerThanDesktop = core_1.useMediaQuery(up(desktop));
-
-  if (isDesktop) {
-    return lg;
-  } else if (isLargerThanDesktop) {
-    return desktop;
-  } else {
-    return "none";
-  }
-}
-
-function useTextPaddingTop() {
-  var theme = styles_1.useTheme();
-  var _a = theme.breakpoints,
-      between = _a.between,
-      down = _a.down,
-      up = _a.up,
-      values = _a.values;
-  var mobileL = values.mobileL,
-      laptop = values.laptop,
-      desktop = values.desktop;
-  var isSmallerThanTablet = core_1.useMediaQuery(down(mobileL));
-  var isTabletOrLaptop = core_1.useMediaQuery(between(mobileL, laptop));
-  var isDesktop = core_1.useMediaQuery(between(laptop, desktop));
-  var isLargerThanDesktop = core_1.useMediaQuery(up(desktop));
-
-  if (isSmallerThanTablet) {
-    return theme.spacing(4);
-  } else if (isTabletOrLaptop) {
-    return theme.spacing(8);
-  } else if (isDesktop) {
-    return "calc(" + theme.spacing(4) + " + 3vh)";
-  } else if (isLargerThanDesktop) {
-    return theme.spacing(8);
-  } else {
-    return theme.spacing(4);
-  }
-}
-
-function useTextType() {
-  var theme = styles_1.useTheme();
-  var _a = theme.breakpoints,
-      between = _a.between,
-      down = _a.down,
-      up = _a.up,
-      values = _a.values;
-  var mobileL = values.mobileL,
-      desktop = values.desktop;
-  var isLargerThanDesktop = core_1.useMediaQuery(up(desktop));
-  var isTabletOrLaptopOrDesktop = core_1.useMediaQuery(between(mobileL + 25, desktop));
-  var isMobile = core_1.useMediaQuery(down(mobileL + 25));
-
-  if (isLargerThanDesktop) {
-    return ["h2", "h5"];
-  } else if (isTabletOrLaptopOrDesktop) {
-    return ["h3", "h6"];
-  } else if (isMobile) {
-    return ["h4", "subtitle1"];
-  } else {
-    return ["h2", "h5"];
-  }
-}
-
-function useText() {
-  var theme = styles_1.useTheme();
-  var _a = theme.breakpoints,
-      between = _a.between,
-      down = _a.down,
-      up = _a.up,
-      values = _a.values;
-  var mobileL = values.mobileL,
-      mobileM = values.mobileM,
-      tablet = values.tablet;
-  var isLargerThanTablet = core_1.useMediaQuery(up(tablet));
-  var isTablet = core_1.useMediaQuery(between(mobileL, tablet));
-  var isMobileLarge = core_1.useMediaQuery(between(mobileM, mobileL));
-  var isSmallerThanMobileLarge = core_1.useMediaQuery(down(mobileM));
-  var mainText;
-
-  if (isLargerThanTablet) {
-    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All assistance you need "), React.createElement("div", null, "to master writing."));
-  } else if (isTablet || isMobileLarge) {
-    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All assistance you"), React.createElement("div", null, "need to master"), React.createElement("div", null, "writing."));
-  } else if (isSmallerThanMobileLarge) {
-    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All assistance"), React.createElement("div", null, "you need to"), React.createElement("div", null, "master writing."));
-  } else {
-    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All assistance you need "), React.createElement("div", null, "to master writing."));
-  }
-
-  var subText;
-
-  if (isLargerThanTablet) {
-    subText = React.createElement(React.Fragment, null, React.createElement("div", null, "The trustworthy voluntary student organization you can"), React.createElement("div", null, "work with to improve your writing ability. Start meeting today."));
-  } else if (isTablet) {
-    subText = React.createElement(React.Fragment, null, React.createElement("div", null, "The voluntary student organization "), React.createElement("div", null, "to improve your writing ability."), React.createElement("div", null, "Start meeting today."));
-  } else if (isMobileLarge || isSmallerThanMobileLarge) {
-    subText = React.createElement(React.Fragment, null, React.createElement("div", null, "The voluntary student organization"), React.createElement("div", null, "to improve your writing ability."), React.createElement("div", null, "Start meeting today."));
-  } else {
-    subText = React.createElement(React.Fragment, null, React.createElement("div", null, "The trustworthy voluntary student organization you can"), React.createElement("div", null, "work with to improve your writing ability. Start meeting today."));
-  }
-
-  return [mainText, subText];
-}
-
-function useImageDir() {
-  var theme = styles_1.useTheme();
-  var _a = theme.breakpoints,
-      between = _a.between,
-      down = _a.down,
-      up = _a.up,
-      values = _a.values;
-  var laptop = values.laptop,
-      tablet = values.tablet;
-  var isLargerThanLaptop = core_1.useMediaQuery(up(laptop));
-  var isLaptop = core_1.useMediaQuery(between(tablet, laptop));
-  var isSmallerThanLaptop = core_1.useMediaQuery(down(tablet));
-
-  if (isLargerThanLaptop) {
-    return _1_desktop_jpg_1.default;
-  } else if (isLaptop) {
-    return _1_laptop_jpg_1.default;
-  } else if (isSmallerThanLaptop) {
-    return _1_mobile_jpg_1.default;
-  } else {
-    return _1_desktop_jpg_1.default;
-  }
-}
-
-function IndexContent() {
-  var theme = styles_1.useTheme();
-  var classes = useIndexContentStyle();
-  var textPaddingX = useTextPaddingX();
-  var textMaxWidth = useTextMaxWidth();
-  var textPaddingTop = useTextPaddingTop();
-  var imageDir = useImageDir();
-
-  var _a = useTextType(),
-      mainTextType = _a[0],
-      subTextType = _a[1];
-
-  var _b = useText(),
-      mainText = _b[0],
-      subText = _b[1];
-
-  return React.createElement(core_1.Card, {
-    className: classes.card
-  }, React.createElement(core_1.CardMedia, {
-    className: classes.picture,
-    image: imageDir
-  }), React.createElement(core_1.CardContent, {
-    className: classes.content
-  }, React.createElement(core_1.Toolbar, null), React.createElement(core_1.Box, {
-    className: classes.text,
-    marginX: "auto",
-    paddingTop: textPaddingTop,
-    paddingX: textPaddingX,
-    maxWidth: textMaxWidth,
-    color: "white"
-  }, React.createElement(core_1.Typography, {
-    variant: mainTextType,
-    component: "h1",
-    paragraph: true
-  }, React.createElement(core_1.Box, {
-    fontWeight: "bold"
-  }, mainText)), React.createElement(core_1.Typography, {
-    variant: subTextType,
-    component: "h2",
-    paragraph: true
-  }, React.createElement(core_1.Box, {
-    fontWeight: "bold"
-  }, subText)), React.createElement(core_1.Button, {
-    variant: "contained",
-    color: "primary",
-    size: "large",
-    href: "/member/member.html",
-    className: classes.meetingButton,
-    disableElevation: true
-  }, "Start Meeting"))));
-}
-
-exports.IndexContent = IndexContent;
-},{"react":"../../node_modules/react/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","@material-ui/core/styles":"../../node_modules/@material-ui/core/esm/styles/index.js","../img/indexPage/1-desktop.jpg":"../img/indexPage/1-desktop.jpg","../img/indexPage/1-laptop.jpg":"../img/indexPage/1-laptop.jpg","../img/indexPage/1-mobile.jpg":"../img/indexPage/1-mobile.jpg"}],"../components/Dwc.tsx":[function(require,module,exports) {
+},{"./colors":"../../node_modules/@material-ui/core/esm/colors/index.js","./styles":"../../node_modules/@material-ui/core/esm/styles/index.js","./utils":"../../node_modules/@material-ui/core/esm/utils/index.js","./Accordion":"../../node_modules/@material-ui/core/esm/Accordion/index.js","./AccordionActions":"../../node_modules/@material-ui/core/esm/AccordionActions/index.js","./AccordionDetails":"../../node_modules/@material-ui/core/esm/AccordionDetails/index.js","./AccordionSummary":"../../node_modules/@material-ui/core/esm/AccordionSummary/index.js","./AppBar":"../../node_modules/@material-ui/core/esm/AppBar/index.js","./Avatar":"../../node_modules/@material-ui/core/esm/Avatar/index.js","./Backdrop":"../../node_modules/@material-ui/core/esm/Backdrop/index.js","./Badge":"../../node_modules/@material-ui/core/esm/Badge/index.js","./BottomNavigation":"../../node_modules/@material-ui/core/esm/BottomNavigation/index.js","./BottomNavigationAction":"../../node_modules/@material-ui/core/esm/BottomNavigationAction/index.js","./Box":"../../node_modules/@material-ui/core/esm/Box/index.js","./Breadcrumbs":"../../node_modules/@material-ui/core/esm/Breadcrumbs/index.js","./Button":"../../node_modules/@material-ui/core/esm/Button/index.js","./ButtonBase":"../../node_modules/@material-ui/core/esm/ButtonBase/index.js","./ButtonGroup":"../../node_modules/@material-ui/core/esm/ButtonGroup/index.js","./Card":"../../node_modules/@material-ui/core/esm/Card/index.js","./CardActionArea":"../../node_modules/@material-ui/core/esm/CardActionArea/index.js","./CardActions":"../../node_modules/@material-ui/core/esm/CardActions/index.js","./CardContent":"../../node_modules/@material-ui/core/esm/CardContent/index.js","./CardHeader":"../../node_modules/@material-ui/core/esm/CardHeader/index.js","./CardMedia":"../../node_modules/@material-ui/core/esm/CardMedia/index.js","./Checkbox":"../../node_modules/@material-ui/core/esm/Checkbox/index.js","./Chip":"../../node_modules/@material-ui/core/esm/Chip/index.js","./CircularProgress":"../../node_modules/@material-ui/core/esm/CircularProgress/index.js","./ClickAwayListener":"../../node_modules/@material-ui/core/esm/ClickAwayListener/index.js","./Collapse":"../../node_modules/@material-ui/core/esm/Collapse/index.js","./Container":"../../node_modules/@material-ui/core/esm/Container/index.js","./CssBaseline":"../../node_modules/@material-ui/core/esm/CssBaseline/index.js","./Dialog":"../../node_modules/@material-ui/core/esm/Dialog/index.js","./DialogActions":"../../node_modules/@material-ui/core/esm/DialogActions/index.js","./DialogContent":"../../node_modules/@material-ui/core/esm/DialogContent/index.js","./DialogContentText":"../../node_modules/@material-ui/core/esm/DialogContentText/index.js","./DialogTitle":"../../node_modules/@material-ui/core/esm/DialogTitle/index.js","./Divider":"../../node_modules/@material-ui/core/esm/Divider/index.js","./Drawer":"../../node_modules/@material-ui/core/esm/Drawer/index.js","./ExpansionPanel":"../../node_modules/@material-ui/core/esm/ExpansionPanel/index.js","./ExpansionPanelActions":"../../node_modules/@material-ui/core/esm/ExpansionPanelActions/index.js","./ExpansionPanelDetails":"../../node_modules/@material-ui/core/esm/ExpansionPanelDetails/index.js","./ExpansionPanelSummary":"../../node_modules/@material-ui/core/esm/ExpansionPanelSummary/index.js","./Fab":"../../node_modules/@material-ui/core/esm/Fab/index.js","./Fade":"../../node_modules/@material-ui/core/esm/Fade/index.js","./FilledInput":"../../node_modules/@material-ui/core/esm/FilledInput/index.js","./FormControl":"../../node_modules/@material-ui/core/esm/FormControl/index.js","./FormControlLabel":"../../node_modules/@material-ui/core/esm/FormControlLabel/index.js","./FormGroup":"../../node_modules/@material-ui/core/esm/FormGroup/index.js","./FormHelperText":"../../node_modules/@material-ui/core/esm/FormHelperText/index.js","./FormLabel":"../../node_modules/@material-ui/core/esm/FormLabel/index.js","./Grid":"../../node_modules/@material-ui/core/esm/Grid/index.js","./GridList":"../../node_modules/@material-ui/core/esm/GridList/index.js","./GridListTile":"../../node_modules/@material-ui/core/esm/GridListTile/index.js","./GridListTileBar":"../../node_modules/@material-ui/core/esm/GridListTileBar/index.js","./Grow":"../../node_modules/@material-ui/core/esm/Grow/index.js","./Hidden":"../../node_modules/@material-ui/core/esm/Hidden/index.js","./Icon":"../../node_modules/@material-ui/core/esm/Icon/index.js","./IconButton":"../../node_modules/@material-ui/core/esm/IconButton/index.js","./Input":"../../node_modules/@material-ui/core/esm/Input/index.js","./InputAdornment":"../../node_modules/@material-ui/core/esm/InputAdornment/index.js","./InputBase":"../../node_modules/@material-ui/core/esm/InputBase/index.js","./InputLabel":"../../node_modules/@material-ui/core/esm/InputLabel/index.js","./LinearProgress":"../../node_modules/@material-ui/core/esm/LinearProgress/index.js","./Link":"../../node_modules/@material-ui/core/esm/Link/index.js","./List":"../../node_modules/@material-ui/core/esm/List/index.js","./ListItem":"../../node_modules/@material-ui/core/esm/ListItem/index.js","./ListItemAvatar":"../../node_modules/@material-ui/core/esm/ListItemAvatar/index.js","./ListItemIcon":"../../node_modules/@material-ui/core/esm/ListItemIcon/index.js","./ListItemSecondaryAction":"../../node_modules/@material-ui/core/esm/ListItemSecondaryAction/index.js","./ListItemText":"../../node_modules/@material-ui/core/esm/ListItemText/index.js","./ListSubheader":"../../node_modules/@material-ui/core/esm/ListSubheader/index.js","./Menu":"../../node_modules/@material-ui/core/esm/Menu/index.js","./MenuItem":"../../node_modules/@material-ui/core/esm/MenuItem/index.js","./MenuList":"../../node_modules/@material-ui/core/esm/MenuList/index.js","./MobileStepper":"../../node_modules/@material-ui/core/esm/MobileStepper/index.js","./Modal":"../../node_modules/@material-ui/core/esm/Modal/index.js","./NativeSelect":"../../node_modules/@material-ui/core/esm/NativeSelect/index.js","./NoSsr":"../../node_modules/@material-ui/core/esm/NoSsr/index.js","./OutlinedInput":"../../node_modules/@material-ui/core/esm/OutlinedInput/index.js","./Paper":"../../node_modules/@material-ui/core/esm/Paper/index.js","./Popover":"../../node_modules/@material-ui/core/esm/Popover/index.js","./Popper":"../../node_modules/@material-ui/core/esm/Popper/index.js","./Portal":"../../node_modules/@material-ui/core/esm/Portal/index.js","./Radio":"../../node_modules/@material-ui/core/esm/Radio/index.js","./RadioGroup":"../../node_modules/@material-ui/core/esm/RadioGroup/index.js","./RootRef":"../../node_modules/@material-ui/core/esm/RootRef/index.js","./Select":"../../node_modules/@material-ui/core/esm/Select/index.js","./Slide":"../../node_modules/@material-ui/core/esm/Slide/index.js","./Slider":"../../node_modules/@material-ui/core/esm/Slider/index.js","./Snackbar":"../../node_modules/@material-ui/core/esm/Snackbar/index.js","./SnackbarContent":"../../node_modules/@material-ui/core/esm/SnackbarContent/index.js","./Step":"../../node_modules/@material-ui/core/esm/Step/index.js","./StepButton":"../../node_modules/@material-ui/core/esm/StepButton/index.js","./StepConnector":"../../node_modules/@material-ui/core/esm/StepConnector/index.js","./StepContent":"../../node_modules/@material-ui/core/esm/StepContent/index.js","./StepIcon":"../../node_modules/@material-ui/core/esm/StepIcon/index.js","./StepLabel":"../../node_modules/@material-ui/core/esm/StepLabel/index.js","./Stepper":"../../node_modules/@material-ui/core/esm/Stepper/index.js","./SvgIcon":"../../node_modules/@material-ui/core/esm/SvgIcon/index.js","./SwipeableDrawer":"../../node_modules/@material-ui/core/esm/SwipeableDrawer/index.js","./Switch":"../../node_modules/@material-ui/core/esm/Switch/index.js","./Tab":"../../node_modules/@material-ui/core/esm/Tab/index.js","./Table":"../../node_modules/@material-ui/core/esm/Table/index.js","./TableBody":"../../node_modules/@material-ui/core/esm/TableBody/index.js","./TableCell":"../../node_modules/@material-ui/core/esm/TableCell/index.js","./TableContainer":"../../node_modules/@material-ui/core/esm/TableContainer/index.js","./TableFooter":"../../node_modules/@material-ui/core/esm/TableFooter/index.js","./TableHead":"../../node_modules/@material-ui/core/esm/TableHead/index.js","./TablePagination":"../../node_modules/@material-ui/core/esm/TablePagination/index.js","./TableRow":"../../node_modules/@material-ui/core/esm/TableRow/index.js","./TableSortLabel":"../../node_modules/@material-ui/core/esm/TableSortLabel/index.js","./Tabs":"../../node_modules/@material-ui/core/esm/Tabs/index.js","./TabScrollButton":"../../node_modules/@material-ui/core/esm/TabScrollButton/index.js","./TextField":"../../node_modules/@material-ui/core/esm/TextField/index.js","./TextareaAutosize":"../../node_modules/@material-ui/core/esm/TextareaAutosize/index.js","./Toolbar":"../../node_modules/@material-ui/core/esm/Toolbar/index.js","./Tooltip":"../../node_modules/@material-ui/core/esm/Tooltip/index.js","./Typography":"../../node_modules/@material-ui/core/esm/Typography/index.js","./Unstable_TrapFocus":"../../node_modules/@material-ui/core/esm/Unstable_TrapFocus/index.js","./useMediaQuery":"../../node_modules/@material-ui/core/esm/useMediaQuery/index.js","./useScrollTrigger":"../../node_modules/@material-ui/core/esm/useScrollTrigger/index.js","./withMobileDialog":"../../node_modules/@material-ui/core/esm/withMobileDialog/index.js","./withWidth":"../../node_modules/@material-ui/core/esm/withWidth/index.js","./Zoom":"../../node_modules/@material-ui/core/esm/Zoom/index.js"}],"../components/Dwc.tsx":[function(require,module,exports) {
 "use strict";
 
 var __assign = this && this.__assign || function () {
@@ -84257,6 +83945,9 @@ var useAppBarStyle = styles_1.makeStyles(function (theme) {
       fontWeight: "bold",
       fontSize: "1rem",
       margin: theme.spacing(0, 1)
+    },
+    button: {
+      margin: theme.spacing(1)
     }
   };
 });
@@ -84295,44 +83986,56 @@ function AppTopBar() {
       role: "presentation",
       onClick: toggleDrawer(anchor, false),
       onKeyDown: toggleDrawer(anchor, false)
-    }, React.createElement(List_1.default, null, ['HomePage'].map(function (text, index) {
+    }, React.createElement(List_1.default, null, [' '].map(function (text, index) {
       return React.createElement(ListItem_1.default, {
         key: text
       }, React.createElement(Button_1.default, {
-        href: "../homepage/homepage.html"
-      }, React.createElement(Home_1.default, null)), React.createElement(ListItemText_1.default, {
+        href: "../homepage/homepage.html",
+        startIcon: React.createElement(Home_1.default, null),
+        ClassName: classes.button
+      }, React.createElement(core_1.Typography, {
+        display: 'inline'
+      }, "Homepage\u3000\u3000\u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
         primary: text
       }));
-    })), React.createElement(List_1.default, null, ['Book meeting　'].map(function (text, index) {
+    })), React.createElement(List_1.default, null, [''].map(function (text, index) {
       return React.createElement(ListItem_1.default, {
         key: text
       }, React.createElement(Button_1.default, {
-        href: "../member/member.html"
-      }, React.createElement(EventSeat_1.default, null)), React.createElement(ListItemText_1.default, {
+        href: "../member/member.html",
+        startIcon: React.createElement(EventSeat_1.default, null),
+        ClassName: classes.button
+      }, React.createElement(core_1.Typography, null, "Book meeting\u3000\u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
         primary: text
       }));
-    })), React.createElement(List_1.default, null, ['Events'].map(function (text, index) {
+    })), React.createElement(List_1.default, null, [''].map(function (text, index) {
       return React.createElement(ListItem_1.default, {
         key: text
       }, React.createElement(Button_1.default, {
-        href: "../Events/Events.html"
-      }, React.createElement(DateRange_1.default, null)), React.createElement(ListItemText_1.default, {
+        href: "../Events/Events.html",
+        startIcon: React.createElement(DateRange_1.default, null),
+        ClassName: classes.button
+      }, React.createElement(core_1.Typography, null, "Events\u3000\u3000\u3000\u3000\u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
         primary: text
       }));
-    })), React.createElement(Divider_1.default, null), React.createElement(List_1.default, null, ['Policy'].map(function (text, index) {
+    })), React.createElement(Divider_1.default, null), React.createElement(List_1.default, null, [''].map(function (text, index) {
       return React.createElement(ListItem_1.default, {
         key: text
       }, React.createElement(Button_1.default, {
-        href: "../policy/policy.html"
-      }, React.createElement(Policy_1.default, null)), React.createElement(ListItemText_1.default, {
+        href: "../policy/policy.html",
+        startIcon: React.createElement(Policy_1.default, null),
+        ClassName: classes.button
+      }, React.createElement(core_1.Typography, null, "Policy\u3000\u3000\u3000\u3000\u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
         primary: text
       }));
-    })), React.createElement(List_1.default, null, ['FAQs'].map(function (text, index) {
+    })), React.createElement(List_1.default, null, [''].map(function (text, index) {
       return React.createElement(ListItem_1.default, {
         key: text
       }, React.createElement(Button_1.default, {
-        href: "../FAQs/FAQs.html"
-      }, React.createElement(ContactSupport_1.default, null)), React.createElement(ListItemText_1.default, {
+        href: "../FAQs/FAQs.html",
+        startIcon: React.createElement(ContactSupport_1.default, null),
+        ClassName: classes.button
+      }, React.createElement(core_1.Typography, null, "FAQs\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
         primary: text
       }));
     })));
@@ -84894,7 +84597,319 @@ function HomepageContent() {
 }
 
 exports.HomepageContent = HomepageContent;
-},{"react":"../../node_modules/react/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js"}],"homepage/homepage.tsx":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js"}],"../img/memberPage/1-desktop.jpg":[function(require,module,exports) {
+module.exports = "/1-desktop.33b15467.jpg";
+},{}],"../img/memberPage/1-laptop.jpg":[function(require,module,exports) {
+module.exports = "/1-laptop.49964b2a.jpg";
+},{}],"../img/memberPage/1-mobile.jpg":[function(require,module,exports) {
+module.exports = "/1-mobile.adca463c.jpg";
+},{}],"../components/homepagePIC.tsx":[function(require,module,exports) {
+"use strict";
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Homepic = void 0;
+
+var React = __importStar(require("react"));
+
+var core_1 = require("@material-ui/core");
+
+var styles_1 = require("@material-ui/core/styles"); //@ts-ignore
+
+
+var _1_desktop_jpg_1 = __importDefault(require("../img/memberPage/1-desktop.jpg")); //@ts-ignore
+
+
+var _1_laptop_jpg_1 = __importDefault(require("../img/memberPage/1-laptop.jpg")); //@ts-ignore
+
+
+var _1_mobile_jpg_1 = __importDefault(require("../img/memberPage/1-mobile.jpg"));
+
+var useIndexContentStyle = styles_1.makeStyles(function (theme) {
+  return {
+    card: {
+      width: "100%",
+      //height : "110vh",
+      position: "relative",
+      borderRadius: 0,
+      boxShadow: "none"
+    },
+    picture: {
+      height: "105vh"
+    },
+    content: {
+      position: "absolute",
+      top: 0,
+      paddingTop: 0,
+      width: "100%"
+    },
+    text: {
+      userSelect: "none"
+    },
+    meetingButton: {
+      fontWeight: 700
+    }
+  };
+});
+
+function useTextPaddingX() {
+  var theme = styles_1.useTheme();
+  var _a = theme.breakpoints,
+      between = _a.between,
+      down = _a.down,
+      up = _a.up,
+      values = _a.values;
+  var mobileS = values.mobileS,
+      mobileL = values.mobileL;
+  var isLargerThanMobileLarge = core_1.useMediaQuery(up(mobileL));
+  var isMobileMediumOrLarge = core_1.useMediaQuery(between(mobileS, mobileL));
+  var isMobileSmall = core_1.useMediaQuery(down(mobileS));
+
+  if (isLargerThanMobileLarge) {
+    return theme.spacing(4);
+  } else if (isMobileMediumOrLarge) {
+    return theme.spacing(2);
+  } else if (isMobileSmall) {
+    return theme.spacing(1);
+  } else {
+    return theme.spacing(4);
+  }
+}
+
+function useTextMaxWidth() {
+  var theme = styles_1.useTheme();
+  var _a = theme.breakpoints,
+      between = _a.between,
+      down = _a.down,
+      up = _a.up,
+      values = _a.values;
+  var laptop = values.laptop,
+      desktop = values.desktop,
+      lg = values.lg;
+  var isDesktop = core_1.useMediaQuery(between(laptop, desktop));
+  var isLargerThanDesktop = core_1.useMediaQuery(up(desktop));
+
+  if (isDesktop) {
+    return lg;
+  } else if (isLargerThanDesktop) {
+    return desktop;
+  } else {
+    return "none";
+  }
+}
+
+function useTextPaddingTop() {
+  var theme = styles_1.useTheme();
+  var _a = theme.breakpoints,
+      between = _a.between,
+      down = _a.down,
+      up = _a.up,
+      values = _a.values;
+  var mobileL = values.mobileL,
+      laptop = values.laptop,
+      desktop = values.desktop;
+  var isSmallerThanTablet = core_1.useMediaQuery(down(mobileL));
+  var isTabletOrLaptop = core_1.useMediaQuery(between(mobileL, laptop));
+  var isDesktop = core_1.useMediaQuery(between(laptop, desktop));
+  var isLargerThanDesktop = core_1.useMediaQuery(up(desktop));
+
+  if (isSmallerThanTablet) {
+    return theme.spacing(4);
+  } else if (isTabletOrLaptop) {
+    return theme.spacing(8);
+  } else if (isDesktop) {
+    return "calc(" + theme.spacing(4) + " + 3vh)";
+  } else if (isLargerThanDesktop) {
+    return theme.spacing(8);
+  } else {
+    return theme.spacing(4);
+  }
+}
+
+function useTextType() {
+  var theme = styles_1.useTheme();
+  var _a = theme.breakpoints,
+      between = _a.between,
+      down = _a.down,
+      up = _a.up,
+      values = _a.values;
+  var mobileL = values.mobileL,
+      desktop = values.desktop;
+  var isLargerThanDesktop = core_1.useMediaQuery(up(desktop));
+  var isTabletOrLaptopOrDesktop = core_1.useMediaQuery(between(mobileL + 25, desktop));
+  var isMobile = core_1.useMediaQuery(down(mobileL + 25));
+
+  if (isLargerThanDesktop) {
+    return ["h2", "h5"];
+  } else if (isTabletOrLaptopOrDesktop) {
+    return ["h3", "h6"];
+  } else if (isMobile) {
+    return ["h4", "subtitle1"];
+  } else {
+    return ["h2", "h5"];
+  }
+}
+
+function useText() {
+  var theme = styles_1.useTheme();
+  var _a = theme.breakpoints,
+      between = _a.between,
+      down = _a.down,
+      up = _a.up,
+      values = _a.values;
+  var mobileL = values.mobileL,
+      mobileM = values.mobileM,
+      tablet = values.tablet;
+  var isLargerThanTablet = core_1.useMediaQuery(up(tablet));
+  var isTablet = core_1.useMediaQuery(between(mobileL, tablet));
+  var isMobileLarge = core_1.useMediaQuery(between(mobileM, mobileL));
+  var isSmallerThanMobileLarge = core_1.useMediaQuery(down(mobileM));
+  var mainText;
+
+  if (isLargerThanTablet) {
+    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All assistance you need "), React.createElement("div", null, "to master writing."));
+  } else if (isTablet || isMobileLarge) {
+    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All assistance you"), React.createElement("div", null, "need to master"), React.createElement("div", null, "writing."));
+  } else if (isSmallerThanMobileLarge) {
+    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All assistance"), React.createElement("div", null, "you need to"), React.createElement("div", null, "master writing."));
+  } else {
+    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All assistance you need "), React.createElement("div", null, "to master writing."));
+  }
+
+  var subText;
+
+  if (isLargerThanTablet) {
+    subText = React.createElement(React.Fragment, null, React.createElement("div", null, "The trustworthy voluntary student organization you can"), React.createElement("div", null, "work with to improve your writing ability. Start meeting today."));
+  } else if (isTablet) {
+    subText = React.createElement(React.Fragment, null, React.createElement("div", null, "The voluntary student organization "), React.createElement("div", null, "to improve your writing ability."), React.createElement("div", null, "Start meeting today."));
+  } else if (isMobileLarge || isSmallerThanMobileLarge) {
+    subText = React.createElement(React.Fragment, null, React.createElement("div", null, "The voluntary student organization"), React.createElement("div", null, "to improve your writing ability."), React.createElement("div", null, "Start meeting today."));
+  } else {
+    subText = React.createElement(React.Fragment, null, React.createElement("div", null, "The trustworthy voluntary student organization you can"), React.createElement("div", null, "work with to improve your writing ability. Start meeting today."));
+  }
+
+  return [mainText, subText];
+}
+
+function useImageDir() {
+  var theme = styles_1.useTheme();
+  var _a = theme.breakpoints,
+      between = _a.between,
+      down = _a.down,
+      up = _a.up,
+      values = _a.values;
+  var laptop = values.laptop,
+      tablet = values.tablet;
+  var isLargerThanLaptop = core_1.useMediaQuery(up(laptop));
+  var isLaptop = core_1.useMediaQuery(between(tablet, laptop));
+  var isSmallerThanLaptop = core_1.useMediaQuery(down(tablet));
+
+  if (isLargerThanLaptop) {
+    return _1_desktop_jpg_1.default;
+  } else if (isLaptop) {
+    return _1_laptop_jpg_1.default;
+  } else if (isSmallerThanLaptop) {
+    return _1_mobile_jpg_1.default;
+  } else {
+    return _1_desktop_jpg_1.default;
+  }
+}
+
+function Homepic() {
+  var theme = styles_1.useTheme();
+  var classes = useIndexContentStyle();
+  var textPaddingX = useTextPaddingX();
+  var textMaxWidth = useTextMaxWidth();
+  var textPaddingTop = useTextPaddingTop();
+  var imageDir = useImageDir();
+
+  var _a = useTextType(),
+      mainTextType = _a[0],
+      subTextType = _a[1];
+
+  var _b = useText(),
+      mainText = _b[0],
+      subText = _b[1];
+
+  return React.createElement(core_1.Card, {
+    className: classes.card
+  }, React.createElement(core_1.CardMedia, {
+    className: classes.picture,
+    image: imageDir
+  }), React.createElement(core_1.CardContent, {
+    className: classes.content
+  }, React.createElement(core_1.Toolbar, null), React.createElement(core_1.Box, {
+    className: classes.text,
+    marginX: "auto",
+    paddingTop: textPaddingTop,
+    paddingX: textPaddingX,
+    maxWidth: textMaxWidth,
+    color: "white"
+  }, React.createElement(core_1.Typography, {
+    variant: mainTextType,
+    component: "h1",
+    paragraph: true
+  }, React.createElement(core_1.Box, {
+    fontWeight: "bold"
+  }, mainText)), React.createElement(core_1.Typography, {
+    variant: subTextType,
+    component: "h2",
+    paragraph: true
+  }, React.createElement(core_1.Box, {
+    fontWeight: "bold"
+  }, subText)), React.createElement(core_1.Button, {
+    variant: "contained",
+    color: "primary",
+    size: "large",
+    href: "/member/member.html",
+    className: classes.meetingButton,
+    disableElevation: true
+  }, "Start Meeting"))));
+}
+
+exports.Homepic = Homepic;
+},{"react":"../../node_modules/react/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","@material-ui/core/styles":"../../node_modules/@material-ui/core/esm/styles/index.js","../img/memberPage/1-desktop.jpg":"../img/memberPage/1-desktop.jpg","../img/memberPage/1-laptop.jpg":"../img/memberPage/1-laptop.jpg","../img/memberPage/1-mobile.jpg":"../img/memberPage/1-mobile.jpg"}],"homepage/homepage.tsx":[function(require,module,exports) {
 "use strict";
 
 var __extends = this && this.__extends || function () {
@@ -84975,8 +84990,6 @@ var react_dom_1 = __importDefault(require("react-dom"));
 
 var core_1 = require("@material-ui/core");
 
-var IndexContent_1 = require("../../components/IndexContent");
-
 var AppTopBar_1 = require("../../components/AppTopBar");
 
 var AppContainer_1 = require("../../components/AppContainer");
@@ -84988,6 +85001,8 @@ var AppTheme_1 = require("../../components/AppTheme");
 require("@fontsource/alegreya/variable.css");
 
 var Homepagecontent_1 = require("../../components/Homepagecontent");
+
+var homepagePIC_1 = require("../../components/homepagePIC");
 
 function main() {
   var container = document.querySelector("#container");
@@ -85009,7 +85024,7 @@ function (_super) {
     }, React.createElement(core_1.CssBaseline, null), React.createElement(AppTopBar_1.AppTopBar, null), React.createElement(AppContainer_1.AppContainer, {
       maxWidth: false,
       disableGutters: true
-    }, React.createElement(IndexContent_1.IndexContent, null), React.createElement(Homepagecontent_1.HomepageContent, null), React.createElement(AppBottomBar_1.AppBottomBar, null)));
+    }, React.createElement(homepagePIC_1.Homepic, null), React.createElement(Homepagecontent_1.HomepageContent, null), React.createElement(AppBottomBar_1.AppBottomBar, null)));
   };
 
   return App;
@@ -85018,7 +85033,7 @@ function (_super) {
 window.onload = function () {
   main();
 };
-},{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","../../components/IndexContent":"../components/IndexContent.tsx","../../components/AppTopBar":"../components/AppTopBar.tsx","../../components/AppContainer":"../components/AppContainer.tsx","../../components/AppBottomBar":"../components/AppBottomBar.tsx","../../components/AppTheme":"../components/AppTheme.tsx","@fontsource/alegreya/variable.css":"../../node_modules/@fontsource/alegreya/variable.css","../../components/Homepagecontent":"../components/Homepagecontent.tsx"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","../../components/AppTopBar":"../components/AppTopBar.tsx","../../components/AppContainer":"../components/AppContainer.tsx","../../components/AppBottomBar":"../components/AppBottomBar.tsx","../../components/AppTheme":"../components/AppTheme.tsx","@fontsource/alegreya/variable.css":"../../node_modules/@fontsource/alegreya/variable.css","../../components/Homepagecontent":"../components/Homepagecontent.tsx","../../components/homepagePIC":"../components/homepagePIC.tsx"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -85046,7 +85061,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50010" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54417" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
