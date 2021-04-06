@@ -84005,7 +84005,7 @@ function AppTopBar() {
         href: "../member/member.html",
         startIcon: React.createElement(EventSeat_1.default, null),
         ClassName: classes.button
-      }, React.createElement(core_1.Typography, null, "Book meeting\u3000\u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
+      }, React.createElement(core_1.Typography, null, "Book meeting\u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
         primary: text
       }));
     })), React.createElement(List_1.default, null, [''].map(function (text, index) {
@@ -84015,7 +84015,7 @@ function AppTopBar() {
         href: "../Events/Events.html",
         startIcon: React.createElement(DateRange_1.default, null),
         ClassName: classes.button
-      }, React.createElement(core_1.Typography, null, "Events\u3000\u3000\u3000\u3000\u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
+      }, React.createElement(core_1.Typography, null, "Events\u3000\u3000\u3000  \u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
         primary: text
       }));
     })), React.createElement(Divider_1.default, null), React.createElement(List_1.default, null, [''].map(function (text, index) {
@@ -84641,13 +84641,13 @@ function useText() {
   var mainText;
 
   if (isLargerThanTablet) {
-    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All assistance you need "), React.createElement("div", null, "to master writing."));
+    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All the assistance you need "), React.createElement("div", null, "to master writing."));
   } else if (isTablet || isMobileLarge) {
-    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All assistance you"), React.createElement("div", null, "need to master"), React.createElement("div", null, "writing."));
+    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All the assistance you"), React.createElement("div", null, "need to master"), React.createElement("div", null, "writing."));
   } else if (isSmallerThanMobileLarge) {
-    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All assistance"), React.createElement("div", null, "you need to"), React.createElement("div", null, "master writing."));
+    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All the assistance"), React.createElement("div", null, "you need to"), React.createElement("div", null, "master writing."));
   } else {
-    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All assistance you need "), React.createElement("div", null, "to master writing."));
+    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All the assistance you need "), React.createElement("div", null, "to master writing."));
   }
 
   var subText;
@@ -84840,7 +84840,7 @@ var PolicyContentData = [{
   child: [{
     id: 0,
     component: "body1",
-    content: "Students may set up appointment via Meetingbird, Wechat, and Email. The official E-mail address is included in the members section of this website."
+    content: "Students may set up an appointment via Calendy, Wechat or Email. The official E-mail address is included in the members section of this website."
   }, {
     id: 1,
     component: "body1",
@@ -84848,7 +84848,7 @@ var PolicyContentData = [{
   }, {
     id: 2,
     component: "body1",
-    content: "Please book the appointment 24 hours prior and send the work before the consultation. The time schedule of consultants are available on Meetingbird."
+    content: "Please book the appointment 24 hours prior and send the work before the consultation. The time schedule of consultants are available on Calendy."
   }]
 }, {
   id: 1,
@@ -84870,7 +84870,7 @@ var PolicyContentData = [{
   }, {
     id: 1,
     component: "body1",
-    content: "You and your consultants may also choose not to attend the schedule meeting. After 10min late, the consultant could go, same with the consultee."
+    content: "You and your consultants may also choose not to attend the scheduled meeting. If the consultee or consultant has not arrived after 10mins, the waiting party may leave. Please contact your consultant to explain what happened ASAP."
   }]
 }, {
   id: 3,
@@ -85109,7 +85109,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54417" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57911" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
