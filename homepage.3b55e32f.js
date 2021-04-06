@@ -84196,7 +84196,76 @@ function AppContainer(props) {
 }
 
 exports.AppContainer = AppContainer;
-},{"react":"../../node_modules/react/index.js","@material-ui/core/styles":"../../node_modules/@material-ui/core/esm/styles/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js"}],"../components/AppBottomBar.tsx":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","@material-ui/core/styles":"../../node_modules/@material-ui/core/esm/styles/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js"}],"../components/MouseOverPopover.tsx":[function(require,module,exports) {
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var react_1 = __importDefault(require("react"));
+
+var Popover_1 = __importDefault(require("@material-ui/core/Popover"));
+
+var Typography_1 = __importDefault(require("@material-ui/core/Typography"));
+
+var styles_1 = require("@material-ui/core/styles");
+
+var useStyles = styles_1.makeStyles(function (theme) {
+  return styles_1.createStyles({
+    popover: {
+      pointerEvents: 'none'
+    }
+  });
+});
+
+function MouseOverPopover() {
+  var classes = useStyles();
+
+  var _a = react_1.default.useState(null),
+      anchorEl = _a[0],
+      setAnchorEl = _a[1];
+
+  var handlePopoverOpen = function handlePopoverOpen(event) {
+    setAnchorEl(event.currentTarget);
+  };
+
+  var handlePopoverClose = function handlePopoverClose() {
+    setAnchorEl(null);
+  };
+
+  var open = Boolean(anchorEl);
+  return react_1.default.createElement("div", null, react_1.default.createElement(Typography_1.default, {
+    "aria-owns": open ? 'mouse-over-popover' : undefined,
+    "aria-haspopup": "true",
+    onMouseEnter: handlePopoverOpen,
+    onMouseLeave: handlePopoverClose
+  }, "Super Cooperation"), react_1.default.createElement(Popover_1.default, {
+    id: "mouse-over-popover",
+    className: classes.popover,
+    open: open,
+    anchorEl: anchorEl,
+    anchorOrigin: {
+      vertical: 'bottom',
+      horizontal: 'left'
+    },
+    transformOrigin: {
+      vertical: 'top',
+      horizontal: 'left'
+    },
+    onClose: handlePopoverClose,
+    disableRestoreFocus: true
+  }, react_1.default.createElement(Typography_1.default, null, "Super Cooperation isn't it?")));
+}
+
+exports.default = MouseOverPopover;
+},{"react":"../../node_modules/react/index.js","@material-ui/core/Popover":"../../node_modules/@material-ui/core/esm/Popover/index.js","@material-ui/core/Typography":"../../node_modules/@material-ui/core/esm/Typography/index.js","@material-ui/core/styles":"../../node_modules/@material-ui/core/esm/styles/index.js"}],"../components/AppBottomBar.tsx":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -84215,6 +84284,8 @@ var react_1 = __importDefault(require("react"));
 var core_1 = require("@material-ui/core");
 
 var Dwc_1 = __importDefault(require("./Dwc"));
+
+var MouseOverPopover_1 = __importDefault(require("../components/MouseOverPopover"));
 
 var useAppBottomBarStyle = core_1.makeStyles(function (theme) {
   return {
@@ -84273,7 +84344,7 @@ function DevelopedByGrid() {
   }, react_1.default.createElement(core_1.Box, {
     fontWeight: "bold",
     component: "span"
-  }, "Developed By")), react_1.default.createElement(core_1.Typography, null, "Zhai Yuqing / Kevin"), react_1.default.createElement(core_1.Typography, null, "Tan Chuping / Tom"));
+  }, "Developed By")), react_1.default.createElement(core_1.Typography, null, "Tan Chuping & Zhai Yuqing"), react_1.default.createElement(core_1.Typography, null, react_1.default.createElement(MouseOverPopover_1.default, null)));
 }
 
 function InformationForGrid() {
@@ -84368,7 +84439,7 @@ function AppBottomBar() {
 }
 
 exports.AppBottomBar = AppBottomBar;
-},{"react":"../../node_modules/react/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","./Dwc":"../components/Dwc.tsx"}],"../components/AppTheme.tsx":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","./Dwc":"../components/Dwc.tsx","../components/MouseOverPopover":"../components/MouseOverPopover.tsx"}],"../components/AppTheme.tsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -85061,7 +85132,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59728" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59866" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
