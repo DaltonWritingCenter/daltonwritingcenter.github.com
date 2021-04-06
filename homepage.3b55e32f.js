@@ -84808,13 +84808,13 @@ function useText() {
   var mainText;
 
   if (isLargerThanTablet) {
-    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All assistance you need "), React.createElement("div", null, "to master writing."));
+    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All the assistance you need "), React.createElement("div", null, "to master writing."));
   } else if (isTablet || isMobileLarge) {
-    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All assistance you"), React.createElement("div", null, "need to master"), React.createElement("div", null, "writing."));
+    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All the assistance you"), React.createElement("div", null, "need to master"), React.createElement("div", null, "writing."));
   } else if (isSmallerThanMobileLarge) {
-    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All assistance"), React.createElement("div", null, "you need to"), React.createElement("div", null, "master writing."));
+    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All the assistance"), React.createElement("div", null, "you need to"), React.createElement("div", null, "master writing."));
   } else {
-    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All assistance you need "), React.createElement("div", null, "to master writing."));
+    mainText = React.createElement(React.Fragment, null, React.createElement("div", null, "All the assistance you need "), React.createElement("div", null, "to master writing."));
   }
 
   var subText;
@@ -85061,7 +85061,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57911" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59728" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
