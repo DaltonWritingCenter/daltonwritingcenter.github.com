@@ -84005,7 +84005,7 @@ function AppTopBar() {
         href: "../member/member.html",
         startIcon: React.createElement(EventSeat_1.default, null),
         ClassName: classes.button
-      }, React.createElement(core_1.Typography, null, "Book meeting\u3000\u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
+      }, React.createElement(core_1.Typography, null, "Book meeting\u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
         primary: text
       }));
     })), React.createElement(List_1.default, null, [''].map(function (text, index) {
@@ -84015,7 +84015,7 @@ function AppTopBar() {
         href: "../Events/Events.html",
         startIcon: React.createElement(DateRange_1.default, null),
         ClassName: classes.button
-      }, React.createElement(core_1.Typography, null, "Events\u3000\u3000\u3000\u3000\u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
+      }, React.createElement(core_1.Typography, null, "Events\u3000\u3000\u3000  \u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
         primary: text
       }));
     })), React.createElement(Divider_1.default, null), React.createElement(List_1.default, null, [''].map(function (text, index) {
@@ -84524,11 +84524,11 @@ var core_1 = require("@material-ui/core");
 var HomepageContentData = [{
   id: 0,
   component: "h5",
-  content: "What DWC do",
+  content: "What DWC does",
   child: [{
     id: 0,
     component: "body1",
-    content: "The Dalton Writing Center is committed to inspiring students to improve writing, thinking and communicating from within the student body. Our aim is to create safe spaces fro brave students to share, express and discuss their work, words, ideas, and learning."
+    content: "The Dalton Writing Center is committed to inspiring students to improve writing, thinking and communicating from within the student body. Our aim is to create safe spaces for brave students to share, express and discuss their work, words, ideas, and learning."
   }]
 }, {
   id: 1,
@@ -84537,7 +84537,7 @@ var HomepageContentData = [{
   child: [{
     id: 0,
     component: "body1",
-    content: "consultations of thesis statement, presentation, and seminar."
+    content: "Consultations of thesis statements, presentations, and seminars, as well as building students' confidence."
   }]
 }];
 var useHomepageContentStyle = core_1.makeStyles(function (theme) {
@@ -85061,7 +85061,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54417" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57911" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

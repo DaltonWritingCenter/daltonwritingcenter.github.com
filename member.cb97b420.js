@@ -84005,7 +84005,7 @@ function AppTopBar() {
         href: "../member/member.html",
         startIcon: React.createElement(EventSeat_1.default, null),
         ClassName: classes.button
-      }, React.createElement(core_1.Typography, null, "Book meeting\u3000\u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
+      }, React.createElement(core_1.Typography, null, "Book meeting\u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
         primary: text
       }));
     })), React.createElement(List_1.default, null, [''].map(function (text, index) {
@@ -84015,7 +84015,7 @@ function AppTopBar() {
         href: "../Events/Events.html",
         startIcon: React.createElement(DateRange_1.default, null),
         ClassName: classes.button
-      }, React.createElement(core_1.Typography, null, "Events\u3000\u3000\u3000\u3000\u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
+      }, React.createElement(core_1.Typography, null, "Events\u3000\u3000\u3000  \u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
         primary: text
       }));
     })), React.createElement(Divider_1.default, null), React.createElement(List_1.default, null, [''].map(function (text, index) {
@@ -85366,7 +85366,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54417" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57911" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
