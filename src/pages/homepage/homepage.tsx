@@ -11,6 +11,7 @@ import { AppBottomBar } from "../../components/AppBottomBar";
 import { AppTheme } from "../../components/AppTheme";
 import "@fontsource/alegreya/variable.css";
 import { HomepageContent} from "../../components/Homepagecontent";
+import { Homepic} from "../../components/homepagePIC";
 function main(){
     let container = document.querySelector("#container");
     ReactDOM.render(<App />, container);
@@ -26,7 +27,7 @@ class App extends React.Component{
                 <CssBaseline/>
                 <AppTopBar />
                 <AppContainer maxWidth = { false } disableGutters>
-                    <IndexContent />
+                    <Homepic />
                     <HomepageContent />
                     <AppBottomBar />
                 </AppContainer>

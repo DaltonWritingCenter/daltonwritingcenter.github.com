@@ -137,24 +137,24 @@ function useText(){
 
     if (isLargerThanTablet){
         mainText = (<>
-            <div>All assistance you need </div>
+            <div>All the assistance you need </div>
             <div>to master writing.</div>
         </>);
     } else if (isTablet || isMobileLarge) {
         mainText = (<>
-            <div>All assistance you</div>
+            <div>All the assistance you</div>
             <div>need to master</div>
             <div>writing.</div>
         </>);
     } else if (isSmallerThanMobileLarge){
         mainText = (<>
-            <div>All assistance</div>
+            <div>All the assistance</div>
             <div>you need to</div>
             <div>master writing.</div>
         </>)
     } else {
         mainText = (<>
-            <div>All assistance you need </div>
+            <div>All the assistance you need </div>
             <div>to master writing.</div>
         </>);
     }
@@ -250,6 +250,7 @@ function IndexContent(){
                     size = "large"
                     href = "/member/member.html"
                     className = { classes.meetingButton }
+                    
                     disableElevation>
                     Start Meeting
                 </Button>

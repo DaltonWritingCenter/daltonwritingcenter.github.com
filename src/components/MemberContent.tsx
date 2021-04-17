@@ -117,7 +117,7 @@ const Members = [
         name : "Laura",
         chineseFirstName : "Yumeng",
         chineseLastName: "Tan",
-        interests : ["Secret"],
+        interests : ["Biology"],
         email : "tanyumeng@i.pkuschool.edu.cn",
         consultationAddress : "https://calendly.com/tanyumeng/consultation"
     },

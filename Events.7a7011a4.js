@@ -84709,7 +84709,7 @@ function ContactFacultyGrid() {
   }, "Contact DWC Faculty")), react_1.default.createElement(core_1.Typography, {
     className: classes.facultyAddress,
     component: "a"
-  }, "Thomasweber@i.pkuschool.edu.cn"));
+  }, "thomas@i.pkuschool.edu.cn"));
 }
 
 function AppBottomBar() {
@@ -84813,7 +84813,685 @@ var AppTheme = core_1.createMuiTheme({
   }
 });
 exports.AppTheme = AppTheme;
-},{"@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","@material-ui/core/colors":"../../node_modules/@material-ui/core/esm/colors/index.js"}],"../../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","@material-ui/core/colors":"../../node_modules/@material-ui/core/esm/colors/index.js"}],"../components/WechatArticle.tsx":[function(require,module,exports) {
+"use strict";
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var __rest = this && this.__rest || function (s, e) {
+  var t = {};
+
+  for (var p in s) {
+    if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+  }
+
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+  }
+  return t;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.SimpleTabs = void 0;
+
+var react_1 = __importDefault(require("react"));
+
+var styles_1 = require("@material-ui/core/styles");
+
+var AppBar_1 = __importDefault(require("@material-ui/core/AppBar"));
+
+var Tabs_1 = __importDefault(require("@material-ui/core/Tabs"));
+
+var Tab_1 = __importDefault(require("@material-ui/core/Tab"));
+
+var Typography_1 = __importDefault(require("@material-ui/core/Typography"));
+
+var Box_1 = __importDefault(require("@material-ui/core/Box"));
+
+var core_1 = require("@material-ui/core/");
+
+function TabPanel(props) {
+  var children = props.children,
+      value = props.value,
+      index = props.index,
+      other = __rest(props, ["children", "value", "index"]);
+
+  return react_1.default.createElement("div", __assign({
+    role: "tabpanel",
+    hidden: value !== index,
+    id: "scrollable-auto-tabpanel-" + index,
+    "aria-labelledby": "scrollable-auto-tab-" + index
+  }, other), value === index && react_1.default.createElement(Box_1.default, {
+    p: 3
+  }, react_1.default.createElement(Typography_1.default, null, children)));
+}
+
+function a11yProps(index) {
+  return {
+    id: "scrollable-auto-tab-" + index,
+    'aria-controls': "scrollable-auto-tabpanel-" + index
+  };
+}
+
+var useStyles = styles_1.makeStyles(function (theme) {
+  return {
+    root: {
+      flexGrow: 1,
+      width: '100%',
+      backgroundColor: theme.palette.background.paper
+    },
+    paper: {
+      padding: theme.spacing(2),
+      color: theme.palette.text.secondary,
+      display: 'flex',
+      alignContent: 'space-between',
+      alignItems: 'center'
+    }
+  };
+});
+
+function SimpleTabs() {
+  var classes = useStyles();
+
+  var _a = react_1.default.useState(0),
+      value = _a[0],
+      setValue = _a[1];
+
+  var handleChange = function handleChange(event, newValue) {
+    setValue(newValue);
+  };
+
+  return react_1.default.createElement(core_1.Grid, {
+    container: true,
+    spacing: 2
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }), react_1.default.createElement("div", {
+    className: classes.root
+  }, react_1.default.createElement(AppBar_1.default, {
+    position: "static",
+    color: "default"
+  }, react_1.default.createElement(Tabs_1.default, {
+    value: value,
+    onChange: handleChange,
+    indicatorColor: "primary",
+    textColor: "primary",
+    variant: "scrollable",
+    scrollButtons: "auto",
+    "aria-label": "scrollable auto tabs example"
+  }, react_1.default.createElement(Tab_1.default, __assign({
+    label: "Socratic Seminar"
+  }, a11yProps(0))), react_1.default.createElement(Tab_1.default, __assign({
+    label: "Annotation"
+  }, a11yProps(1))), react_1.default.createElement(Tab_1.default, __assign({
+    label: "College Application"
+  }, a11yProps(2))), react_1.default.createElement(Tab_1.default, __assign({
+    label: "Data Report"
+  }, a11yProps(3))), react_1.default.createElement(Tab_1.default, __assign({
+    label: "PEEL paragraph"
+  }, a11yProps(4))), react_1.default.createElement(Tab_1.default, __assign({
+    label: "Scientific Writing"
+  }, a11yProps(5))), react_1.default.createElement(Tab_1.default, __assign({
+    label: "Punctuation"
+  }, a11yProps(6))))), react_1.default.createElement(TabPanel, {
+    value: value,
+    index: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    direction: "column",
+    justify: "space-evenly",
+    alignItems: "flex-start",
+    spacing: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true,
+    xs: 12,
+    md: 12
+  }, react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "center",
+    spacing: 2
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(core_1.Button, {
+    color: "primary",
+    variant: "contained",
+    href: 'https://mp.weixin.qq.com/s/drKUt0ywFnue86HRo8N1RQ'
+  }, "Click to view")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "\u7814\u8BA8\u4F1A\u6EE1\u5206\u5B9D\u5178\uFF5CI read this before my last socratic seminar, and...")))), react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "center",
+    spacing: 2
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(core_1.Button, {
+    color: "primary",
+    variant: "contained",
+    href: 'https://mp.weixin.qq.com/s/ktA132RlyLiebUSR6tw38w'
+  }, "Click to view")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Seminar\u80CC\u540E\u7684\u771F\u76F8\u7ADF\u662F... | The Secret Behind Seminar"))))))), react_1.default.createElement(TabPanel, {
+    value: value,
+    index: 1
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    direction: "column",
+    justify: "space-evenly",
+    alignItems: "flex-start",
+    spacing: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true,
+    xs: 12,
+    md: 12
+  }, react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "center",
+    spacing: 2
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(core_1.Button, {
+    color: "primary",
+    variant: "contained",
+    href: 'https://mp.weixin.qq.com/s/6lndlaNlSsACit9fxX0Gxg'
+  }, "Click to view")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Smart Reading: Annotate Wisely"))))))), react_1.default.createElement(TabPanel, {
+    value: value,
+    index: 2
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    direction: "column",
+    justify: "space-evenly",
+    alignItems: "flex-start",
+    spacing: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true,
+    xs: 12,
+    md: 12
+  }, react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "center",
+    spacing: 2
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(core_1.Button, {
+    color: "primary",
+    variant: "contained",
+    href: 'https://mp.weixin.qq.com/s/KnxGHWTP_Jh6LSGm6N092w'
+  }, "Click to view")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "\u7533\u8BF7\u5B63\u7684\u5EFA\u8BAE | Preparing for College Applications: Tips from Senior 3s"))))))), react_1.default.createElement(TabPanel, {
+    value: value,
+    index: 3
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    direction: "column",
+    justify: "space-evenly",
+    alignItems: "flex-start",
+    spacing: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true,
+    xs: 12,
+    md: 12
+  }, react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "center",
+    spacing: 2
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(core_1.Button, {
+    color: "primary",
+    variant: "contained",
+    href: 'https://mp.weixin.qq.com/s/blcvXpTBv_XSHQu8Uic5aw'
+  }, "Click to view")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "\u5E74\u7EC8\u6570\u636E\u62A5\u544A | Dalton Writing Center Data Report")))), react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "center",
+    spacing: 2
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(core_1.Button, {
+    color: "primary",
+    variant: "contained",
+    href: 'https://mp.weixin.qq.com/s/oqm0jeVejZ3S0eUPmyUXPQ'
+  }, "Click to view")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "\u5B66\u6BB5\u6570\u636E\u62A5\u544A 1 | Quarterly Data Report 1")))), react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "center",
+    spacing: 2
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(core_1.Button, {
+    color: "primary",
+    variant: "contained",
+    href: 'https://mp.weixin.qq.com/s/FWakgann_ihtFgCORJps9w'
+  }, "Click to view")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "\u5B66\u6BB5\u6570\u636E\u62A5\u544A 2 | Quarterly Data Report 2"))))))), react_1.default.createElement(TabPanel, {
+    value: value,
+    index: 4
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    direction: "column",
+    justify: "space-evenly",
+    alignItems: "flex-start",
+    spacing: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true,
+    xs: 12,
+    md: 12
+  }, react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "center",
+    spacing: 2
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(core_1.Button, {
+    color: "primary",
+    variant: "contained",
+    href: 'https://mp.weixin.qq.com/s/NV-nYi62KoISaWkKY0g2yw'
+  }, "Click to view")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "\"PEEL OFF\" the PEEL paragraph (\u4E0A)")))), react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "center",
+    spacing: 2
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(core_1.Button, {
+    color: "primary",
+    variant: "contained",
+    href: 'https://mp.weixin.qq.com/s/U_Q5y8EgAwFyGYtNJ_f_5Q'
+  }, "Click to view")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "\"PEEL OFF\" the PEEL Paragraph (\u4E0B)"))))))), react_1.default.createElement(TabPanel, {
+    value: value,
+    index: 5
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    direction: "column",
+    justify: "space-evenly",
+    alignItems: "flex-start",
+    spacing: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true,
+    xs: 12,
+    md: 12
+  }, react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "center",
+    spacing: 2
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(core_1.Button, {
+    color: "primary",
+    variant: "contained",
+    href: 'https://mp.weixin.qq.com/s/O4P-c47DOozSZevGMuYKEA'
+  }, "Click to view")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Quick Introduction to Science Writing")))), react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "center",
+    spacing: 2
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(core_1.Button, {
+    color: "primary",
+    variant: "contained",
+    href: 'https://mp.weixin.qq.com/s/QlTO6kUSATFup51Skek9Zw'
+  }, "Click to view")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Abstract | Scientific Writing Instruction")))), react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "center",
+    spacing: 2
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(core_1.Button, {
+    color: "primary",
+    variant: "contained",
+    href: 'https://mp.weixin.qq.com/s/aNqRfSF6xVWGrfelqNp0DA'
+  }, "Click to view")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Introduction | Scientific Writing")))), react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "center",
+    spacing: 2
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(core_1.Button, {
+    color: "primary",
+    variant: "contained",
+    href: 'https://mp.weixin.qq.com/s/pP7_is4sVcB4TKztdAQ3IQ'
+  }, "Click to view")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Literature Review | Scientific Writing Instruction")))), react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "center",
+    spacing: 2
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(core_1.Button, {
+    color: "primary",
+    variant: "contained",
+    href: 'https://mp.weixin.qq.com/s/2uYc821srVyXGhrtym6jVA'
+  }, "Click to view")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Results | Scientific Writing Instruction")))), react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "center",
+    spacing: 2
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(core_1.Button, {
+    color: "primary",
+    variant: "contained",
+    href: 'https://mp.weixin.qq.com/s/oVv5zrkns0XuvSDoohNFpQ'
+  }, "Click to view")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Discussion | Scientific Writing Instruction")))), react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "center",
+    spacing: 2
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(core_1.Button, {
+    color: "primary",
+    variant: "contained",
+    href: 'https://mp.weixin.qq.com/s/K1Ze15bNwukTvku3DRsCjA'
+  }, "Click to view")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Conclusion | Scientific Writing Instruction"))))))), react_1.default.createElement(TabPanel, {
+    value: value,
+    index: 6
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    direction: "column",
+    justify: "space-evenly",
+    alignItems: "flex-start",
+    spacing: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true,
+    xs: 12,
+    md: 12
+  }, react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "center",
+    spacing: 2
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(core_1.Button, {
+    color: "primary",
+    variant: "contained",
+    href: 'https://mp.weixin.qq.com/s/TL_MpwTcmhbfBuG1y6y-tg'
+  }, "Click to view")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Comma, Semicolon, Colon | Punctuation Instruction")))), react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "center",
+    spacing: 2
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(core_1.Button, {
+    color: "primary",
+    variant: "contained",
+    href: 'https://mp.weixin.qq.com/s/TL_MpwTcmhbfBuG1y6y-tg'
+  }, "Click to view")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Question Mark, Dash, Period | Punctuation Instruction 2")))), react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "center",
+    spacing: 2
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(core_1.Button, {
+    color: "primary",
+    variant: "contained",
+    href: 'https://mp.weixin.qq.com/s/ni18IFMHTjZUfy0kOaZtJQ'
+  }, "Click to view")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Parenthesis, Exclamation Mark, Quotation Mark | Punctuation Instruction 3")))))))));
+}
+
+exports.SimpleTabs = SimpleTabs;
+},{"react":"../../node_modules/react/index.js","@material-ui/core/styles":"../../node_modules/@material-ui/core/esm/styles/index.js","@material-ui/core/AppBar":"../../node_modules/@material-ui/core/esm/AppBar/index.js","@material-ui/core/Tabs":"../../node_modules/@material-ui/core/esm/Tabs/index.js","@material-ui/core/Tab":"../../node_modules/@material-ui/core/esm/Tab/index.js","@material-ui/core/Typography":"../../node_modules/@material-ui/core/esm/Typography/index.js","@material-ui/core/Box":"../../node_modules/@material-ui/core/esm/Box/index.js","@material-ui/core/":"../../node_modules/@material-ui/core/esm/index.js"}],"../components/EventWholeContent.tsx":[function(require,module,exports) {
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.EventContent = void 0;
+
+var react_1 = __importDefault(require("react"));
+
+var core_1 = require("@material-ui/core");
+
+var WechatArticle_1 = require("../components/WechatArticle");
+
+var EventContentData = [{
+  id: 0,
+  component: "h5",
+  content: "Wechat articles",
+  child: [{
+    id: 0,
+    component: "body1",
+    content: "Check out the Wechat article we've published"
+  }]
+} // {
+//     id : 1,
+//     component : "h5",
+//     content : "Others",
+//     child : [
+//         {
+//             id : 0,
+//             component : "body1",
+//             content : "Updating..."
+//         },
+//     ]
+// },
+];
+var useEventContentStyle = core_1.makeStyles(function (theme) {
+  header: {}
+});
+
+function usePaddingQuery() {}
+
+function EventContent() {
+  var theme = core_1.useTheme();
+  var classes = useEventContentStyle();
+  var _a = theme.breakpoints,
+      up = _a.up,
+      down = _a.down,
+      between = _a.between,
+      values = _a.values;
+  var tablet = values.tablet,
+      desktop = values.desktop,
+      laptop = values.laptop;
+  var isLaptop = core_1.useMediaQuery(between(tablet, laptop));
+  var isDesktop = core_1.useMediaQuery(between(laptop, desktop));
+  return react_1.default.createElement(core_1.Box, {
+    padding: isLaptop ? theme.spacing(6, 5, 6) : theme.spacing(5, 5, 8)
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    spacing: 4
+  }, EventContentData.map(function (_a) {
+    var id = _a.id,
+        component = _a.component,
+        content = _a.content,
+        child = _a.child;
+    return react_1.default.createElement(core_1.Grid, {
+      item: true,
+      container: true,
+      key: id
+    }, react_1.default.createElement(core_1.Box, null, react_1.default.createElement(core_1.Typography, {
+      variant: component,
+      paragraph: true,
+      color: "secondary",
+      component: "div"
+    }, react_1.default.createElement(core_1.Box, {
+      fontWeight: "bold"
+    }, content)), child ? child.map(function (_a) {
+      var id = _a.id,
+          component = _a.component,
+          content = _a.content;
+      return react_1.default.createElement(core_1.Grid, {
+        item: true,
+        key: id
+      }, react_1.default.createElement(core_1.Box, null, react_1.default.createElement(core_1.Typography, {
+        variant: component,
+        paragraph: true,
+        component: "div"
+      }, content)));
+    }) : ""));
+  })), react_1.default.createElement(WechatArticle_1.SimpleTabs, null));
+}
+
+exports.EventContent = EventContent;
+},{"react":"../../node_modules/react/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","../components/WechatArticle":"../components/WechatArticle.tsx"}],"../../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -84977,6 +85655,8 @@ var AppBottomBar_1 = require("../../components/AppBottomBar");
 
 var AppTheme_1 = require("../../components/AppTheme");
 
+var EventWholeContent_1 = require("../../components/EventWholeContent");
+
 require("@fontsource/alegreya/variable.css");
 
 function main() {
@@ -84999,7 +85679,7 @@ function (_super) {
     }, React.createElement(core_1.CssBaseline, null), React.createElement(AppContainer_1.AppContainer, {
       maxWidth: false,
       disableGutters: true
-    }, React.createElement(IndexContent_1.IndexContent, null), React.createElement(AppBottomBar_1.AppBottomBar, null)), React.createElement(AppTopBar_1.AppTopBar, null));
+    }, React.createElement(IndexContent_1.IndexContent, null), React.createElement(EventWholeContent_1.EventContent, null), React.createElement(AppBottomBar_1.AppBottomBar, null)), React.createElement(AppTopBar_1.AppTopBar, null));
   };
 
   return App;
@@ -85008,7 +85688,7 @@ function (_super) {
 window.onload = function () {
   main();
 };
-},{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","../../components/IndexContent":"../components/IndexContent.tsx","../../components/AppTopBar":"../components/AppTopBar.tsx","../../components/AppContainer":"../components/AppContainer.tsx","../../components/AppBottomBar":"../components/AppBottomBar.tsx","../../components/AppTheme":"../components/AppTheme.tsx","@fontsource/alegreya/variable.css":"../../node_modules/@fontsource/alegreya/variable.css"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","../../components/IndexContent":"../components/IndexContent.tsx","../../components/AppTopBar":"../components/AppTopBar.tsx","../../components/AppContainer":"../components/AppContainer.tsx","../../components/AppBottomBar":"../components/AppBottomBar.tsx","../../components/AppTheme":"../components/AppTheme.tsx","../../components/EventWholeContent":"../components/EventWholeContent.tsx","@fontsource/alegreya/variable.css":"../../node_modules/@fontsource/alegreya/variable.css"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -85036,7 +85716,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59866" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55471" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

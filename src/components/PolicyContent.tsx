@@ -17,7 +17,7 @@ const PolicyContentData = [
             {
                 id : 0,
                 component : "body1",
-                content : "Students may set up appointment via Meetingbird, Wechat, and Email. The official E-mail address is included in the members section of this website."
+                content : "Students may set up an appointment via Calendy, Wechat or Email. The official E-mail address is included in the members section of this website."
             },
             {
                 id : 1,
@@ -27,7 +27,7 @@ const PolicyContentData = [
             {
                 id : 2,
                 component : "body1",
-                content : "Please book the appointment 24 hours prior and send the work before the consultation. The time schedule of consultants are available on Meetingbird."
+                content : "Please book the appointment 24 hours prior and send the work before the consultation. The time schedule of consultants are available on Calendy."
             },
         ]
     },
@@ -56,7 +56,7 @@ const PolicyContentData = [
             {
                 id : 1,
                 component : "body1",
-                content : "You and your consultants may also choose not to attend the schedule meeting. After 10min late, the consultant could go, same with the consultee."
+                content : "You and your consultants may also choose not to attend the scheduled meeting. If the consultee or consultant has not arrived after 10mins, the waiting party may leave. Please contact your consultant to explain what happened ASAP."
             },
         ]
     },

@@ -9,6 +9,8 @@ import { AppTopBar } from "../../components/AppTopBar";
 import { AppContainer } from "../../components/AppContainer";
 import { AppBottomBar } from "../../components/AppBottomBar";
 import { AppTheme } from "../../components/AppTheme";
+import { SimpleTabs } from '../../components/WechatArticle'
+import { EventContent } from '../../components/EventWholeContent'
 import "@fontsource/alegreya/variable.css";
 
 function main(){
@@ -27,6 +29,8 @@ class App extends React.Component{
            
                      <AppContainer maxWidth = { false } disableGutters>
                     <IndexContent></IndexContent>
+                    <EventContent></EventContent>
+
                     <AppBottomBar />
                 </AppContainer> 
    
