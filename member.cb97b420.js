@@ -84397,7 +84397,7 @@ function ContactFacultyGrid() {
   }, "Contact DWC Faculty")), react_1.default.createElement(core_1.Typography, {
     className: classes.facultyAddress,
     component: "a"
-  }, "Thomasweber@i.pkuschool.edu.cn"));
+  }, "thomas@i.pkuschool.edu.cn"));
 }
 
 function AppBottomBar() {
@@ -85437,7 +85437,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59866" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55471" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

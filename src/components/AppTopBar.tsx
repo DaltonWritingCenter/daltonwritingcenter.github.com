@@ -7,7 +7,8 @@ import {
     IconButton,
     Typography,
     SvgIcon,
-    useTheme
+    useTheme,
+    ButtonBase,
 } from "@material-ui/core"
 import MenuIcon from "@material-ui/icons/Menu";
 import DWCIcon from "./Dwc";
@@ -29,6 +30,7 @@ import DateRangeIcon from '@material-ui/icons/DateRange';
 import PolicyIcon from '@material-ui/icons/Policy';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
+
 const useAppBarStyle = makeStyles((theme) => ({
     appBar : {
         width : "100%",
@@ -76,7 +78,10 @@ const useAppBarStyle = makeStyles((theme) => ({
         fontWeight : "bold",
         fontSize : "1rem",
         margin :  theme.spacing(0, 1)
-    }
+    },
+    button: {
+      margin: theme.spacing(1),
+    },
 }))
 
 function AppTopBar(){
@@ -104,13 +109,17 @@ function AppTopBar(){
           role="presentation"
           onClick={toggleDrawer(anchor, false)}
           onKeyDown={toggleDrawer(anchor, false)}
+          
         >
           <List>
-            {['HomePage'].map((text, index) => (
+            {[' '].map((text, index) => (
               <ListItem key={text} >
                 {/* <ListItemIcon> */}
-                    <Button href="../homepage/homepage.html">
-                            <HomeIcon></HomeIcon>      
+                    <Button href="../homepage/homepage.html"  startIcon={<HomeIcon/>} ClassName={classes.button}>
+                        {/* <Typography align = 'left'> */}
+                        <Typography display = 'inline'>Homepage　　　　　</Typography>   
+                        {/* </Typography> */}
+
                     </Button>
 
                 {/* </ListItemIcon> */}
@@ -120,10 +129,10 @@ function AppTopBar(){
             ))}
           </List>
           <List>
-            {['Book meeting　'].map((text, index) => (
+            {[''].map((text, index) => (
               <ListItem key={text}>
-                    <Button href="../member/member.html">
-                        <EventSeatIcon></EventSeatIcon>
+                    <Button href="../member/member.html" startIcon={<EventSeatIcon/>} ClassName={classes.button}>
+                          <Typography>Book meeting　　　</Typography>
                     </Button>
                 
                 <ListItemText primary={text} />
@@ -131,10 +140,10 @@ function AppTopBar(){
             ))}
           </List>
           <List>
-            {['Events'].map((text, index) => (
+            {[''].map((text, index) => (
               <ListItem key={text}>
-                    <Button href="../Events/Events.html">
-                        <DateRangeIcon></DateRangeIcon>
+                    <Button href="../Events/Events.html" startIcon={<DateRangeIcon/>} ClassName={classes.button}>
+                          <Typography>Events　　　  　　　</Typography>
                     </Button>
                 
                 <ListItemText primary={text} />
@@ -145,25 +154,23 @@ function AppTopBar(){
           <Divider />
     
           <List>
-            {['Policy'].map((text, index) => (
+            {[''].map((text, index) => (
 
                <ListItem key={text}>
-                    <Button href="../Policy/Policy.html">
-                    < PolicyIcon />
+                    <Button href="../policy/policy.html" startIcon={<PolicyIcon/>} ClassName={classes.button}>
+                          <Typography>Policy　　　　　　　</Typography>
                     </Button>
-                
                 <ListItemText primary={text} />
               </ListItem>
             ))}
           </List>
           <List>
-            {['FAQs'].map((text, index) => (
+            {[''].map((text, index) => (
 
                <ListItem key={text}>
-                    <Button href="../FAQs/FAQs.html">
-                        <ContactSupportIcon></ContactSupportIcon>
+                    <Button href="../FAQs/FAQs.html" startIcon={<ContactSupportIcon/>} ClassName={classes.button}>
+                          <Typography>FAQs　　　　　　　　</Typography>
                     </Button>
-                
                 <ListItemText primary={text} />
               </ListItem>
             ))}

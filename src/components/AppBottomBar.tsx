@@ -11,7 +11,7 @@ import {
     useMediaQuery
 } from "@material-ui/core"
 import DWCIcon from "./Dwc"
-
+import MouseOverPopover from "../components/MouseOverPopover"
 const useAppBottomBarStyle = makeStyles((theme) => ({
     dwcIcon : {
         width : "4em",
@@ -73,10 +73,10 @@ function DevelopedByGrid(){
             </Box>
         </Typography>
         <Typography>
-            Zhai Yuqing / Kevin
+            Tan Chuping & Zhai Yuqing
         </Typography>
         <Typography>
-            Tan Chuping / Tom
+            <MouseOverPopover/>
         </Typography>
     </Grid>)
 }
@@ -136,7 +136,7 @@ function ContactFacultyGrid(){
             </Box>
         </Typography>
         <Typography className = { classes.facultyAddress } component = "a">
-            Thomasweber@i.pkuschool.edu.cn
+            thomas@i.pkuschool.edu.cn
         </Typography>
     </Grid>)
 }

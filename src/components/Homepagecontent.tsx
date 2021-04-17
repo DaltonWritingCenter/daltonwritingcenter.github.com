@@ -12,12 +12,12 @@ const HomepageContentData = [
     {
         id : 0,
         component : "h5",
-        content : "What DWC do",
+        content : "What DWC does",
         child : [
             {
                 id : 0,
                 component : "body1",
-                content : "The Dalton Writing Center is committed to inspiring students to improve writing, thinking and communicating from within the student body. Our aim is to create safe spaces fro brave students to share, express and discuss their work, words, ideas, and learning."
+                content : "The Dalton Writing Center is committed to inspiring students to improve writing, thinking and communicating from within the student body. Our aim is to create safe spaces for brave students to share, express and discuss their work, words, ideas, and learning."
             },
            
         ]
@@ -30,7 +30,7 @@ const HomepageContentData = [
             {
                 id : 0,
                 component : "body1",
-                content : "consultations of thesis statement, presentation, and seminar."
+                content : "Consultations of thesis statements, presentations, and seminars, as well as building students' confidence."
             },
         ]
     },
