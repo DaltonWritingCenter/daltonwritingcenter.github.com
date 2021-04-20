@@ -120,7 +120,7 @@ function AddressGrid(){
             </Box>
         </Typography>
         <Typography>
-            HuangZhang, Haidian Dist.
+            HuangZhuang, Haidian Dist.
         </Typography>
         <Typography>
             Beijing, China, 100190
