@@ -97,7 +97,7 @@ function SimpleTabs() {
         spacing = {0}>
             <Grid item xs = {12} md = {12}>
               <Paper className = {classes.paper} elevation = {0}>
-                <Grid container alignContent="space-between" alignItems="center" spacing = {2}>
+                <Grid container alignContent="space-between" alignItems="center" spacing = {2} >
 
                   <Grid item>
                     <Button 
