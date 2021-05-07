@@ -20,7 +20,6 @@ import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import {ThemeProvider, responsiveFontSizes,createMuiTheme} from "@material-ui/core";
@@ -30,15 +29,15 @@ import DateRangeIcon from '@material-ui/icons/DateRange';
 import PolicyIcon from '@material-ui/icons/Policy';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
-
+import {SimplePopover,SimplePopover2} from '../components/popoverdevelop'
 const useAppBarStyle = makeStyles((theme) => ({
     appBar : {
         width : "100%",
         top : 0,
         left : 0,
-        //backgroundImage : "linear-gradient(180deg, black, transparent)",
-        //backgroundColor : "transparent",
-        transition : "0.3s all",
+        // backgroundImage : "linear-gradient(185deg, black, transparent)",
+        // backgroundColor : "transparent",
+        // transition : "0.3s all",
     },
     toolBar : {
         paddingRight : theme.spacing(1)
@@ -143,7 +142,7 @@ function AppTopBar(){
             {[''].map((text, index) => (
               <ListItem key={text}>
                     <Button href="../Events/Events.html" startIcon={<DateRangeIcon/>} ClassName={classes.button}>
-                          <Typography>Events　　　  　　　</Typography>
+                          <Typography>Events/Resources</Typography>
                     </Button>
                 
                 <ListItemText primary={text} />
@@ -202,8 +201,8 @@ function AppTopBar(){
             className = { classes.appBar }
             style = {{
                 backgroundColor : isScrollToTop ? "transparent" : theme.palette.primary.main,
-                // backgroundColor : 'transparent'，
-                backdropFilter:  "blur(80px)",
+                // backgroundColor : 'transparent',
+                backdropFilter:  "blur(20px)",
                 // backgroundColor : 'transparent'
                 // BackdropFilter: 'blur(100px)'
 
@@ -217,17 +216,18 @@ function AppTopBar(){
                 <Typography variant = "button" component = "div" className = { classes.title }>
                     symposium
                 </Typography>
-                <IconButton edge="end" color = "inherit" className = { classes.icons }>
-                    <Brightness4Icon />
-                </IconButton>
-                <IconButton edge="end" color = "inherit" className = { classes.icons }>
-                    <InvertColorsIcon />
-                </IconButton>
+                {/* <IconButton edge="end" color = "inherit" className = { classes.icons }> */}
+                    {/* <Brightness4Icon /> */}
+                    <SimplePopover></SimplePopover>
+                {/* </IconButton> */}
+                {/* <IconButton edge="end" color = "inherit" className = { classes.icons }> */}
+                    <SimplePopover2></SimplePopover2>
+                {/* </IconButton> */}
 
             {[''].map((anchor) => (
             <React.Fragment key={anchor}>
               <IconButton edge="end" color = "inherit" onClick={toggleDrawer(anchor, true) }>{anchor}<FormatListBulletedIcon /></IconButton>
-                <Drawer  open={state[anchor]} onClose={toggleDrawer(anchor, false)} style = {{backdropFilter:  "blur(80px)"}}>
+                <Drawer  open={state[anchor]} onClose={toggleDrawer(anchor, false)} style = {{backdropFilter:  "blur(18px)"}}>
                   {list(anchor)}
                 </Drawer>
     
