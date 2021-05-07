@@ -84138,7 +84138,7 @@ function AppTopBar() {
         href: "../Events/Events.html",
         startIcon: React.createElement(DateRange_1.default, null),
         ClassName: classes.button
-      }, React.createElement(core_1.Typography, null, "Events\u3000\u3000\u3000  \u3000\u3000\u3000")), React.createElement(ListItemText_1.default, {
+      }, React.createElement(core_1.Typography, null, "Events/Resources")), React.createElement(ListItemText_1.default, {
         primary: text
       }));
     })), React.createElement(Divider_1.default, null), React.createElement(List_1.default, null, [''].map(function (text, index) {

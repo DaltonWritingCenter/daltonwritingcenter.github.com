@@ -142,7 +142,7 @@ function AppTopBar(){
             {[''].map((text, index) => (
               <ListItem key={text}>
                     <Button href="../Events/Events.html" startIcon={<DateRangeIcon/>} ClassName={classes.button}>
-                          <Typography>Events　　　  　　　</Typography>
+                          <Typography>Events/Resources</Typography>
                     </Button>
                 
                 <ListItemText primary={text} />
