@@ -83621,49 +83621,7 @@ Object.defineProperty(exports, "default", {
 });
 
 var _utils = require("@material-ui/core/utils");
-},{"@material-ui/core/utils":"../../node_modules/@material-ui/core/esm/utils/index.js"}],"../../node_modules/@material-ui/icons/Brightness4.js":[function(require,module,exports) {
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var React = _interopRequireWildcard(require("react"));
-
-var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
-
-var _default = (0, _createSvgIcon.default)( /*#__PURE__*/React.createElement("path", {
-  d: "M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6c3.31 0 6 2.69 6 6s-2.69 6-6 6z"
-}), 'Brightness4');
-
-exports.default = _default;
-},{"@babel/runtime/helpers/interopRequireDefault":"../../node_modules/@babel/runtime/helpers/interopRequireDefault/index.js","@babel/runtime/helpers/interopRequireWildcard":"../../node_modules/@babel/runtime/helpers/interopRequireWildcard/index.js","react":"../../node_modules/react/index.js","./utils/createSvgIcon":"../../node_modules/@material-ui/icons/utils/createSvgIcon.js"}],"../../node_modules/@material-ui/icons/InvertColors.js":[function(require,module,exports) {
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var React = _interopRequireWildcard(require("react"));
-
-var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
-
-var _default = (0, _createSvgIcon.default)( /*#__PURE__*/React.createElement("path", {
-  d: "M17.66 7.93L12 2.27 6.34 7.93c-3.12 3.12-3.12 8.19 0 11.31C7.9 20.8 9.95 21.58 12 21.58c2.05 0 4.1-.78 5.66-2.34 3.12-3.12 3.12-8.19 0-11.31zM12 19.59c-1.6 0-3.11-.62-4.24-1.76C6.62 16.69 6 15.19 6 13.59s.62-3.11 1.76-4.24L12 5.1v14.49z"
-}), 'InvertColors');
-
-exports.default = _default;
-},{"@babel/runtime/helpers/interopRequireDefault":"../../node_modules/@babel/runtime/helpers/interopRequireDefault/index.js","@babel/runtime/helpers/interopRequireWildcard":"../../node_modules/@babel/runtime/helpers/interopRequireWildcard/index.js","react":"../../node_modules/react/index.js","./utils/createSvgIcon":"../../node_modules/@material-ui/icons/utils/createSvgIcon.js"}],"../../node_modules/@material-ui/icons/FormatListBulleted.js":[function(require,module,exports) {
+},{"@material-ui/core/utils":"../../node_modules/@material-ui/core/esm/utils/index.js"}],"../../node_modules/@material-ui/icons/FormatListBulleted.js":[function(require,module,exports) {
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -83793,7 +83751,174 @@ var _default = (0, _createSvgIcon.default)( /*#__PURE__*/React.createElement("pa
 }), 'ContactSupport');
 
 exports.default = _default;
-},{"@babel/runtime/helpers/interopRequireDefault":"../../node_modules/@babel/runtime/helpers/interopRequireDefault/index.js","@babel/runtime/helpers/interopRequireWildcard":"../../node_modules/@babel/runtime/helpers/interopRequireWildcard/index.js","react":"../../node_modules/react/index.js","./utils/createSvgIcon":"../../node_modules/@material-ui/icons/utils/createSvgIcon.js"}],"../components/AppTopBar.tsx":[function(require,module,exports) {
+},{"@babel/runtime/helpers/interopRequireDefault":"../../node_modules/@babel/runtime/helpers/interopRequireDefault/index.js","@babel/runtime/helpers/interopRequireWildcard":"../../node_modules/@babel/runtime/helpers/interopRequireWildcard/index.js","react":"../../node_modules/react/index.js","./utils/createSvgIcon":"../../node_modules/@material-ui/icons/utils/createSvgIcon.js"}],"../../node_modules/@material-ui/icons/Brightness4.js":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var React = _interopRequireWildcard(require("react"));
+
+var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
+
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/React.createElement("path", {
+  d: "M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6c3.31 0 6 2.69 6 6s-2.69 6-6 6z"
+}), 'Brightness4');
+
+exports.default = _default;
+},{"@babel/runtime/helpers/interopRequireDefault":"../../node_modules/@babel/runtime/helpers/interopRequireDefault/index.js","@babel/runtime/helpers/interopRequireWildcard":"../../node_modules/@babel/runtime/helpers/interopRequireWildcard/index.js","react":"../../node_modules/react/index.js","./utils/createSvgIcon":"../../node_modules/@material-ui/icons/utils/createSvgIcon.js"}],"../../node_modules/@material-ui/icons/InvertColors.js":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var React = _interopRequireWildcard(require("react"));
+
+var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
+
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/React.createElement("path", {
+  d: "M17.66 7.93L12 2.27 6.34 7.93c-3.12 3.12-3.12 8.19 0 11.31C7.9 20.8 9.95 21.58 12 21.58c2.05 0 4.1-.78 5.66-2.34 3.12-3.12 3.12-8.19 0-11.31zM12 19.59c-1.6 0-3.11-.62-4.24-1.76C6.62 16.69 6 15.19 6 13.59s.62-3.11 1.76-4.24L12 5.1v14.49z"
+}), 'InvertColors');
+
+exports.default = _default;
+},{"@babel/runtime/helpers/interopRequireDefault":"../../node_modules/@babel/runtime/helpers/interopRequireDefault/index.js","@babel/runtime/helpers/interopRequireWildcard":"../../node_modules/@babel/runtime/helpers/interopRequireWildcard/index.js","react":"../../node_modules/react/index.js","./utils/createSvgIcon":"../../node_modules/@material-ui/icons/utils/createSvgIcon.js"}],"../components/popoverdevelop.tsx":[function(require,module,exports) {
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.SimplePopover2 = exports.SimplePopover = void 0;
+
+var react_1 = __importDefault(require("react"));
+
+var styles_1 = require("@material-ui/core/styles");
+
+var Popover_1 = __importDefault(require("@material-ui/core/Popover"));
+
+var Typography_1 = __importDefault(require("@material-ui/core/Typography"));
+
+var Brightness4_1 = __importDefault(require("@material-ui/icons/Brightness4"));
+
+var InvertColors_1 = __importDefault(require("@material-ui/icons/InvertColors"));
+
+var core_1 = require("@material-ui/core");
+
+var useStyles = styles_1.makeStyles(function (theme) {
+  return styles_1.createStyles({
+    typography: {
+      padding: theme.spacing(2)
+    }
+  });
+});
+
+function SimplePopover() {
+  var classes = useStyles();
+
+  var _a = react_1.default.useState(null),
+      anchorEl = _a[0],
+      setAnchorEl = _a[1];
+
+  var handleClick = function handleClick(event) {
+    setAnchorEl(event.currentTarget);
+  };
+
+  var handleClose = function handleClose() {
+    setAnchorEl(null);
+  };
+
+  var open = Boolean(anchorEl);
+  var id = open ? 'simple-popover' : undefined;
+  return react_1.default.createElement("div", null, react_1.default.createElement(core_1.IconButton, {
+    "aria-describedby": id,
+    variant: "contained",
+    color: "inherit",
+    onClick: handleClick
+  }, react_1.default.createElement(Brightness4_1.default, null)), react_1.default.createElement(Popover_1.default, {
+    id: id,
+    open: open,
+    anchorEl: anchorEl,
+    onClose: handleClose,
+    style: {
+      backdropFilter: "blur(9px)"
+    },
+    anchorOrigin: {
+      vertical: 'bottom',
+      horizontal: 'center'
+    },
+    transformOrigin: {
+      vertical: 'top',
+      horizontal: 'center'
+    }
+  }, react_1.default.createElement(Typography_1.default, {
+    className: classes.typography
+  }, "Dark mode and Color theme are under development!")));
+}
+
+exports.SimplePopover = SimplePopover;
+
+function SimplePopover2() {
+  var classes = useStyles();
+
+  var _a = react_1.default.useState(null),
+      anchorEl = _a[0],
+      setAnchorEl = _a[1];
+
+  var handleClick = function handleClick(event) {
+    setAnchorEl(event.currentTarget);
+  };
+
+  var handleClose = function handleClose() {
+    setAnchorEl(null);
+  };
+
+  var open = Boolean(anchorEl);
+  var id = open ? 'simple-popover' : undefined;
+  return react_1.default.createElement("div", null, react_1.default.createElement(core_1.IconButton, {
+    "aria-describedby": id,
+    variant: "contained",
+    color: "inherit",
+    onClick: handleClick
+  }, react_1.default.createElement(InvertColors_1.default, null)), react_1.default.createElement(Popover_1.default, {
+    id: id,
+    open: open,
+    anchorEl: anchorEl,
+    onClose: handleClose,
+    style: {
+      backdropFilter: "blur(9px)"
+    },
+    anchorOrigin: {
+      vertical: 'bottom',
+      horizontal: 'center'
+    },
+    transformOrigin: {
+      vertical: 'top',
+      horizontal: 'center'
+    }
+  }, react_1.default.createElement(Typography_1.default, {
+    className: classes.typography
+  }, "Dark mode and Color theme are under development!")));
+}
+
+exports.SimplePopover2 = SimplePopover2;
+},{"react":"../../node_modules/react/index.js","@material-ui/core/styles":"../../node_modules/@material-ui/core/esm/styles/index.js","@material-ui/core/Popover":"../../node_modules/@material-ui/core/esm/Popover/index.js","@material-ui/core/Typography":"../../node_modules/@material-ui/core/esm/Typography/index.js","@material-ui/icons/Brightness4":"../../node_modules/@material-ui/icons/Brightness4.js","@material-ui/icons/InvertColors":"../../node_modules/@material-ui/icons/InvertColors.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js"}],"../components/AppTopBar.tsx":[function(require,module,exports) {
 "use strict";
 
 var __assign = this && this.__assign || function () {
@@ -83867,10 +83992,6 @@ var core_1 = require("@material-ui/core");
 
 var Dwc_1 = __importDefault(require("./Dwc"));
 
-var Brightness4_1 = __importDefault(require("@material-ui/icons/Brightness4"));
-
-var InvertColors_1 = __importDefault(require("@material-ui/icons/InvertColors"));
-
 var clsx_1 = __importDefault(require("clsx"));
 
 var Drawer_1 = __importDefault(require("@material-ui/core/Drawer"));
@@ -83897,6 +84018,8 @@ var Policy_1 = __importDefault(require("@material-ui/icons/Policy"));
 
 var ContactSupport_1 = __importDefault(require("@material-ui/icons/ContactSupport"));
 
+var popoverdevelop_1 = require("../components/popoverdevelop");
+
 var useAppBarStyle = styles_1.makeStyles(function (theme) {
   var _a;
 
@@ -83904,10 +84027,10 @@ var useAppBarStyle = styles_1.makeStyles(function (theme) {
     appBar: {
       width: "100%",
       top: 0,
-      left: 0,
-      //backgroundImage : "linear-gradient(180deg, black, transparent)",
-      //backgroundColor : "transparent",
-      transition: "0.3s all"
+      left: 0 // backgroundImage : "linear-gradient(185deg, black, transparent)",
+      // backgroundColor : "transparent",
+      // transition : "0.3s all",
+
     },
     toolBar: {
       paddingRight: theme.spacing(1)
@@ -84062,8 +84185,8 @@ function AppTopBar() {
     className: classes.appBar,
     style: {
       backgroundColor: isScrollToTop ? "transparent" : theme.palette.primary.main,
-      // backgroundColor : 'transparent'，
-      backdropFilter: "blur(80px)" // backgroundColor : 'transparent'
+      // backgroundColor : 'transparent',
+      backdropFilter: "blur(20px)" // backgroundColor : 'transparent'
       // BackdropFilter: 'blur(100px)'
 
     }
@@ -84076,15 +84199,7 @@ function AppTopBar() {
     variant: "button",
     component: "div",
     className: classes.title
-  }, "symposium"), React.createElement(core_1.IconButton, {
-    edge: "end",
-    color: "inherit",
-    className: classes.icons
-  }, React.createElement(Brightness4_1.default, null)), React.createElement(core_1.IconButton, {
-    edge: "end",
-    color: "inherit",
-    className: classes.icons
-  }, React.createElement(InvertColors_1.default, null)), [''].map(function (anchor) {
+  }, "symposium"), React.createElement(popoverdevelop_1.SimplePopover, null), React.createElement(popoverdevelop_1.SimplePopover2, null), [''].map(function (anchor) {
     return React.createElement(React.Fragment, {
       key: anchor
     }, React.createElement(core_1.IconButton, {
@@ -84095,14 +84210,14 @@ function AppTopBar() {
       open: state[anchor],
       onClose: toggleDrawer(anchor, false),
       style: {
-        backdropFilter: "blur(80px)"
+        backdropFilter: "blur(18px)"
       }
     }, list(anchor)));
   }), React.createElement(core_1.Toolbar, null)));
 }
 
 exports.AppTopBar = AppTopBar;
-},{"react":"../../node_modules/react/index.js","@material-ui/core/styles":"../../node_modules/@material-ui/core/esm/styles/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","./Dwc":"../components/Dwc.tsx","@material-ui/icons/Brightness4":"../../node_modules/@material-ui/icons/Brightness4.js","@material-ui/icons/InvertColors":"../../node_modules/@material-ui/icons/InvertColors.js","clsx":"../../node_modules/clsx/dist/clsx.m.js","@material-ui/core/Drawer":"../../node_modules/@material-ui/core/esm/Drawer/index.js","@material-ui/core/Button":"../../node_modules/@material-ui/core/esm/Button/index.js","@material-ui/core/List":"../../node_modules/@material-ui/core/esm/List/index.js","@material-ui/core/Divider":"../../node_modules/@material-ui/core/esm/Divider/index.js","@material-ui/core/ListItem":"../../node_modules/@material-ui/core/esm/ListItem/index.js","@material-ui/core/ListItemText":"../../node_modules/@material-ui/core/esm/ListItemText/index.js","@material-ui/icons/FormatListBulleted":"../../node_modules/@material-ui/icons/FormatListBulleted.js","@material-ui/icons/Home":"../../node_modules/@material-ui/icons/Home.js","@material-ui/icons/EventSeat":"../../node_modules/@material-ui/icons/EventSeat.js","@material-ui/icons/DateRange":"../../node_modules/@material-ui/icons/DateRange.js","@material-ui/icons/Policy":"../../node_modules/@material-ui/icons/Policy.js","@material-ui/icons/ContactSupport":"../../node_modules/@material-ui/icons/ContactSupport.js"}],"../components/AppContainer.tsx":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","@material-ui/core/styles":"../../node_modules/@material-ui/core/esm/styles/index.js","@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","./Dwc":"../components/Dwc.tsx","clsx":"../../node_modules/clsx/dist/clsx.m.js","@material-ui/core/Drawer":"../../node_modules/@material-ui/core/esm/Drawer/index.js","@material-ui/core/Button":"../../node_modules/@material-ui/core/esm/Button/index.js","@material-ui/core/List":"../../node_modules/@material-ui/core/esm/List/index.js","@material-ui/core/Divider":"../../node_modules/@material-ui/core/esm/Divider/index.js","@material-ui/core/ListItem":"../../node_modules/@material-ui/core/esm/ListItem/index.js","@material-ui/core/ListItemText":"../../node_modules/@material-ui/core/esm/ListItemText/index.js","@material-ui/icons/FormatListBulleted":"../../node_modules/@material-ui/icons/FormatListBulleted.js","@material-ui/icons/Home":"../../node_modules/@material-ui/icons/Home.js","@material-ui/icons/EventSeat":"../../node_modules/@material-ui/icons/EventSeat.js","@material-ui/icons/DateRange":"../../node_modules/@material-ui/icons/DateRange.js","@material-ui/icons/Policy":"../../node_modules/@material-ui/icons/Policy.js","@material-ui/icons/ContactSupport":"../../node_modules/@material-ui/icons/ContactSupport.js","../components/popoverdevelop":"../components/popoverdevelop.tsx"}],"../components/AppContainer.tsx":[function(require,module,exports) {
 "use strict";
 
 var __assign = this && this.__assign || function () {
@@ -85150,7 +85265,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61123" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57626" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
