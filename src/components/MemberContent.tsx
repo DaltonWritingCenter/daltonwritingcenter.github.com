@@ -53,7 +53,7 @@ const Members = [
         name : "Super Tom",
         chineseFirstName : "Chuping",
         chineseLastName : "Tan",
-        interests : ["Computer Science", "Art", "Drama"],
+        interests : ["Computer Science", "Art", "Theatre"],
         email : "tanchuping@i.pkuschool.edu.cn",
         consultationAddress : "https://calendly.com/tanchuping/consultation"
     },
