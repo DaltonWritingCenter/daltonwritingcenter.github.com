@@ -9,6 +9,7 @@ import {
     SvgIcon,
     useTheme,
     ButtonBase,
+    colors,
 } from "@material-ui/core"
 import MenuIcon from "@material-ui/icons/Menu";
 import DWCIcon from "./Dwc";
@@ -40,7 +41,8 @@ const useAppBarStyle = makeStyles((theme) => ({
         // transition : "0.3s all",
     },
     toolBar : {
-        paddingRight : theme.spacing(1)
+        paddingRight : theme.spacing(1),
+        // backgroundcolor: 'transparent'
     },
     icons : {
         margin : theme.spacing(0, 0),
@@ -108,6 +110,7 @@ function AppTopBar(){
           role="presentation"
           onClick={toggleDrawer(anchor, false)}
           onKeyDown={toggleDrawer(anchor, false)}
+
           
         >
           <List>
@@ -227,7 +230,7 @@ function AppTopBar(){
             {[''].map((anchor) => (
             <React.Fragment key={anchor}>
               <IconButton edge="end" color = "inherit" onClick={toggleDrawer(anchor, true) }>{anchor}<FormatListBulletedIcon /></IconButton>
-                <Drawer  open={state[anchor]} onClose={toggleDrawer(anchor, false)} style = {{backdropFilter:  "blur(18px)"}}>
+                <Drawer  open={state[anchor]} onClose={toggleDrawer(anchor, false)} style = {{backdropFilter:  "blur(18px)", backgroundColor : 'transparent'}}>
                   {list(anchor)}
                 </Drawer>
     

@@ -84033,7 +84033,8 @@ var useAppBarStyle = styles_1.makeStyles(function (theme) {
 
     },
     toolBar: {
-      paddingRight: theme.spacing(1)
+      paddingRight: theme.spacing(1) // backgroundcolor: 'transparent'
+
     },
     icons: {
       margin: theme.spacing(0, 0)
@@ -84210,7 +84211,8 @@ function AppTopBar() {
       open: state[anchor],
       onClose: toggleDrawer(anchor, false),
       style: {
-        backdropFilter: "blur(18px)"
+        backdropFilter: "blur(18px)",
+        backgroundColor: 'transparent'
       }
     }, list(anchor)));
   }), React.createElement(core_1.Toolbar, null)));
@@ -85295,7 +85297,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57626" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63494" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
