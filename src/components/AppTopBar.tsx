@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import BackdropFilter from "react-backdrop-filter";
 import { makeStyles } from "@material-ui/core/styles";
 import {
     AppBar,
@@ -208,6 +209,7 @@ function AppTopBar(){
                 backdropFilter:  "blur(20px)",
                 // backgroundColor : 'transparent'
                 // BackdropFilter: 'blur(100px)'
+                WebkitBackdropFilter: "blur(20px)"
 
             }}>
                             
@@ -230,7 +232,7 @@ function AppTopBar(){
             {[''].map((anchor) => (
             <React.Fragment key={anchor}>
               <IconButton edge="end" color = "inherit" onClick={toggleDrawer(anchor, true) }>{anchor}<FormatListBulletedIcon /></IconButton>
-                <Drawer  open={state[anchor]} onClose={toggleDrawer(anchor, false)} style = {{backdropFilter:  "blur(18px)", backgroundColor : 'transparent'}}>
+                <Drawer  open={state[anchor]} onClose={toggleDrawer(anchor, false)} style = {{backdropFilter:  "blur(18px)", backgroundColor : 'transparent', WebkitBackdropFilter: "blur(20px)"}}>
                   {list(anchor)}
                 </Drawer>
     

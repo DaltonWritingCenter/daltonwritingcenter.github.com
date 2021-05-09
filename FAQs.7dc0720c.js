@@ -83857,7 +83857,8 @@ function SimplePopover() {
     anchorEl: anchorEl,
     onClose: handleClose,
     style: {
-      backdropFilter: "blur(9px)"
+      backdropFilter: "blur(9px)",
+      WebkitBackdropFilter: "blur(20px)"
     },
     anchorOrigin: {
       vertical: 'bottom',
@@ -83902,7 +83903,8 @@ function SimplePopover2() {
     anchorEl: anchorEl,
     onClose: handleClose,
     style: {
-      backdropFilter: "blur(9px)"
+      backdropFilter: "blur(9px)",
+      WebkitBackdropFilter: "blur(20px)"
     },
     anchorOrigin: {
       vertical: 'bottom',
@@ -84187,9 +84189,10 @@ function AppTopBar() {
     style: {
       backgroundColor: isScrollToTop ? "transparent" : theme.palette.primary.main,
       // backgroundColor : 'transparent',
-      backdropFilter: "blur(20px)" // backgroundColor : 'transparent'
+      backdropFilter: "blur(20px)",
+      // backgroundColor : 'transparent'
       // BackdropFilter: 'blur(100px)'
-
+      WebkitBackdropFilter: "blur(20px)"
     }
   }, React.createElement(core_1.Toolbar, {
     className: classes.toolBar
@@ -84212,7 +84215,8 @@ function AppTopBar() {
       onClose: toggleDrawer(anchor, false),
       style: {
         backdropFilter: "blur(18px)",
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
+        WebkitBackdropFilter: "blur(20px)"
       }
     }, list(anchor)));
   }), React.createElement(core_1.Toolbar, null)));
@@ -85267,7 +85271,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63494" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62023" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

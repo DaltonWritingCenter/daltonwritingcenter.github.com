@@ -39,7 +39,7 @@ function SimplePopover() {
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
-        style = {{backdropFilter:  "blur(9px)"}}
+        style = {{backdropFilter:  "blur(9px)", WebkitBackdropFilter: "blur(20px)"}}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'center',
@@ -81,7 +81,7 @@ function SimplePopover2() {
           open={open}
           anchorEl={anchorEl}
           onClose={handleClose}
-          style = {{backdropFilter:  "blur(9px)"}}
+          style = {{backdropFilter:  "blur(9px)", WebkitBackdropFilter: "blur(20px)"}}
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'center',
