@@ -51,7 +51,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.text.secondary,
     display: 'flex',
     alignContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    width: '110%',
   }
 }));
 
@@ -96,7 +97,7 @@ function SimpleTabs() {
         alignItems="flex-start"
         spacing = {0}>
             <Grid item xs = {12} md = {12}>
-              <Paper className = {classes.paper} elevation = {0}>
+              <Paper className = {classes.paper} elevation = {0} >
                 <Grid container alignContent="space-between" alignItems="center" spacing = {2} >
 
                   <Grid item>
@@ -203,7 +204,7 @@ function SimpleTabs() {
                     </Button>
                   </Grid>
                   <Grid item>
-                    <Typography component = 'h5' >年终数据报告 | Dalton Writing Center Data Report</Typography>
+                    <Typography component = 'h5' >年终数据报告 | DWC Data Report</Typography>
                   </Grid>
                 </Grid>
               </Paper>
