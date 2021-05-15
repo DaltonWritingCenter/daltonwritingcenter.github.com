@@ -213,8 +213,118 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
   return to;
 };
-},{}],"../../node_modules/react/cjs/react.development.js":[function(require,module,exports) {
-/** @license React v17.0.1
+},{}],"../../node_modules/prop-types/lib/ReactPropTypesSecret.js":[function(require,module,exports) {
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+'use strict';
+
+var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+
+module.exports = ReactPropTypesSecret;
+
+},{}],"../../node_modules/prop-types/checkPropTypes.js":[function(require,module,exports) {
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+'use strict';
+
+var printWarning = function () {};
+
+if ("development" !== 'production') {
+  var ReactPropTypesSecret = require('./lib/ReactPropTypesSecret');
+
+  var loggedTypeFailures = {};
+  var has = Function.call.bind(Object.prototype.hasOwnProperty);
+
+  printWarning = function (text) {
+    var message = 'Warning: ' + text;
+
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+}
+/**
+ * Assert that the values match with the type specs.
+ * Error messages are memorized and will only be shown once.
+ *
+ * @param {object} typeSpecs Map of name to a ReactPropType
+ * @param {object} values Runtime values that need to be type-checked
+ * @param {string} location e.g. "prop", "context", "child context"
+ * @param {string} componentName Name of the component for error messages.
+ * @param {?Function} getStack Returns the component stack.
+ * @private
+ */
+
+
+function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
+  if ("development" !== 'production') {
+    for (var typeSpecName in typeSpecs) {
+      if (has(typeSpecs, typeSpecName)) {
+        var error; // Prop type validation may throw. In case they do, we don't want to
+        // fail the render phase where it didn't fail before. So we log it.
+        // After these have been cleaned up, we'll let them throw.
+
+        try {
+          // This is intentionally an invariant that gets caught. It's the same
+          // behavior as without this statement except with a better message.
+          if (typeof typeSpecs[typeSpecName] !== 'function') {
+            var err = Error((componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' + 'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.');
+            err.name = 'Invariant Violation';
+            throw err;
+          }
+
+          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
+        } catch (ex) {
+          error = ex;
+        }
+
+        if (error && !(error instanceof Error)) {
+          printWarning((componentName || 'React class') + ': type specification of ' + location + ' `' + typeSpecName + '` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a ' + typeof error + '. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).');
+        }
+
+        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
+          // Only monitor this failure once because there tends to be a lot of the
+          // same error.
+          loggedTypeFailures[error.message] = true;
+          var stack = getStack ? getStack() : '';
+          printWarning('Failed ' + location + ' type: ' + error.message + (stack != null ? stack : ''));
+        }
+      }
+    }
+  }
+}
+/**
+ * Resets warning cache when testing.
+ *
+ * @private
+ */
+
+
+checkPropTypes.resetWarningCache = function () {
+  if ("development" !== 'production') {
+    loggedTypeFailures = {};
+  }
+};
+
+module.exports = checkPropTypes;
+},{"./lib/ReactPropTypesSecret":"../../node_modules/prop-types/lib/ReactPropTypesSecret.js"}],"../../node_modules/react/cjs/react.development.js":[function(require,module,exports) {
+/** @license React v16.14.0
  * react.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -228,60 +338,32 @@ if ("development" !== "production") {
   (function () {
     'use strict';
 
-    var _assign = require('object-assign'); // TODO: this is special because it gets imported during build.
+    var _assign = require('object-assign');
 
+    var checkPropTypes = require('prop-types/checkPropTypes');
 
-    var ReactVersion = '17.0.1'; // ATTENTION
-    // When adding new symbols to this file,
-    // Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
-    // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
+    var ReactVersion = '16.14.0'; // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
     // nor polyfill, then a plain number is used for performance.
 
-    var REACT_ELEMENT_TYPE = 0xeac7;
-    var REACT_PORTAL_TYPE = 0xeaca;
-    exports.Fragment = 0xeacb;
-    exports.StrictMode = 0xeacc;
-    exports.Profiler = 0xead2;
-    var REACT_PROVIDER_TYPE = 0xeacd;
-    var REACT_CONTEXT_TYPE = 0xeace;
-    var REACT_FORWARD_REF_TYPE = 0xead0;
-    exports.Suspense = 0xead1;
-    var REACT_SUSPENSE_LIST_TYPE = 0xead8;
-    var REACT_MEMO_TYPE = 0xead3;
-    var REACT_LAZY_TYPE = 0xead4;
-    var REACT_BLOCK_TYPE = 0xead9;
-    var REACT_SERVER_BLOCK_TYPE = 0xeada;
-    var REACT_FUNDAMENTAL_TYPE = 0xead5;
-    var REACT_SCOPE_TYPE = 0xead7;
-    var REACT_OPAQUE_ID_TYPE = 0xeae0;
-    var REACT_DEBUG_TRACING_MODE_TYPE = 0xeae1;
-    var REACT_OFFSCREEN_TYPE = 0xeae2;
-    var REACT_LEGACY_HIDDEN_TYPE = 0xeae3;
+    var hasSymbol = typeof Symbol === 'function' && Symbol.for;
+    var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
+    var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
+    var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
+    var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
+    var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
+    var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
+    var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
 
-    if (typeof Symbol === 'function' && Symbol.for) {
-      var symbolFor = Symbol.for;
-      REACT_ELEMENT_TYPE = symbolFor('react.element');
-      REACT_PORTAL_TYPE = symbolFor('react.portal');
-      exports.Fragment = symbolFor('react.fragment');
-      exports.StrictMode = symbolFor('react.strict_mode');
-      exports.Profiler = symbolFor('react.profiler');
-      REACT_PROVIDER_TYPE = symbolFor('react.provider');
-      REACT_CONTEXT_TYPE = symbolFor('react.context');
-      REACT_FORWARD_REF_TYPE = symbolFor('react.forward_ref');
-      exports.Suspense = symbolFor('react.suspense');
-      REACT_SUSPENSE_LIST_TYPE = symbolFor('react.suspense_list');
-      REACT_MEMO_TYPE = symbolFor('react.memo');
-      REACT_LAZY_TYPE = symbolFor('react.lazy');
-      REACT_BLOCK_TYPE = symbolFor('react.block');
-      REACT_SERVER_BLOCK_TYPE = symbolFor('react.server.block');
-      REACT_FUNDAMENTAL_TYPE = symbolFor('react.fundamental');
-      REACT_SCOPE_TYPE = symbolFor('react.scope');
-      REACT_OPAQUE_ID_TYPE = symbolFor('react.opaque.id');
-      REACT_DEBUG_TRACING_MODE_TYPE = symbolFor('react.debug_trace_mode');
-      REACT_OFFSCREEN_TYPE = symbolFor('react.offscreen');
-      REACT_LEGACY_HIDDEN_TYPE = symbolFor('react.legacy_hidden');
-    }
-
+    var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
+    var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
+    var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
+    var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
+    var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
+    var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
+    var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
+    var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
+    var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
+    var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
     var MAYBE_ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
     var FAUX_ITERATOR_SYMBOL = '@@iterator';
 
@@ -316,7 +398,7 @@ if ("development" !== "production") {
      */
 
     var ReactCurrentBatchConfig = {
-      transition: 0
+      suspense: null
     };
     /**
      * Keeps track of the current owner.
@@ -332,30 +414,143 @@ if ("development" !== "production") {
        */
       current: null
     };
-    var ReactDebugCurrentFrame = {};
-    var currentExtraStackFrame = null;
+    var BEFORE_SLASH_RE = /^(.*)[\\\/]/;
 
-    function setExtraStackFrame(stack) {
+    function describeComponentFrame(name, source, ownerName) {
+      var sourceInfo = '';
+
+      if (source) {
+        var path = source.fileName;
+        var fileName = path.replace(BEFORE_SLASH_RE, '');
+        {
+          // In DEV, include code for a common special case:
+          // prefer "folder/index.js" instead of just "index.js".
+          if (/^index\./.test(fileName)) {
+            var match = path.match(BEFORE_SLASH_RE);
+
+            if (match) {
+              var pathBeforeSlash = match[1];
+
+              if (pathBeforeSlash) {
+                var folderName = pathBeforeSlash.replace(BEFORE_SLASH_RE, '');
+                fileName = folderName + '/' + fileName;
+              }
+            }
+          }
+        }
+        sourceInfo = ' (at ' + fileName + ':' + source.lineNumber + ')';
+      } else if (ownerName) {
+        sourceInfo = ' (created by ' + ownerName + ')';
+      }
+
+      return '\n    in ' + (name || 'Unknown') + sourceInfo;
+    }
+
+    var Resolved = 1;
+
+    function refineResolvedLazyComponent(lazyComponent) {
+      return lazyComponent._status === Resolved ? lazyComponent._result : null;
+    }
+
+    function getWrappedName(outerType, innerType, wrapperName) {
+      var functionName = innerType.displayName || innerType.name || '';
+      return outerType.displayName || (functionName !== '' ? wrapperName + "(" + functionName + ")" : wrapperName);
+    }
+
+    function getComponentName(type) {
+      if (type == null) {
+        // Host root, text node or just invalid type.
+        return null;
+      }
+
       {
-        currentExtraStackFrame = stack;
+        if (typeof type.tag === 'number') {
+          error('Received an unexpected object in getComponentName(). ' + 'This is likely a bug in React. Please file an issue.');
+        }
+      }
+
+      if (typeof type === 'function') {
+        return type.displayName || type.name || null;
+      }
+
+      if (typeof type === 'string') {
+        return type;
+      }
+
+      switch (type) {
+        case REACT_FRAGMENT_TYPE:
+          return 'Fragment';
+
+        case REACT_PORTAL_TYPE:
+          return 'Portal';
+
+        case REACT_PROFILER_TYPE:
+          return "Profiler";
+
+        case REACT_STRICT_MODE_TYPE:
+          return 'StrictMode';
+
+        case REACT_SUSPENSE_TYPE:
+          return 'Suspense';
+
+        case REACT_SUSPENSE_LIST_TYPE:
+          return 'SuspenseList';
+      }
+
+      if (typeof type === 'object') {
+        switch (type.$$typeof) {
+          case REACT_CONTEXT_TYPE:
+            return 'Context.Consumer';
+
+          case REACT_PROVIDER_TYPE:
+            return 'Context.Provider';
+
+          case REACT_FORWARD_REF_TYPE:
+            return getWrappedName(type, type.render, 'ForwardRef');
+
+          case REACT_MEMO_TYPE:
+            return getComponentName(type.type);
+
+          case REACT_BLOCK_TYPE:
+            return getComponentName(type.render);
+
+          case REACT_LAZY_TYPE:
+            {
+              var thenable = type;
+              var resolvedThenable = refineResolvedLazyComponent(thenable);
+
+              if (resolvedThenable) {
+                return getComponentName(resolvedThenable);
+              }
+
+              break;
+            }
+        }
+      }
+
+      return null;
+    }
+
+    var ReactDebugCurrentFrame = {};
+    var currentlyValidatingElement = null;
+
+    function setCurrentlyValidatingElement(element) {
+      {
+        currentlyValidatingElement = element;
       }
     }
 
     {
-      ReactDebugCurrentFrame.setExtraStackFrame = function (stack) {
-        {
-          currentExtraStackFrame = stack;
-        }
-      }; // Stack implementation injected by the current renderer.
-
-
+      // Stack implementation injected by the current renderer.
       ReactDebugCurrentFrame.getCurrentStack = null;
 
       ReactDebugCurrentFrame.getStackAddendum = function () {
         var stack = ''; // Add an extra top frame while an element is being validated
 
-        if (currentExtraStackFrame) {
-          stack += currentExtraStackFrame;
+        if (currentlyValidatingElement) {
+          var name = getComponentName(currentlyValidatingElement.type);
+          var owner = currentlyValidatingElement._owner;
+          stack += describeComponentFrame(name, currentlyValidatingElement._source, owner && getComponentName(owner.type));
         } // Delegate to the injected renderer-specific implementation
 
 
@@ -384,7 +579,13 @@ if ("development" !== "production") {
       assign: _assign
     };
     {
-      ReactSharedInternals.ReactDebugCurrentFrame = ReactDebugCurrentFrame;
+      _assign(ReactSharedInternals, {
+        // These should not be included in production.
+        ReactDebugCurrentFrame: ReactDebugCurrentFrame,
+        // Shim for React DOM 16.0.0 which still destructured (but not used) this.
+        // TODO: remove in React 17.0.
+        ReactComponentTreeHook: {}
+      });
     } // by calls to these methods by a Babel plugin.
     //
     // In PROD (or in packages without access to React internals),
@@ -414,12 +615,16 @@ if ("development" !== "production") {
       // When changing this logic, you might want to also
       // update consoleWithStackDev.www.js as well.
       {
-        var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
-        var stack = ReactDebugCurrentFrame.getStackAddendum();
+        var hasExistingStack = args.length > 0 && typeof args[args.length - 1] === 'string' && args[args.length - 1].indexOf('\n    in') === 0;
 
-        if (stack !== '') {
-          format += '%s';
-          args = args.concat([stack]);
+        if (!hasExistingStack) {
+          var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
+          var stack = ReactDebugCurrentFrame.getStackAddendum();
+
+          if (stack !== '') {
+            format += '%s';
+            args = args.concat([stack]);
+          }
         }
 
         var argsWithFormat = args.map(function (item) {
@@ -431,6 +636,17 @@ if ("development" !== "production") {
         // eslint-disable-next-line react-internal/no-production-logging
 
         Function.prototype.apply.call(console[level], console, argsWithFormat);
+
+        try {
+          // --- Welcome to debugging React ---
+          // This error was thrown as a convenience so that you can use this stack
+          // to find the callsite that caused this warning to fire.
+          var argIndex = 0;
+          var message = 'Warning: ' + format.replace(/%s/g, function () {
+            return args[argIndex++];
+          });
+          throw new Error(message);
+        } catch (x) {}
       }
     }
 
@@ -653,92 +869,6 @@ if ("development" !== "production") {
       return refObject;
     }
 
-    function getWrappedName(outerType, innerType, wrapperName) {
-      var functionName = innerType.displayName || innerType.name || '';
-      return outerType.displayName || (functionName !== '' ? wrapperName + "(" + functionName + ")" : wrapperName);
-    }
-
-    function getContextName(type) {
-      return type.displayName || 'Context';
-    }
-
-    function getComponentName(type) {
-      if (type == null) {
-        // Host root, text node or just invalid type.
-        return null;
-      }
-
-      {
-        if (typeof type.tag === 'number') {
-          error('Received an unexpected object in getComponentName(). ' + 'This is likely a bug in React. Please file an issue.');
-        }
-      }
-
-      if (typeof type === 'function') {
-        return type.displayName || type.name || null;
-      }
-
-      if (typeof type === 'string') {
-        return type;
-      }
-
-      switch (type) {
-        case exports.Fragment:
-          return 'Fragment';
-
-        case REACT_PORTAL_TYPE:
-          return 'Portal';
-
-        case exports.Profiler:
-          return 'Profiler';
-
-        case exports.StrictMode:
-          return 'StrictMode';
-
-        case exports.Suspense:
-          return 'Suspense';
-
-        case REACT_SUSPENSE_LIST_TYPE:
-          return 'SuspenseList';
-      }
-
-      if (typeof type === 'object') {
-        switch (type.$$typeof) {
-          case REACT_CONTEXT_TYPE:
-            var context = type;
-            return getContextName(context) + '.Consumer';
-
-          case REACT_PROVIDER_TYPE:
-            var provider = type;
-            return getContextName(provider._context) + '.Provider';
-
-          case REACT_FORWARD_REF_TYPE:
-            return getWrappedName(type, type.render, 'ForwardRef');
-
-          case REACT_MEMO_TYPE:
-            return getComponentName(type.type);
-
-          case REACT_BLOCK_TYPE:
-            return getComponentName(type._render);
-
-          case REACT_LAZY_TYPE:
-            {
-              var lazyComponent = type;
-              var payload = lazyComponent._payload;
-              var init = lazyComponent._init;
-
-              try {
-                return getComponentName(init(payload));
-              } catch (x) {
-                return null;
-              }
-            }
-        }
-      }
-
-      return null;
-    }
-
     var hasOwnProperty = Object.prototype.hasOwnProperty;
     var RESERVED_PROPS = {
       key: true,
@@ -782,7 +912,7 @@ if ("development" !== "production") {
         {
           if (!specialPropKeyWarningShown) {
             specialPropKeyWarningShown = true;
-            error('%s: `key` is not a prop. Trying to access it will result ' + 'in `undefined` being returned. If you need to access the same ' + 'value within the child component, you should pass it as a different ' + 'prop. (https://reactjs.org/link/special-props)', displayName);
+            error('%s: `key` is not a prop. Trying to access it will result ' + 'in `undefined` being returned. If you need to access the same ' + 'value within the child component, you should pass it as a different ' + 'prop. (https://fb.me/react-special-props)', displayName);
           }
         }
       };
@@ -799,7 +929,7 @@ if ("development" !== "production") {
         {
           if (!specialPropRefWarningShown) {
             specialPropRefWarningShown = true;
-            error('%s: `ref` is not a prop. Trying to access it will result ' + 'in `undefined` being returned. If you need to access the same ' + 'value within the child component, you should pass it as a different ' + 'prop. (https://reactjs.org/link/special-props)', displayName);
+            error('%s: `ref` is not a prop. Trying to access it will result ' + 'in `undefined` being returned. If you need to access the same ' + 'value within the child component, you should pass it as a different ' + 'prop. (https://fb.me/react-special-props)', displayName);
           }
         }
       };
@@ -817,7 +947,7 @@ if ("development" !== "production") {
           var componentName = getComponentName(ReactCurrentOwner.current.type);
 
           if (!didWarnAboutStringRefs[componentName]) {
-            error('Component "%s" contains the string ref "%s". ' + 'Support for string refs will be removed in a future major release. ' + 'This case cannot be automatically converted to an arrow function. ' + 'We ask you to manually fix this case by using useRef() or createRef() instead. ' + 'Learn more about using refs safely here: ' + 'https://reactjs.org/link/strict-mode-string-ref', componentName, config.ref);
+            error('Component "%s" contains the string ref "%s". ' + 'Support for string refs will be removed in a future major release. ' + 'This case cannot be automatically converted to an arrow function. ' + 'We ask you to manually fix this case by using useRef() or createRef() instead. ' + 'Learn more about using refs safely here: ' + 'https://fb.me/react-strict-mode-string-ref', getComponentName(ReactCurrentOwner.current.type), config.ref);
             didWarnAboutStringRefs[componentName] = true;
           }
         }
@@ -1090,7 +1220,7 @@ if ("development" !== "production") {
         '=': '=0',
         ':': '=2'
       };
-      var escapedString = key.replace(escapeRegex, function (match) {
+      var escapedString = ('' + key).replace(escapeRegex, function (match) {
         return escaperLookup[match];
       });
       return '$' + escapedString;
@@ -1105,30 +1235,54 @@ if ("development" !== "production") {
     var userProvidedKeyEscapeRegex = /\/+/g;
 
     function escapeUserProvidedKey(text) {
-      return text.replace(userProvidedKeyEscapeRegex, '$&/');
+      return ('' + text).replace(userProvidedKeyEscapeRegex, '$&/');
+    }
+
+    var POOL_SIZE = 10;
+    var traverseContextPool = [];
+
+    function getPooledTraverseContext(mapResult, keyPrefix, mapFunction, mapContext) {
+      if (traverseContextPool.length) {
+        var traverseContext = traverseContextPool.pop();
+        traverseContext.result = mapResult;
+        traverseContext.keyPrefix = keyPrefix;
+        traverseContext.func = mapFunction;
+        traverseContext.context = mapContext;
+        traverseContext.count = 0;
+        return traverseContext;
+      } else {
+        return {
+          result: mapResult,
+          keyPrefix: keyPrefix,
+          func: mapFunction,
+          context: mapContext,
+          count: 0
+        };
+      }
+    }
+
+    function releaseTraverseContext(traverseContext) {
+      traverseContext.result = null;
+      traverseContext.keyPrefix = null;
+      traverseContext.func = null;
+      traverseContext.context = null;
+      traverseContext.count = 0;
+
+      if (traverseContextPool.length < POOL_SIZE) {
+        traverseContextPool.push(traverseContext);
+      }
     }
     /**
-     * Generate a key string that identifies a element within a set.
-     *
-     * @param {*} element A element that could contain a manual key.
-     * @param {number} index Index that is used if a manual key is not provided.
-     * @return {string}
+     * @param {?*} children Children tree container.
+     * @param {!string} nameSoFar Name of the key path so far.
+     * @param {!function} callback Callback to invoke with each child found.
+     * @param {?*} traverseContext Used to pass information throughout the traversal
+     * process.
+     * @return {!number} The number of children in this subtree.
      */
 
 
-    function getElementKey(element, index) {
-      // Do some typechecking here since we call this blindly. We want to ensure
-      // that we don't block potential future ES APIs.
-      if (typeof element === 'object' && element !== null && element.key != null) {
-        // Explicit key
-        return escape('' + element.key);
-      } // Implicit key determined by the index in the set
-
-
-      return index.toString(36);
-    }
-
-    function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
+    function traverseAllChildrenImpl(children, nameSoFar, callback, traverseContext) {
       var type = typeof children;
 
       if (type === 'undefined' || type === 'boolean') {
@@ -1158,34 +1312,9 @@ if ("development" !== "production") {
       }
 
       if (invokeCallback) {
-        var _child = children;
-        var mappedChild = callback(_child); // If it's the only child, treat the name as if it was wrapped in an array
-        // so that it's consistent if the number of children grows:
-
-        var childKey = nameSoFar === '' ? SEPARATOR + getElementKey(_child, 0) : nameSoFar;
-
-        if (Array.isArray(mappedChild)) {
-          var escapedChildKey = '';
-
-          if (childKey != null) {
-            escapedChildKey = escapeUserProvidedKey(childKey) + '/';
-          }
-
-          mapIntoArray(mappedChild, array, escapedChildKey, '', function (c) {
-            return c;
-          });
-        } else if (mappedChild != null) {
-          if (isValidElement(mappedChild)) {
-            mappedChild = cloneAndReplaceKey(mappedChild, // Keep both the (mapped) and old keys if they differ, just as
-            // traverseAllChildren used to do for objects as children
-            escapedPrefix + ( // $FlowFixMe Flow incorrectly thinks React.Portal doesn't have a key
-            mappedChild.key && (!_child || _child.key !== mappedChild.key) ? // $FlowFixMe Flow incorrectly thinks existing element's key can be a number
-            escapeUserProvidedKey('' + mappedChild.key) + '/' : '') + childKey);
-          }
-
-          array.push(mappedChild);
-        }
-
+        callback(traverseContext, children, // If it's the only child, treat the name as if it was wrapped in an array
+        // so that it's consistent if the number of children grows.
+        nameSoFar === '' ? SEPARATOR + getComponentKey(children, 0) : nameSoFar);
         return 1;
       }
 
@@ -1198,38 +1327,41 @@ if ("development" !== "production") {
       if (Array.isArray(children)) {
         for (var i = 0; i < children.length; i++) {
           child = children[i];
-          nextName = nextNamePrefix + getElementKey(child, i);
-          subtreeCount += mapIntoArray(child, array, escapedPrefix, nextName, callback);
+          nextName = nextNamePrefix + getComponentKey(child, i);
+          subtreeCount += traverseAllChildrenImpl(child, nextName, callback, traverseContext);
         }
       } else {
         var iteratorFn = getIteratorFn(children);
 
         if (typeof iteratorFn === 'function') {
-          var iterableChildren = children;
           {
             // Warn about using Maps as children
-            if (iteratorFn === iterableChildren.entries) {
+            if (iteratorFn === children.entries) {
               if (!didWarnAboutMaps) {
-                warn('Using Maps as children is not supported. ' + 'Use an array of keyed ReactElements instead.');
+                warn('Using Maps as children is deprecated and will be removed in ' + 'a future major release. Consider converting children to ' + 'an array of keyed ReactElements instead.');
               }
 
               didWarnAboutMaps = true;
             }
           }
-          var iterator = iteratorFn.call(iterableChildren);
+          var iterator = iteratorFn.call(children);
           var step;
           var ii = 0;
 
           while (!(step = iterator.next()).done) {
             child = step.value;
-            nextName = nextNamePrefix + getElementKey(child, ii++);
-            subtreeCount += mapIntoArray(child, array, escapedPrefix, nextName, callback);
+            nextName = nextNamePrefix + getComponentKey(child, ii++);
+            subtreeCount += traverseAllChildrenImpl(child, nextName, callback, traverseContext);
           }
         } else if (type === 'object') {
+          var addendum = '';
+          {
+            addendum = ' If you meant to render a collection of children, use an array ' + 'instead.' + ReactDebugCurrentFrame.getStackAddendum();
+          }
           var childrenString = '' + children;
           {
             {
-              throw Error("Objects are not valid as a React child (found: " + (childrenString === '[object Object]' ? 'object with keys {' + Object.keys(children).join(', ') + '}' : childrenString) + "). If you meant to render a collection of children, use an array instead.");
+              throw Error("Objects are not valid as a React child (found: " + (childrenString === '[object Object]' ? 'object with keys {' + Object.keys(children).join(', ') + '}' : childrenString) + ")." + addendum);
             }
           }
         }
@@ -1238,49 +1370,55 @@ if ("development" !== "production") {
       return subtreeCount;
     }
     /**
-     * Maps children that are typically specified as `props.children`.
+     * Traverses children that are typically specified as `props.children`, but
+     * might also be specified through attributes:
      *
-     * See https://reactjs.org/docs/react-api.html#reactchildrenmap
+     * - `traverseAllChildren(this.props.children, ...)`
+     * - `traverseAllChildren(this.props.leftPanelChildren, ...)`
      *
-     * The provided mapFunction(child, index) will be called for each
-     * leaf child.
+     * The `traverseContext` is an optional argument that is passed through the
+     * entire traversal. It can be used to store accumulations or anything else that
+     * the callback might find relevant.
      *
-     * @param {?*} children Children tree container.
-     * @param {function(*, int)} func The map function.
-     * @param {*} context Context for mapFunction.
-     * @return {object} Object containing the ordered map of results.
+     * @param {?*} children Children tree object.
+     * @param {!function} callback To invoke upon traversing each child.
+     * @param {?*} traverseContext Context for traversal.
+     * @return {!number} The number of children in this subtree.
      */
 
 
-    function mapChildren(children, func, context) {
+    function traverseAllChildren(children, callback, traverseContext) {
       if (children == null) {
-        return children;
+        return 0;
       }
 
-      var result = [];
-      var count = 0;
-      mapIntoArray(children, result, '', '', function (child) {
-        return func.call(context, child, count++);
-      });
-      return result;
+      return traverseAllChildrenImpl(children, '', callback, traverseContext);
     }
     /**
-     * Count the number of children that are typically specified as
-     * `props.children`.
+     * Generate a key string that identifies a component within a set.
      *
-     * See https://reactjs.org/docs/react-api.html#reactchildrencount
-     *
-     * @param {?*} children Children tree container.
-     * @return {number} The number of children.
+     * @param {*} component A component that could contain a manual key.
+     * @param {number} index Index that is used if a manual key is not provided.
+     * @return {string}
      */
 
 
-    function countChildren(children) {
-      var n = 0;
-      mapChildren(children, function () {
-        n++; // Don't return anything
-      });
-      return n;
+    function getComponentKey(component, index) {
+      // Do some typechecking here since we call this blindly. We want to ensure
+      // that we don't block potential future ES APIs.
+      if (typeof component === 'object' && component !== null && component.key != null) {
+        // Explicit key
+        return escape(component.key);
+      } // Implicit key determined by the index in the set
+
+
+      return index.toString(36);
+    }
+
+    function forEachSingleChild(bookKeeping, child, name) {
+      var func = bookKeeping.func,
+          context = bookKeeping.context;
+      func.call(context, child, bookKeeping.count++);
     }
     /**
      * Iterates through children that are typically specified as `props.children`.
@@ -1297,9 +1435,87 @@ if ("development" !== "production") {
 
 
     function forEachChildren(children, forEachFunc, forEachContext) {
-      mapChildren(children, function () {
-        forEachFunc.apply(this, arguments); // Don't return anything.
-      }, forEachContext);
+      if (children == null) {
+        return children;
+      }
+
+      var traverseContext = getPooledTraverseContext(null, null, forEachFunc, forEachContext);
+      traverseAllChildren(children, forEachSingleChild, traverseContext);
+      releaseTraverseContext(traverseContext);
+    }
+
+    function mapSingleChildIntoContext(bookKeeping, child, childKey) {
+      var result = bookKeeping.result,
+          keyPrefix = bookKeeping.keyPrefix,
+          func = bookKeeping.func,
+          context = bookKeeping.context;
+      var mappedChild = func.call(context, child, bookKeeping.count++);
+
+      if (Array.isArray(mappedChild)) {
+        mapIntoWithKeyPrefixInternal(mappedChild, result, childKey, function (c) {
+          return c;
+        });
+      } else if (mappedChild != null) {
+        if (isValidElement(mappedChild)) {
+          mappedChild = cloneAndReplaceKey(mappedChild, // Keep both the (mapped) and old keys if they differ, just as
+          // traverseAllChildren used to do for objects as children
+          keyPrefix + (mappedChild.key && (!child || child.key !== mappedChild.key) ? escapeUserProvidedKey(mappedChild.key) + '/' : '') + childKey);
+        }
+
+        result.push(mappedChild);
+      }
+    }
+
+    function mapIntoWithKeyPrefixInternal(children, array, prefix, func, context) {
+      var escapedPrefix = '';
+
+      if (prefix != null) {
+        escapedPrefix = escapeUserProvidedKey(prefix) + '/';
+      }
+
+      var traverseContext = getPooledTraverseContext(array, escapedPrefix, func, context);
+      traverseAllChildren(children, mapSingleChildIntoContext, traverseContext);
+      releaseTraverseContext(traverseContext);
+    }
+    /**
+     * Maps children that are typically specified as `props.children`.
+     *
+     * See https://reactjs.org/docs/react-api.html#reactchildrenmap
+     *
+     * The provided mapFunction(child, key, index) will be called for each
+     * leaf child.
+     *
+     * @param {?*} children Children tree container.
+     * @param {function(*, int)} func The map function.
+     * @param {*} context Context for mapFunction.
+     * @return {object} Object containing the ordered map of results.
+     */
+
+
+    function mapChildren(children, func, context) {
+      if (children == null) {
+        return children;
+      }
+
+      var result = [];
+      mapIntoWithKeyPrefixInternal(children, result, null, func, context);
+      return result;
+    }
+    /**
+     * Count the number of children that are typically specified as
+     * `props.children`.
+     *
+     * See https://reactjs.org/docs/react-api.html#reactchildrencount
+     *
+     * @param {?*} children Children tree container.
+     * @return {number} The number of children.
+     */
+
+
+    function countChildren(children) {
+      return traverseAllChildren(children, function () {
+        return null;
+      }, null);
     }
     /**
      * Flatten a children object (typically specified as `props.children`) and
@@ -1310,9 +1526,11 @@ if ("development" !== "production") {
 
 
     function toArray(children) {
-      return mapChildren(children, function (child) {
+      var result = [];
+      mapIntoWithKeyPrefixInternal(children, result, null, function (child) {
         return child;
-      }) || [];
+      });
+      return result;
     }
     /**
      * Returns the first child in a collection of children and verifies that there
@@ -1374,7 +1592,6 @@ if ("development" !== "production") {
       };
       var hasWarnedAboutUsingNestedContextConsumers = false;
       var hasWarnedAboutUsingConsumerProvider = false;
-      var hasWarnedAboutDisplayNameOnConsumer = false;
       {
         // A separate object, but proxies back to the original context object for
         // backwards compatibility. It has a different $$typeof, so we can properly
@@ -1432,17 +1649,6 @@ if ("development" !== "production") {
 
               return context.Consumer;
             }
-          },
-          displayName: {
-            get: function () {
-              return context.displayName;
-            },
-            set: function (displayName) {
-              if (!hasWarnedAboutDisplayNameOnConsumer) {
-                warn('Setting `displayName` on Context.Consumer has no effect. ' + "You should set it directly on the context with Context.displayName = '%s'.", displayName);
-                hasWarnedAboutDisplayNameOnConsumer = true;
-              }
-            }
           }
         }); // $FlowFixMe: Flow complains about missing properties because it doesn't understand defineProperty
 
@@ -1455,66 +1661,18 @@ if ("development" !== "production") {
       return context;
     }
 
-    var Uninitialized = -1;
-    var Pending = 0;
-    var Resolved = 1;
-    var Rejected = 2;
-
-    function lazyInitializer(payload) {
-      if (payload._status === Uninitialized) {
-        var ctor = payload._result;
-        var thenable = ctor(); // Transition to the next state.
-
-        var pending = payload;
-        pending._status = Pending;
-        pending._result = thenable;
-        thenable.then(function (moduleObject) {
-          if (payload._status === Pending) {
-            var defaultExport = moduleObject.default;
-            {
-              if (defaultExport === undefined) {
-                error('lazy: Expected the result of a dynamic import() call. ' + 'Instead received: %s\n\nYour code should look like: \n  ' + // Break up imports to avoid accidentally parsing them as dependencies.
-                'const MyComponent = lazy(() => imp' + "ort('./MyComponent'))", moduleObject);
-              }
-            } // Transition to the next state.
-
-            var resolved = payload;
-            resolved._status = Resolved;
-            resolved._result = defaultExport;
-          }
-        }, function (error) {
-          if (payload._status === Pending) {
-            // Transition to the next state.
-            var rejected = payload;
-            rejected._status = Rejected;
-            rejected._result = error;
-          }
-        });
-      }
-
-      if (payload._status === Resolved) {
-        return payload._result;
-      } else {
-        throw payload._result;
-      }
-    }
-
     function lazy(ctor) {
-      var payload = {
-        // We use these fields to store the result.
-        _status: -1,
-        _result: ctor
-      };
       var lazyType = {
         $$typeof: REACT_LAZY_TYPE,
-        _payload: payload,
-        _init: lazyInitializer
+        _ctor: ctor,
+        // React uses these fields to store the result.
+        _status: -1,
+        _result: null
       };
       {
         // In production, this would just set it on the object.
         var defaultProps;
-        var propTypes; // $FlowFixMe
-
+        var propTypes;
         Object.defineProperties(lazyType, {
           defaultProps: {
             configurable: true,
@@ -1524,7 +1682,6 @@ if ("development" !== "production") {
             set: function (newDefaultProps) {
               error('React.lazy(...): It is not supported to assign `defaultProps` to ' + 'a lazy component import. Either specify them where the component ' + 'is defined, or create a wrapping component around it.');
               defaultProps = newDefaultProps; // Match production behavior more closely:
-              // $FlowFixMe
 
               Object.defineProperty(lazyType, 'defaultProps', {
                 enumerable: true
@@ -1539,7 +1696,6 @@ if ("development" !== "production") {
             set: function (newPropTypes) {
               error('React.lazy(...): It is not supported to assign `propTypes` to ' + 'a lazy component import. Either specify them where the component ' + 'is defined, or create a wrapping component around it.');
               propTypes = newPropTypes; // Match production behavior more closely:
-              // $FlowFixMe
 
               Object.defineProperty(lazyType, 'propTypes', {
                 enumerable: true
@@ -1569,50 +1725,15 @@ if ("development" !== "production") {
           }
         }
       }
-      var elementType = {
+      return {
         $$typeof: REACT_FORWARD_REF_TYPE,
         render: render
       };
-      {
-        var ownName;
-        Object.defineProperty(elementType, 'displayName', {
-          enumerable: false,
-          configurable: true,
-          get: function () {
-            return ownName;
-          },
-          set: function (name) {
-            ownName = name;
-
-            if (render.displayName == null) {
-              render.displayName = name;
-            }
-          }
-        });
-      }
-      return elementType;
-    } // Filter certain DOM attributes (e.g. src, href) if their values are empty strings.
-
-
-    var enableScopeAPI = false; // Experimental Create Event Handle API.
+    }
 
     function isValidElementType(type) {
-      if (typeof type === 'string' || typeof type === 'function') {
-        return true;
-      } // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
-
-
-      if (type === exports.Fragment || type === exports.Profiler || type === REACT_DEBUG_TRACING_MODE_TYPE || type === exports.StrictMode || type === exports.Suspense || type === REACT_SUSPENSE_LIST_TYPE || type === REACT_LEGACY_HIDDEN_TYPE || enableScopeAPI) {
-        return true;
-      }
-
-      if (typeof type === 'object' && type !== null) {
-        if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_BLOCK_TYPE || type[0] === REACT_SERVER_BLOCK_TYPE) {
-          return true;
-        }
-      }
-
-      return false;
+      return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+      type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
     }
 
     function memo(type, compare) {
@@ -1621,29 +1742,11 @@ if ("development" !== "production") {
           error('memo: The first argument must be a component. Instead ' + 'received: %s', type === null ? 'null' : typeof type);
         }
       }
-      var elementType = {
+      return {
         $$typeof: REACT_MEMO_TYPE,
         type: type,
         compare: compare === undefined ? null : compare
       };
-      {
-        var ownName;
-        Object.defineProperty(elementType, 'displayName', {
-          enumerable: false,
-          configurable: true,
-          get: function () {
-            return ownName;
-          },
-          set: function (name) {
-            ownName = name;
-
-            if (type.displayName == null) {
-              type.displayName = name;
-            }
-          }
-        });
-      }
-      return elementType;
     }
 
     function resolveDispatcher() {
@@ -1651,7 +1754,7 @@ if ("development" !== "production") {
 
       if (!(dispatcher !== null)) {
         {
-          throw Error("Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://reactjs.org/link/invalid-hook-call for tips about how to debug and fix this problem.");
+          throw Error("Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://fb.me/react-invalid-hook-call for tips about how to debug and fix this problem.");
         }
       }
 
@@ -1662,7 +1765,7 @@ if ("development" !== "production") {
       var dispatcher = resolveDispatcher();
       {
         if (unstable_observedBits !== undefined) {
-          error('useContext() second argument is reserved for future ' + 'use in React. Passing it is not supported. ' + 'You passed: %s.%s', unstable_observedBits, typeof unstable_observedBits === 'number' && Array.isArray(arguments[2]) ? '\n\nDid you call array.map(useContext)? ' + 'Calling Hooks inside a loop is not supported. ' + 'Learn more at https://reactjs.org/link/rules-of-hooks' : '');
+          error('useContext() second argument is reserved for future ' + 'use in React. Passing it is not supported. ' + 'You passed: %s.%s', unstable_observedBits, typeof unstable_observedBits === 'number' && Array.isArray(arguments[2]) ? '\n\nDid you call array.map(useContext)? ' + 'Calling Hooks inside a loop is not supported. ' + 'Learn more at https://fb.me/rules-of-hooks' : '');
         } // TODO: add a more generic warning for invalid values.
 
 
@@ -1724,409 +1827,6 @@ if ("development" !== "production") {
       {
         var dispatcher = resolveDispatcher();
         return dispatcher.useDebugValue(value, formatterFn);
-      }
-    } // Helpers to patch console.logs to avoid logging during side-effect free
-    // replaying on render function. This currently only patches the object
-    // lazily which won't cover if the log function was extracted eagerly.
-    // We could also eagerly patch the method.
-
-
-    var disabledDepth = 0;
-    var prevLog;
-    var prevInfo;
-    var prevWarn;
-    var prevError;
-    var prevGroup;
-    var prevGroupCollapsed;
-    var prevGroupEnd;
-
-    function disabledLog() {}
-
-    disabledLog.__reactDisabledLog = true;
-
-    function disableLogs() {
-      {
-        if (disabledDepth === 0) {
-          /* eslint-disable react-internal/no-production-logging */
-          prevLog = console.log;
-          prevInfo = console.info;
-          prevWarn = console.warn;
-          prevError = console.error;
-          prevGroup = console.group;
-          prevGroupCollapsed = console.groupCollapsed;
-          prevGroupEnd = console.groupEnd; // https://github.com/facebook/react/issues/19099
-
-          var props = {
-            configurable: true,
-            enumerable: true,
-            value: disabledLog,
-            writable: true
-          }; // $FlowFixMe Flow thinks console is immutable.
-
-          Object.defineProperties(console, {
-            info: props,
-            log: props,
-            warn: props,
-            error: props,
-            group: props,
-            groupCollapsed: props,
-            groupEnd: props
-          });
-          /* eslint-enable react-internal/no-production-logging */
-        }
-
-        disabledDepth++;
-      }
-    }
-
-    function reenableLogs() {
-      {
-        disabledDepth--;
-
-        if (disabledDepth === 0) {
-          /* eslint-disable react-internal/no-production-logging */
-          var props = {
-            configurable: true,
-            enumerable: true,
-            writable: true
-          }; // $FlowFixMe Flow thinks console is immutable.
-
-          Object.defineProperties(console, {
-            log: _assign({}, props, {
-              value: prevLog
-            }),
-            info: _assign({}, props, {
-              value: prevInfo
-            }),
-            warn: _assign({}, props, {
-              value: prevWarn
-            }),
-            error: _assign({}, props, {
-              value: prevError
-            }),
-            group: _assign({}, props, {
-              value: prevGroup
-            }),
-            groupCollapsed: _assign({}, props, {
-              value: prevGroupCollapsed
-            }),
-            groupEnd: _assign({}, props, {
-              value: prevGroupEnd
-            })
-          });
-          /* eslint-enable react-internal/no-production-logging */
-        }
-
-        if (disabledDepth < 0) {
-          error('disabledDepth fell below zero. ' + 'This is a bug in React. Please file an issue.');
-        }
-      }
-    }
-
-    var ReactCurrentDispatcher$1 = ReactSharedInternals.ReactCurrentDispatcher;
-    var prefix;
-
-    function describeBuiltInComponentFrame(name, source, ownerFn) {
-      {
-        if (prefix === undefined) {
-          // Extract the VM specific prefix used by each line.
-          try {
-            throw Error();
-          } catch (x) {
-            var match = x.stack.trim().match(/\n( *(at )?)/);
-            prefix = match && match[1] || '';
-          }
-        } // We use the prefix to ensure our stacks line up with native stack frames.
-
-
-        return '\n' + prefix + name;
-      }
-    }
-
-    var reentry = false;
-    var componentFrameCache;
-    {
-      var PossiblyWeakMap = typeof WeakMap === 'function' ? WeakMap : Map;
-      componentFrameCache = new PossiblyWeakMap();
-    }
-
-    function describeNativeComponentFrame(fn, construct) {
-      // If something asked for a stack inside a fake render, it should get ignored.
-      if (!fn || reentry) {
-        return '';
-      }
-
-      {
-        var frame = componentFrameCache.get(fn);
-
-        if (frame !== undefined) {
-          return frame;
-        }
-      }
-      var control;
-      reentry = true;
-      var previousPrepareStackTrace = Error.prepareStackTrace; // $FlowFixMe It does accept undefined.
-
-      Error.prepareStackTrace = undefined;
-      var previousDispatcher;
-      {
-        previousDispatcher = ReactCurrentDispatcher$1.current; // Set the dispatcher in DEV because this might be call in the render function
-        // for warnings.
-
-        ReactCurrentDispatcher$1.current = null;
-        disableLogs();
-      }
-
-      try {
-        // This should throw.
-        if (construct) {
-          // Something should be setting the props in the constructor.
-          var Fake = function () {
-            throw Error();
-          }; // $FlowFixMe
-
-
-          Object.defineProperty(Fake.prototype, 'props', {
-            set: function () {
-              // We use a throwing setter instead of frozen or non-writable props
-              // because that won't throw in a non-strict mode function.
-              throw Error();
-            }
-          });
-
-          if (typeof Reflect === 'object' && Reflect.construct) {
-            // We construct a different control for this case to include any extra
-            // frames added by the construct call.
-            try {
-              Reflect.construct(Fake, []);
-            } catch (x) {
-              control = x;
-            }
-
-            Reflect.construct(fn, [], Fake);
-          } else {
-            try {
-              Fake.call();
-            } catch (x) {
-              control = x;
-            }
-
-            fn.call(Fake.prototype);
-          }
-        } else {
-          try {
-            throw Error();
-          } catch (x) {
-            control = x;
-          }
-
-          fn();
-        }
-      } catch (sample) {
-        // This is inlined manually because closure doesn't do it for us.
-        if (sample && control && typeof sample.stack === 'string') {
-          // This extracts the first frame from the sample that isn't also in the control.
-          // Skipping one frame that we assume is the frame that calls the two.
-          var sampleLines = sample.stack.split('\n');
-          var controlLines = control.stack.split('\n');
-          var s = sampleLines.length - 1;
-          var c = controlLines.length - 1;
-
-          while (s >= 1 && c >= 0 && sampleLines[s] !== controlLines[c]) {
-            // We expect at least one stack frame to be shared.
-            // Typically this will be the root most one. However, stack frames may be
-            // cut off due to maximum stack limits. In this case, one maybe cut off
-            // earlier than the other. We assume that the sample is longer or the same
-            // and there for cut off earlier. So we should find the root most frame in
-            // the sample somewhere in the control.
-            c--;
-          }
-
-          for (; s >= 1 && c >= 0; s--, c--) {
-            // Next we find the first one that isn't the same which should be the
-            // frame that called our sample function and the control.
-            if (sampleLines[s] !== controlLines[c]) {
-              // In V8, the first line is describing the message but other VMs don't.
-              // If we're about to return the first line, and the control is also on the same
-              // line, that's a pretty good indicator that our sample threw at same line as
-              // the control. I.e. before we entered the sample frame. So we ignore this result.
-              // This can happen if you passed a class to function component, or non-function.
-              if (s !== 1 || c !== 1) {
-                do {
-                  s--;
-                  c--; // We may still have similar intermediate frames from the construct call.
-                  // The next one that isn't the same should be our match though.
-
-                  if (c < 0 || sampleLines[s] !== controlLines[c]) {
-                    // V8 adds a "new" prefix for native classes. Let's remove it to make it prettier.
-                    var _frame = '\n' + sampleLines[s].replace(' at new ', ' at ');
-
-                    {
-                      if (typeof fn === 'function') {
-                        componentFrameCache.set(fn, _frame);
-                      }
-                    } // Return the line we found.
-
-                    return _frame;
-                  }
-                } while (s >= 1 && c >= 0);
-              }
-
-              break;
-            }
-          }
-        }
-      } finally {
-        reentry = false;
-        {
-          ReactCurrentDispatcher$1.current = previousDispatcher;
-          reenableLogs();
-        }
-        Error.prepareStackTrace = previousPrepareStackTrace;
-      } // Fallback to just using the name if we couldn't make it throw.
-
-
-      var name = fn ? fn.displayName || fn.name : '';
-      var syntheticFrame = name ? describeBuiltInComponentFrame(name) : '';
-      {
-        if (typeof fn === 'function') {
-          componentFrameCache.set(fn, syntheticFrame);
-        }
-      }
-      return syntheticFrame;
-    }
-
-    function describeFunctionComponentFrame(fn, source, ownerFn) {
-      {
-        return describeNativeComponentFrame(fn, false);
-      }
-    }
-
-    function shouldConstruct(Component) {
-      var prototype = Component.prototype;
-      return !!(prototype && prototype.isReactComponent);
-    }
-
-    function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
-      if (type == null) {
-        return '';
-      }
-
-      if (typeof type === 'function') {
-        {
-          return describeNativeComponentFrame(type, shouldConstruct(type));
-        }
-      }
-
-      if (typeof type === 'string') {
-        return describeBuiltInComponentFrame(type);
-      }
-
-      switch (type) {
-        case exports.Suspense:
-          return describeBuiltInComponentFrame('Suspense');
-
-        case REACT_SUSPENSE_LIST_TYPE:
-          return describeBuiltInComponentFrame('SuspenseList');
-      }
-
-      if (typeof type === 'object') {
-        switch (type.$$typeof) {
-          case REACT_FORWARD_REF_TYPE:
-            return describeFunctionComponentFrame(type.render);
-
-          case REACT_MEMO_TYPE:
-            // Memo may contain any component type so we recursively resolve it.
-            return describeUnknownElementTypeFrameInDEV(type.type, source, ownerFn);
-
-          case REACT_BLOCK_TYPE:
-            return describeFunctionComponentFrame(type._render);
-
-          case REACT_LAZY_TYPE:
-            {
-              var lazyComponent = type;
-              var payload = lazyComponent._payload;
-              var init = lazyComponent._init;
-
-              try {
-                // Lazy may contain any component type so we recursively resolve it.
-                return describeUnknownElementTypeFrameInDEV(init(payload), source, ownerFn);
-              } catch (x) {}
-            }
-        }
-      }
-
-      return '';
-    }
-
-    var loggedTypeFailures = {};
-    var ReactDebugCurrentFrame$1 = ReactSharedInternals.ReactDebugCurrentFrame;
-
-    function setCurrentlyValidatingElement(element) {
-      {
-        if (element) {
-          var owner = element._owner;
-          var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
-          ReactDebugCurrentFrame$1.setExtraStackFrame(stack);
-        } else {
-          ReactDebugCurrentFrame$1.setExtraStackFrame(null);
-        }
-      }
-    }
-
-    function checkPropTypes(typeSpecs, values, location, componentName, element) {
-      {
-        // $FlowFixMe This is okay but Flow doesn't know it.
-        var has = Function.call.bind(Object.prototype.hasOwnProperty);
-
-        for (var typeSpecName in typeSpecs) {
-          if (has(typeSpecs, typeSpecName)) {
-            var error$1 = void 0; // Prop type validation may throw. In case they do, we don't want to
-            // fail the render phase where it didn't fail before. So we log it.
-            // After these have been cleaned up, we'll let them throw.
-
-            try {
-              // This is intentionally an invariant that gets caught. It's the same
-              // behavior as without this statement except with a better message.
-              if (typeof typeSpecs[typeSpecName] !== 'function') {
-                var err = Error((componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' + 'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.' + 'This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.');
-                err.name = 'Invariant Violation';
-                throw err;
-              }
-
-              error$1 = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED');
-            } catch (ex) {
-              error$1 = ex;
-            }
-
-            if (error$1 && !(error$1 instanceof Error)) {
-              setCurrentlyValidatingElement(element);
-              error('%s: type specification of %s' + ' `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error$1);
-              setCurrentlyValidatingElement(null);
-            }
-
-            if (error$1 instanceof Error && !(error$1.message in loggedTypeFailures)) {
-              // Only monitor this failure once because there tends to be a lot of the
-              // same error.
-              loggedTypeFailures[error$1.message] = true;
-              setCurrentlyValidatingElement(element);
-              error('Failed %s type: %s', location, error$1.message);
-              setCurrentlyValidatingElement(null);
-            }
-          }
-        }
-      }
-    }
-
-    function setCurrentlyValidatingElement$1(element) {
-      {
-        if (element) {
-          var owner = element._owner;
-          var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
-          setExtraStackFrame(stack);
-        } else {
-          setExtraStackFrame(null);
-        }
       }
     }
 
@@ -2222,11 +1922,11 @@ if ("development" !== "production") {
         childOwner = " It was passed a child from " + getComponentName(element._owner.type) + ".";
       }
 
+      setCurrentlyValidatingElement(element);
       {
-        setCurrentlyValidatingElement$1(element);
-        error('Each child in a list should have a unique "key" prop.' + '%s%s See https://reactjs.org/link/warning-keys for more information.', currentComponentErrorInfo, childOwner);
-        setCurrentlyValidatingElement$1(null);
+        error('Each child in a list should have a unique "key" prop.' + '%s%s See https://fb.me/react-warning-keys for more information.', currentComponentErrorInfo, childOwner);
       }
+      setCurrentlyValidatingElement(null);
     }
     /**
      * Ensure that every element either is passed in a static location, in an
@@ -2292,6 +1992,7 @@ if ("development" !== "production") {
           return;
         }
 
+        var name = getComponentName(type);
         var propTypes;
 
         if (typeof type === 'function') {
@@ -2305,15 +2006,12 @@ if ("development" !== "production") {
         }
 
         if (propTypes) {
-          // Intentionally inside to avoid triggering lazy initializers:
-          var name = getComponentName(type);
-          checkPropTypes(propTypes, element.props, 'prop', name, element);
+          setCurrentlyValidatingElement(element);
+          checkPropTypes(propTypes, element.props, 'prop', name, ReactDebugCurrentFrame.getStackAddendum);
+          setCurrentlyValidatingElement(null);
         } else if (type.PropTypes !== undefined && !propTypesMisspellWarningShown) {
-          propTypesMisspellWarningShown = true; // Intentionally inside to avoid triggering lazy initializers:
-
-          var _name = getComponentName(type);
-
-          error('Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?', _name || 'Unknown');
+          propTypesMisspellWarningShown = true;
+          error('Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?', name || 'Unknown');
         }
 
         if (typeof type.getDefaultProps === 'function' && !type.getDefaultProps.isReactClassApproved) {
@@ -2329,24 +2027,23 @@ if ("development" !== "production") {
 
     function validateFragmentProps(fragment) {
       {
+        setCurrentlyValidatingElement(fragment);
         var keys = Object.keys(fragment.props);
 
         for (var i = 0; i < keys.length; i++) {
           var key = keys[i];
 
           if (key !== 'children' && key !== 'key') {
-            setCurrentlyValidatingElement$1(fragment);
             error('Invalid prop `%s` supplied to `React.Fragment`. ' + 'React.Fragment can only have `key` and `children` props.', key);
-            setCurrentlyValidatingElement$1(null);
             break;
           }
         }
 
         if (fragment.ref !== null) {
-          setCurrentlyValidatingElement$1(fragment);
           error('Invalid attribute `ref` supplied to `React.Fragment`.');
-          setCurrentlyValidatingElement$1(null);
         }
+
+        setCurrentlyValidatingElement(null);
       }
     }
 
@@ -2405,7 +2102,7 @@ if ("development" !== "production") {
         }
       }
 
-      if (type === exports.Fragment) {
+      if (type === REACT_FRAGMENT_TYPE) {
         validateFragmentProps(element);
       } else {
         validatePropTypes(element);
@@ -2454,11 +2151,13 @@ if ("development" !== "production") {
     {
       try {
         var frozenObject = Object.freeze({});
-        /* eslint-disable no-new */
+        var testMap = new Map([[frozenObject, null]]);
+        var testSet = new Set([frozenObject]); // This is necessary for Rollup to not consider these unused.
+        // https://github.com/rollup/rollup/issues/1771
+        // TODO: we can remove these if Rollup fixes the bug.
 
-        new Map([[frozenObject, null]]);
-        new Set([frozenObject]);
-        /* eslint-enable no-new */
+        testMap.set(0, 0);
+        testSet.add(0);
       } catch (e) {}
     }
     var createElement$1 = createElementWithValidation;
@@ -2473,7 +2172,11 @@ if ("development" !== "production") {
     };
     exports.Children = Children;
     exports.Component = Component;
+    exports.Fragment = REACT_FRAGMENT_TYPE;
+    exports.Profiler = REACT_PROFILER_TYPE;
     exports.PureComponent = PureComponent;
+    exports.StrictMode = REACT_STRICT_MODE_TYPE;
+    exports.Suspense = REACT_SUSPENSE_TYPE;
     exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactSharedInternals;
     exports.cloneElement = cloneElement$1;
     exports.createContext = createContext;
@@ -2497,7 +2200,7 @@ if ("development" !== "production") {
     exports.version = ReactVersion;
   })();
 }
-},{"object-assign":"../../node_modules/object-assign/index.js"}],"../../node_modules/react/index.js":[function(require,module,exports) {
+},{"object-assign":"../../node_modules/object-assign/index.js","prop-types/checkPropTypes":"../../node_modules/prop-types/checkPropTypes.js"}],"../../node_modules/react/index.js":[function(require,module,exports) {
 'use strict';
 
 if ("development" === 'production') {
@@ -30767,117 +30470,7 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-is.development.js');
 }
-},{"./cjs/react-is.development.js":"../../node_modules/prop-types/node_modules/react-is/cjs/react-is.development.js"}],"../../node_modules/prop-types/lib/ReactPropTypesSecret.js":[function(require,module,exports) {
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-'use strict';
-
-var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
-
-module.exports = ReactPropTypesSecret;
-
-},{}],"../../node_modules/prop-types/checkPropTypes.js":[function(require,module,exports) {
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-'use strict';
-
-var printWarning = function () {};
-
-if ("development" !== 'production') {
-  var ReactPropTypesSecret = require('./lib/ReactPropTypesSecret');
-
-  var loggedTypeFailures = {};
-  var has = Function.call.bind(Object.prototype.hasOwnProperty);
-
-  printWarning = function (text) {
-    var message = 'Warning: ' + text;
-
-    if (typeof console !== 'undefined') {
-      console.error(message);
-    }
-
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  };
-}
-/**
- * Assert that the values match with the type specs.
- * Error messages are memorized and will only be shown once.
- *
- * @param {object} typeSpecs Map of name to a ReactPropType
- * @param {object} values Runtime values that need to be type-checked
- * @param {string} location e.g. "prop", "context", "child context"
- * @param {string} componentName Name of the component for error messages.
- * @param {?Function} getStack Returns the component stack.
- * @private
- */
-
-
-function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
-  if ("development" !== 'production') {
-    for (var typeSpecName in typeSpecs) {
-      if (has(typeSpecs, typeSpecName)) {
-        var error; // Prop type validation may throw. In case they do, we don't want to
-        // fail the render phase where it didn't fail before. So we log it.
-        // After these have been cleaned up, we'll let them throw.
-
-        try {
-          // This is intentionally an invariant that gets caught. It's the same
-          // behavior as without this statement except with a better message.
-          if (typeof typeSpecs[typeSpecName] !== 'function') {
-            var err = Error((componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' + 'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.');
-            err.name = 'Invariant Violation';
-            throw err;
-          }
-
-          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
-        } catch (ex) {
-          error = ex;
-        }
-
-        if (error && !(error instanceof Error)) {
-          printWarning((componentName || 'React class') + ': type specification of ' + location + ' `' + typeSpecName + '` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a ' + typeof error + '. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).');
-        }
-
-        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
-          // Only monitor this failure once because there tends to be a lot of the
-          // same error.
-          loggedTypeFailures[error.message] = true;
-          var stack = getStack ? getStack() : '';
-          printWarning('Failed ' + location + ' type: ' + error.message + (stack != null ? stack : ''));
-        }
-      }
-    }
-  }
-}
-/**
- * Resets warning cache when testing.
- *
- * @private
- */
-
-
-checkPropTypes.resetWarningCache = function () {
-  if ("development" !== 'production') {
-    loggedTypeFailures = {};
-  }
-};
-
-module.exports = checkPropTypes;
-},{"./lib/ReactPropTypesSecret":"../../node_modules/prop-types/lib/ReactPropTypesSecret.js"}],"../../node_modules/prop-types/factoryWithTypeCheckers.js":[function(require,module,exports) {
+},{"./cjs/react-is.development.js":"../../node_modules/prop-types/node_modules/react-is/cjs/react-is.development.js"}],"../../node_modules/prop-types/factoryWithTypeCheckers.js":[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -84934,7 +84527,1911 @@ var AppTheme = core_1.createMuiTheme({
   }
 });
 exports.AppTheme = AppTheme;
-},{"@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","@material-ui/core/colors":"../../node_modules/@material-ui/core/esm/colors/index.js"}],"../components/WechatArticle.tsx":[function(require,module,exports) {
+},{"@material-ui/core":"../../node_modules/@material-ui/core/esm/index.js","@material-ui/core/colors":"../../node_modules/@material-ui/core/esm/colors/index.js"}],"../../node_modules/@material-ui/icons/ExpandMore.js":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var React = _interopRequireWildcard(require("react"));
+
+var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
+
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/React.createElement("path", {
+  d: "M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+}), 'ExpandMore');
+
+exports.default = _default;
+},{"@babel/runtime/helpers/interopRequireDefault":"../../node_modules/@babel/runtime/helpers/interopRequireDefault/index.js","@babel/runtime/helpers/interopRequireWildcard":"../../node_modules/@babel/runtime/helpers/interopRequireWildcard/index.js","react":"../../node_modules/react/index.js","./utils/createSvgIcon":"../../node_modules/@material-ui/icons/utils/createSvgIcon.js"}],"../components/WechatAccordin.tsx":[function(require,module,exports) {
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ControlledAccordions = void 0;
+
+var react_1 = __importDefault(require("react"));
+
+var styles_1 = require("@material-ui/core/styles");
+
+var Accordion_1 = __importDefault(require("@material-ui/core/Accordion"));
+
+var AccordionDetails_1 = __importDefault(require("@material-ui/core/AccordionDetails"));
+
+var AccordionSummary_1 = __importDefault(require("@material-ui/core/AccordionSummary"));
+
+var Typography_1 = __importDefault(require("@material-ui/core/Typography"));
+
+var ExpandMore_1 = __importDefault(require("@material-ui/icons/ExpandMore"));
+
+var core_1 = require("@material-ui/core/");
+
+var Link_1 = __importDefault(require("@material-ui/core/Link"));
+
+var useStyles = styles_1.makeStyles(function (theme) {
+  return styles_1.createStyles({
+    root: {
+      width: '100%'
+    },
+    heading: {
+      fontSize: theme.typography.pxToRem(15),
+      flexBasis: '65%',
+      flexShrink: 0
+    },
+    secondaryHeading: {
+      fontSize: theme.typography.pxToRem(15),
+      color: theme.palette.text.secondary
+    },
+    paper: {
+      padding: theme.spacing(2),
+      color: theme.palette.text.secondary,
+      display: 'flex',
+      alignContent: 'space-between',
+      alignItems: 'center',
+      width: '110%'
+    }
+  });
+});
+
+function ControlledAccordions() {
+  var preventDefault = function preventDefault(event) {
+    return event.preventDefault();
+  };
+
+  var classes = useStyles();
+
+  var _a = react_1.default.useState(false),
+      expanded = _a[0],
+      setExpanded = _a[1];
+
+  var handleChange = function handleChange(panel) {
+    return function (event, isExpanded) {
+      setExpanded(isExpanded ? panel : false);
+    };
+  };
+
+  return react_1.default.createElement("div", {
+    className: classes.root
+  }, react_1.default.createElement(Accordion_1.default, {
+    expanded: expanded === 'panel1',
+    onChange: handleChange('panel1'),
+    elevation: 0
+  }, react_1.default.createElement(AccordionSummary_1.default, {
+    expandIcon: react_1.default.createElement(ExpandMore_1.default, null),
+    "aria-controls": "panel1bh-content",
+    id: "panel1bh-header"
+  }, react_1.default.createElement(Typography_1.default, {
+    className: classes.heading
+  }, "Socratic Seminar"), react_1.default.createElement(Typography_1.default, {
+    className: classes.secondaryHeading
+  }, "Click to see")), react_1.default.createElement(AccordionDetails_1.default, null, react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "flex-start",
+    spacing: 2,
+    direction: "column"
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "\u7814\u8BA8\u4F1A\u6EE1\u5206\u5B9D\u5178\uFF5CI read this before my last socratic seminar, and...")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Link_1.default, {
+    href: 'https://mp.weixin.qq.com/s/drKUt0ywFnue86HRo8N1RQ',
+    color: "primary",
+    variant: 'body1'
+  }, "View")), react_1.default.createElement(core_1.Divider, null), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Seminar\u80CC\u540E\u7684\u771F\u76F8\u7ADF\u662F... | The Secret Behind Seminar")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Link_1.default, {
+    href: 'https://mp.weixin.qq.com/s/ktA132RlyLiebUSR6tw38w',
+    color: "primary",
+    variant: 'body1'
+  }, "View")))))), react_1.default.createElement(Accordion_1.default, {
+    expanded: expanded === 'panel2',
+    onChange: handleChange('panel2'),
+    elevation: 0
+  }, react_1.default.createElement(AccordionSummary_1.default, {
+    expandIcon: react_1.default.createElement(ExpandMore_1.default, null),
+    "aria-controls": "panel2bh-content",
+    id: "panel2bh-header"
+  }, react_1.default.createElement(Typography_1.default, {
+    className: classes.heading
+  }, "Annotation")), react_1.default.createElement(AccordionDetails_1.default, null, react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "flex-start",
+    spacing: 2,
+    direction: "column"
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Smart Reading: Annotate Wisely")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Link_1.default, {
+    href: 'https://mp.weixin.qq.com/s/6lndlaNlSsACit9fxX0Gxg',
+    color: "primary",
+    variant: 'body1'
+  }, "View")), react_1.default.createElement(core_1.Divider, null))))), react_1.default.createElement(Accordion_1.default, {
+    expanded: expanded === 'panel3',
+    onChange: handleChange('panel3'),
+    elevation: 0
+  }, react_1.default.createElement(AccordionSummary_1.default, {
+    expandIcon: react_1.default.createElement(ExpandMore_1.default, null),
+    "aria-controls": "panel3bh-content",
+    id: "panel3bh-header"
+  }, react_1.default.createElement(Typography_1.default, {
+    className: classes.heading
+  }, "College Application")), react_1.default.createElement(AccordionDetails_1.default, null, react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "flex-start",
+    spacing: 2,
+    direction: "column"
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "\u7533\u8BF7\u5B63\u7684\u5EFA\u8BAE | Preparing for College Applications: Tips from Senior 3s")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Link_1.default, {
+    href: 'https://mp.weixin.qq.com/s/KnxGHWTP_Jh6LSGm6N092w',
+    color: "primary",
+    variant: 'body1'
+  }, "View")), react_1.default.createElement(core_1.Divider, null))))), react_1.default.createElement(Accordion_1.default, {
+    expanded: expanded === 'panel4',
+    onChange: handleChange('panel4'),
+    elevation: 0
+  }, react_1.default.createElement(AccordionSummary_1.default, {
+    expandIcon: react_1.default.createElement(ExpandMore_1.default, null),
+    "aria-controls": "panel4bh-content",
+    id: "panel4bh-header"
+  }, react_1.default.createElement(Typography_1.default, {
+    className: classes.heading
+  }, "Data Report")), react_1.default.createElement(AccordionDetails_1.default, null, react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "flex-start",
+    spacing: 2,
+    direction: "column"
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "\u5E74\u7EC8\u6570\u636E\u62A5\u544A | Dalton Writing Center Data Report")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Link_1.default, {
+    href: 'https://mp.weixin.qq.com/s/blcvXpTBv_XSHQu8Uic5aw',
+    color: "primary",
+    variant: 'body1'
+  }, "View")), react_1.default.createElement(core_1.Divider, null), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "\u5B66\u6BB5\u6570\u636E\u62A5\u544A 1 | Quarterly Data Report 1")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Link_1.default, {
+    href: 'https://mp.weixin.qq.com/s/oqm0jeVejZ3S0eUPmyUXPQ',
+    color: "primary",
+    variant: 'body1'
+  }, "View")), react_1.default.createElement(core_1.Divider, null), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "\u5B66\u6BB5\u6570\u636E\u62A5\u544A 2 | Quarterly Data Report 2")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Link_1.default, {
+    href: 'https://mp.weixin.qq.com/s/FWakgann_ihtFgCORJps9w',
+    color: "primary",
+    variant: 'body1'
+  }, "View")), react_1.default.createElement(core_1.Divider, null))))), react_1.default.createElement(Accordion_1.default, {
+    expanded: expanded === 'panel5',
+    onChange: handleChange('panel5'),
+    elevation: 0
+  }, react_1.default.createElement(AccordionSummary_1.default, {
+    expandIcon: react_1.default.createElement(ExpandMore_1.default, null),
+    "aria-controls": "panel4bh-content",
+    id: "panel4bh-header"
+  }, react_1.default.createElement(Typography_1.default, {
+    className: classes.heading
+  }, "PEEL paragraph")), react_1.default.createElement(AccordionDetails_1.default, null, react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "flex-start",
+    spacing: 2,
+    direction: "column"
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "\"PEEL OFF\" the PEEL paragraph (\u4E0A)")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Link_1.default, {
+    href: 'https://mp.weixin.qq.com/s/NV-nYi62KoISaWkKY0g2yw',
+    color: "primary",
+    variant: 'body1'
+  }, "View")), react_1.default.createElement(core_1.Divider, null), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "\"PEEL OFF\" the PEEL Paragraph (\u4E0B)")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Link_1.default, {
+    href: 'https://mp.weixin.qq.com/s/U_Q5y8EgAwFyGYtNJ_f_5Q',
+    color: "primary",
+    variant: 'body1'
+  }, "View")), react_1.default.createElement(core_1.Divider, null))))), react_1.default.createElement(Accordion_1.default, {
+    expanded: expanded === 'panel6',
+    onChange: handleChange('panel6'),
+    elevation: 0
+  }, react_1.default.createElement(AccordionSummary_1.default, {
+    expandIcon: react_1.default.createElement(ExpandMore_1.default, null),
+    "aria-controls": "panel4bh-content",
+    id: "panel4bh-header"
+  }, react_1.default.createElement(Typography_1.default, {
+    className: classes.heading
+  }, "Scientific Writing")), react_1.default.createElement(AccordionDetails_1.default, null, react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "flex-start",
+    spacing: 2,
+    direction: "column"
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Quick Introduction to Science Writing")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Link_1.default, {
+    href: 'https://mp.weixin.qq.com/s/O4P-c47DOozSZevGMuYKEA',
+    color: "primary",
+    variant: 'body1'
+  }, "View")), react_1.default.createElement(core_1.Divider, null), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Abstract | Scientific Writing Instruction")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Link_1.default, {
+    href: 'https://mp.weixin.qq.com/s/QlTO6kUSATFup51Skek9Zw',
+    color: "primary",
+    variant: 'body1'
+  }, "View")), react_1.default.createElement(core_1.Divider, null), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Introduction | Scientific Writing")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Link_1.default, {
+    href: 'https://mp.weixin.qq.com/s/aNqRfSF6xVWGrfelqNp0DA',
+    color: "primary",
+    variant: 'body1'
+  }, "View")), react_1.default.createElement(core_1.Divider, null), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Literature Review | Scientific Writing Instruction")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Link_1.default, {
+    href: 'https://mp.weixin.qq.com/s/pP7_is4sVcB4TKztdAQ3IQ',
+    color: "primary",
+    variant: 'body1'
+  }, "View")), react_1.default.createElement(core_1.Divider, null), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Methodology | Scientific Writing Instruction")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Link_1.default, {
+    href: 'https://mp.weixin.qq.com/s/-NtuB1xnXEo2z7tOvgfLNw',
+    color: "primary",
+    variant: 'body1'
+  }, "View")), react_1.default.createElement(core_1.Divider, null), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Results | Scientific Writing Instruction")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Link_1.default, {
+    href: 'https://mp.weixin.qq.com/s/2uYc821srVyXGhrtym6jVA',
+    color: "primary",
+    variant: 'body1'
+  }, "View")), react_1.default.createElement(core_1.Divider, null), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Discussion | Scientific Writing Instruction")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Link_1.default, {
+    href: 'https://mp.weixin.qq.com/s/oVv5zrkns0XuvSDoohNFpQ',
+    color: "primary",
+    variant: 'body1'
+  }, "View")), react_1.default.createElement(core_1.Divider, null), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Conclusion | Scientific Writing Instruction")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Link_1.default, {
+    href: 'https://mp.weixin.qq.com/s/K1Ze15bNwukTvku3DRsCjA',
+    color: "primary",
+    variant: 'body1'
+  }, "View")), react_1.default.createElement(core_1.Divider, null))))), react_1.default.createElement(Accordion_1.default, {
+    expanded: expanded === 'panel7',
+    onChange: handleChange('panel7'),
+    elevation: 0
+  }, react_1.default.createElement(AccordionSummary_1.default, {
+    expandIcon: react_1.default.createElement(ExpandMore_1.default, null),
+    "aria-controls": "panel4bh-content",
+    id: "panel4bh-header"
+  }, react_1.default.createElement(Typography_1.default, {
+    className: classes.heading
+  }, "Punctuationg")), react_1.default.createElement(AccordionDetails_1.default, null, react_1.default.createElement(core_1.Paper, {
+    className: classes.paper,
+    elevation: 0
+  }, react_1.default.createElement(core_1.Grid, {
+    container: true,
+    alignContent: "space-between",
+    alignItems: "flex-start",
+    spacing: 2,
+    direction: "column"
+  }, react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Comma, Semicolon, Colon | Punctuation Instruction")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Link_1.default, {
+    href: 'https://mp.weixin.qq.com/s/TL_MpwTcmhbfBuG1y6y-tg',
+    color: "primary",
+    variant: 'body1'
+  }, "View")), react_1.default.createElement(core_1.Divider, null), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Question Mark, Dash, Period | Punctuation Instruction 2(\u4E0B)")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Link_1.default, {
+    href: 'https://mp.weixin.qq.com/s/uKoJ0PvgdDb4ur2TbEsAMQ',
+    color: "primary",
+    variant: 'body1'
+  }, "View")), react_1.default.createElement(core_1.Divider, null), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Typography_1.default, {
+    component: 'h5'
+  }, "Parenthesis, Exclamation Mark, Quotation Mark | Punctuation Instruction 3")), react_1.default.createElement(core_1.Grid, {
+    item: true
+  }, react_1.default.createElement(Link_1.default, {
+    href: 'https://mp.weixin.qq.com/s/ni18IFMHTjZUfy0kOaZtJQ',
+    color: "primary",
+    variant: 'body1'
+  }, "View")), react_1.default.createElement(core_1.Divider, null))))));
+}
+
+exports.ControlledAccordions = ControlledAccordions;
+},{"react":"../../node_modules/react/index.js","@material-ui/core/styles":"../../node_modules/@material-ui/core/esm/styles/index.js","@material-ui/core/Accordion":"../../node_modules/@material-ui/core/esm/Accordion/index.js","@material-ui/core/AccordionDetails":"../../node_modules/@material-ui/core/esm/AccordionDetails/index.js","@material-ui/core/AccordionSummary":"../../node_modules/@material-ui/core/esm/AccordionSummary/index.js","@material-ui/core/Typography":"../../node_modules/@material-ui/core/esm/Typography/index.js","@material-ui/icons/ExpandMore":"../../node_modules/@material-ui/icons/ExpandMore.js","@material-ui/core/":"../../node_modules/@material-ui/core/esm/index.js","@material-ui/core/Link":"../../node_modules/@material-ui/core/esm/Link/index.js"}],"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/interopRequireDefault.js":[function(require,module,exports) {
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+
+module.exports = _interopRequireDefault;
+},{}],"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/extends.js":[function(require,module,exports) {
+function _extends() {
+  module.exports = _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+module.exports = _extends;
+},{}],"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js":[function(require,module,exports) {
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+module.exports = _objectWithoutPropertiesLoose;
+},{}],"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/objectWithoutProperties.js":[function(require,module,exports) {
+var objectWithoutPropertiesLoose = require("./objectWithoutPropertiesLoose");
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+  var target = objectWithoutPropertiesLoose(source, excluded);
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+module.exports = _objectWithoutProperties;
+},{"./objectWithoutPropertiesLoose":"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js"}],"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/classCallCheck.js":[function(require,module,exports) {
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+module.exports = _classCallCheck;
+},{}],"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/createClass.js":[function(require,module,exports) {
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+module.exports = _createClass;
+},{}],"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/typeof.js":[function(require,module,exports) {
+function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
+
+function _typeof(obj) {
+  if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
+    module.exports = _typeof = function _typeof(obj) {
+      return _typeof2(obj);
+    };
+  } else {
+    module.exports = _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
+    };
+  }
+
+  return _typeof(obj);
+}
+
+module.exports = _typeof;
+},{}],"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/assertThisInitialized.js":[function(require,module,exports) {
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+module.exports = _assertThisInitialized;
+},{}],"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js":[function(require,module,exports) {
+var _typeof = require("../helpers/typeof");
+
+var assertThisInitialized = require("./assertThisInitialized");
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return assertThisInitialized(self);
+}
+
+module.exports = _possibleConstructorReturn;
+},{"../helpers/typeof":"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/typeof.js","./assertThisInitialized":"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/assertThisInitialized.js"}],"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/getPrototypeOf.js":[function(require,module,exports) {
+function _getPrototypeOf(o) {
+  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+module.exports = _getPrototypeOf;
+},{}],"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/setPrototypeOf.js":[function(require,module,exports) {
+function _setPrototypeOf(o, p) {
+  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+module.exports = _setPrototypeOf;
+},{}],"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/inherits.js":[function(require,module,exports) {
+var setPrototypeOf = require("./setPrototypeOf");
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) setPrototypeOf(subClass, superClass);
+}
+
+module.exports = _inherits;
+},{"./setPrototypeOf":"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/setPrototypeOf.js"}],"../../node_modules/warning/warning.js":[function(require,module,exports) {
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+'use strict';
+/**
+ * Similar to invariant but only logs a warning if the condition is not met.
+ * This can be used to log issues in development environments in critical
+ * paths. Removing the logging code for production environments will keep the
+ * same logic and follow the same code paths.
+ */
+
+var __DEV__ = "development" !== 'production';
+
+var warning = function () {};
+
+if (__DEV__) {
+  var printWarning = function printWarning(format, args) {
+    var len = arguments.length;
+    args = new Array(len > 1 ? len - 1 : 0);
+
+    for (var key = 1; key < len; key++) {
+      args[key - 1] = arguments[key];
+    }
+
+    var argIndex = 0;
+    var message = 'Warning: ' + format.replace(/%s/g, function () {
+      return args[argIndex++];
+    });
+
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+
+  warning = function (condition, format, args) {
+    var len = arguments.length;
+    args = new Array(len > 2 ? len - 2 : 0);
+
+    for (var key = 2; key < len; key++) {
+      args[key - 2] = arguments[key];
+    }
+
+    if (format === undefined) {
+      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
+    }
+
+    if (!condition) {
+      printWarning.apply(null, [format].concat(args));
+    }
+  };
+}
+
+module.exports = warning;
+},{}],"../../node_modules/react-swipeable-views-core/node_modules/@babel/runtime/helpers/interopRequireDefault.js":[function(require,module,exports) {
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+
+module.exports = _interopRequireDefault;
+},{}],"../../node_modules/react-swipeable-views-core/lib/checkIndexBounds.js":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _warning = _interopRequireDefault(require("warning"));
+
+var checkIndexBounds = function checkIndexBounds(props) {
+  var index = props.index,
+      children = props.children;
+
+  var childrenCount = _react.default.Children.count(children);
+
+  "development" !== "production" ? (0, _warning.default)(index >= 0 && index <= childrenCount, "react-swipeable-view: the new index: ".concat(index, " is out of bounds: [0-").concat(childrenCount, "].")) : void 0;
+};
+
+var _default = checkIndexBounds;
+exports.default = _default;
+},{"@babel/runtime/helpers/interopRequireDefault":"../../node_modules/react-swipeable-views-core/node_modules/@babel/runtime/helpers/interopRequireDefault.js","react":"../../node_modules/react/index.js","warning":"../../node_modules/warning/warning.js"}],"../../node_modules/react-swipeable-views-core/lib/constant.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  RESISTANCE_COEF: 0.6,
+  // This value is closed to what browsers are using internally to
+  // trigger a native scroll.
+  UNCERTAINTY_THRESHOLD: 3 // px
+
+};
+exports.default = _default;
+},{}],"../../node_modules/react-swipeable-views-core/lib/computeIndex.js":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = computeIndex;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _constant = _interopRequireDefault(require("./constant"));
+
+function computeIndex(params) {
+  var children = params.children,
+      startIndex = params.startIndex,
+      startX = params.startX,
+      pageX = params.pageX,
+      viewLength = params.viewLength,
+      resistance = params.resistance;
+  var indexMax = _react.default.Children.count(children) - 1;
+  var index = startIndex + (startX - pageX) / viewLength;
+  var newStartX;
+
+  if (!resistance) {
+    // Reset the starting point
+    if (index < 0) {
+      index = 0;
+      newStartX = (index - startIndex) * viewLength + pageX;
+    } else if (index > indexMax) {
+      index = indexMax;
+      newStartX = (index - startIndex) * viewLength + pageX;
+    }
+  } else if (index < 0) {
+    index = Math.exp(index * _constant.default.RESISTANCE_COEF) - 1;
+  } else if (index > indexMax) {
+    index = indexMax + 1 - Math.exp((indexMax - index) * _constant.default.RESISTANCE_COEF);
+  }
+
+  return {
+    index: index,
+    startX: newStartX
+  };
+}
+},{"@babel/runtime/helpers/interopRequireDefault":"../../node_modules/react-swipeable-views-core/node_modules/@babel/runtime/helpers/interopRequireDefault.js","react":"../../node_modules/react/index.js","./constant":"../../node_modules/react-swipeable-views-core/lib/constant.js"}],"../../node_modules/react-swipeable-views-core/lib/getDisplaySameSlide.js":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var getDisplaySameSlide = function getDisplaySameSlide(props, nextProps) {
+  var displaySameSlide = false;
+
+  var getChildrenKey = function getChildrenKey(child) {
+    return child ? child.key : 'empty';
+  };
+
+  if (props.children.length && nextProps.children.length) {
+    var oldKeys = _react.default.Children.map(props.children, getChildrenKey);
+
+    var oldKey = oldKeys[props.index];
+
+    if (oldKey !== null && oldKey !== undefined) {
+      var newKeys = _react.default.Children.map(nextProps.children, getChildrenKey);
+
+      var newKey = newKeys[nextProps.index];
+
+      if (oldKey === newKey) {
+        displaySameSlide = true;
+      }
+    }
+  }
+
+  return displaySameSlide;
+};
+
+var _default = getDisplaySameSlide;
+exports.default = _default;
+},{"@babel/runtime/helpers/interopRequireDefault":"../../node_modules/react-swipeable-views-core/node_modules/@babel/runtime/helpers/interopRequireDefault.js","react":"../../node_modules/react/index.js"}],"../../node_modules/react-swipeable-views-core/lib/mod.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0; // Extended version of % with negative integer support.
+
+function mod(n, m) {
+  var q = n % m;
+  return q < 0 ? q + m : q;
+}
+
+var _default = mod;
+exports.default = _default;
+},{}],"../../node_modules/react-swipeable-views-core/lib/index.js":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "checkIndexBounds", {
+  enumerable: true,
+  get: function get() {
+    return _checkIndexBounds.default;
+  }
+});
+Object.defineProperty(exports, "computeIndex", {
+  enumerable: true,
+  get: function get() {
+    return _computeIndex.default;
+  }
+});
+Object.defineProperty(exports, "constant", {
+  enumerable: true,
+  get: function get() {
+    return _constant.default;
+  }
+});
+Object.defineProperty(exports, "getDisplaySameSlide", {
+  enumerable: true,
+  get: function get() {
+    return _getDisplaySameSlide.default;
+  }
+});
+Object.defineProperty(exports, "mod", {
+  enumerable: true,
+  get: function get() {
+    return _mod.default;
+  }
+});
+
+var _checkIndexBounds = _interopRequireDefault(require("./checkIndexBounds"));
+
+var _computeIndex = _interopRequireDefault(require("./computeIndex"));
+
+var _constant = _interopRequireDefault(require("./constant"));
+
+var _getDisplaySameSlide = _interopRequireDefault(require("./getDisplaySameSlide"));
+
+var _mod = _interopRequireDefault(require("./mod"));
+},{"@babel/runtime/helpers/interopRequireDefault":"../../node_modules/react-swipeable-views-core/node_modules/@babel/runtime/helpers/interopRequireDefault.js","./checkIndexBounds":"../../node_modules/react-swipeable-views-core/lib/checkIndexBounds.js","./computeIndex":"../../node_modules/react-swipeable-views-core/lib/computeIndex.js","./constant":"../../node_modules/react-swipeable-views-core/lib/constant.js","./getDisplaySameSlide":"../../node_modules/react-swipeable-views-core/lib/getDisplaySameSlide.js","./mod":"../../node_modules/react-swipeable-views-core/lib/mod.js"}],"../../node_modules/react-swipeable-views/lib/SwipeableViews.js":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getDomTreeShapes = getDomTreeShapes;
+exports.findNativeHandler = findNativeHandler;
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutProperties"));
+
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
+
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
+
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _warning = _interopRequireDefault(require("warning"));
+
+var _reactSwipeableViewsCore = require("react-swipeable-views-core");
+
+function addEventListener(node, event, handler, options) {
+  node.addEventListener(event, handler, options);
+  return {
+    remove: function remove() {
+      node.removeEventListener(event, handler, options);
+    }
+  };
+}
+
+var styles = {
+  container: {
+    direction: 'ltr',
+    display: 'flex',
+    willChange: 'transform'
+  },
+  slide: {
+    width: '100%',
+    WebkitFlexShrink: 0,
+    flexShrink: 0,
+    overflow: 'auto'
+  }
+};
+var axisProperties = {
+  root: {
+    x: {
+      overflowX: 'hidden'
+    },
+    'x-reverse': {
+      overflowX: 'hidden'
+    },
+    y: {
+      overflowY: 'hidden'
+    },
+    'y-reverse': {
+      overflowY: 'hidden'
+    }
+  },
+  flexDirection: {
+    x: 'row',
+    'x-reverse': 'row-reverse',
+    y: 'column',
+    'y-reverse': 'column-reverse'
+  },
+  transform: {
+    x: function x(translate) {
+      return "translate(".concat(-translate, "%, 0)");
+    },
+    'x-reverse': function xReverse(translate) {
+      return "translate(".concat(translate, "%, 0)");
+    },
+    y: function y(translate) {
+      return "translate(0, ".concat(-translate, "%)");
+    },
+    'y-reverse': function yReverse(translate) {
+      return "translate(0, ".concat(translate, "%)");
+    }
+  },
+  length: {
+    x: 'width',
+    'x-reverse': 'width',
+    y: 'height',
+    'y-reverse': 'height'
+  },
+  rotationMatrix: {
+    x: {
+      x: [1, 0],
+      y: [0, 1]
+    },
+    'x-reverse': {
+      x: [-1, 0],
+      y: [0, 1]
+    },
+    y: {
+      x: [0, 1],
+      y: [1, 0]
+    },
+    'y-reverse': {
+      x: [0, -1],
+      y: [1, 0]
+    }
+  },
+  scrollPosition: {
+    x: 'scrollLeft',
+    'x-reverse': 'scrollLeft',
+    y: 'scrollTop',
+    'y-reverse': 'scrollTop'
+  },
+  scrollLength: {
+    x: 'scrollWidth',
+    'x-reverse': 'scrollWidth',
+    y: 'scrollHeight',
+    'y-reverse': 'scrollHeight'
+  },
+  clientLength: {
+    x: 'clientWidth',
+    'x-reverse': 'clientWidth',
+    y: 'clientHeight',
+    'y-reverse': 'clientHeight'
+  }
+};
+
+function createTransition(property, options) {
+  var duration = options.duration,
+      easeFunction = options.easeFunction,
+      delay = options.delay;
+  return "".concat(property, " ").concat(duration, " ").concat(easeFunction, " ").concat(delay);
+} // We are using a 2x2 rotation matrix.
+
+
+function applyRotationMatrix(touch, axis) {
+  var rotationMatrix = axisProperties.rotationMatrix[axis];
+  return {
+    pageX: rotationMatrix.x[0] * touch.pageX + rotationMatrix.x[1] * touch.pageY,
+    pageY: rotationMatrix.y[0] * touch.pageX + rotationMatrix.y[1] * touch.pageY
+  };
+}
+
+function adaptMouse(event) {
+  event.touches = [{
+    pageX: event.pageX,
+    pageY: event.pageY
+  }];
+  return event;
+}
+
+function getDomTreeShapes(element, rootNode) {
+  var domTreeShapes = [];
+
+  while (element && element !== rootNode) {
+    // We reach a Swipeable View, no need to look higher in the dom tree.
+    if (element.hasAttribute('data-swipeable')) {
+      break;
+    }
+
+    var style = window.getComputedStyle(element);
+
+    if ( // Ignore the scroll children if the element is absolute positioned.
+    style.getPropertyValue('position') === 'absolute' || // Ignore the scroll children if the element has an overflowX hidden
+    style.getPropertyValue('overflow-x') === 'hidden') {
+      domTreeShapes = [];
+    } else if (element.clientWidth > 0 && element.scrollWidth > element.clientWidth || element.clientHeight > 0 && element.scrollHeight > element.clientHeight) {
+      // Ignore the nodes that have no width.
+      // Keep elements with a scroll
+      domTreeShapes.push({
+        element: element,
+        scrollWidth: element.scrollWidth,
+        scrollHeight: element.scrollHeight,
+        clientWidth: element.clientWidth,
+        clientHeight: element.clientHeight,
+        scrollLeft: element.scrollLeft,
+        scrollTop: element.scrollTop
+      });
+    }
+
+    element = element.parentNode;
+  }
+
+  return domTreeShapes;
+} // We can only have one node at the time claiming ownership for handling the swipe.
+// Otherwise, the UX would be confusing.
+// That's why we use a singleton here.
+
+
+var nodeWhoClaimedTheScroll = null;
+
+function findNativeHandler(params) {
+  var domTreeShapes = params.domTreeShapes,
+      pageX = params.pageX,
+      startX = params.startX,
+      axis = params.axis;
+  return domTreeShapes.some(function (shape) {
+    // Determine if we are going backward or forward.
+    var goingForward = pageX >= startX;
+
+    if (axis === 'x' || axis === 'y') {
+      goingForward = !goingForward;
+    }
+
+    var scrollPosition = shape[axisProperties.scrollPosition[axis]];
+    var areNotAtStart = scrollPosition > 0;
+    var areNotAtEnd = scrollPosition + shape[axisProperties.clientLength[axis]] < shape[axisProperties.scrollLength[axis]];
+
+    if (goingForward && areNotAtEnd || !goingForward && areNotAtStart) {
+      nodeWhoClaimedTheScroll = shape.element;
+      return true;
+    }
+
+    return false;
+  });
+}
+
+var SwipeableViews = /*#__PURE__*/function (_React$Component) {
+  (0, _inherits2.default)(SwipeableViews, _React$Component);
+
+  function SwipeableViews(props) {
+    var _this;
+
+    (0, _classCallCheck2.default)(this, SwipeableViews);
+    _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(SwipeableViews).call(this, props));
+    _this.rootNode = null;
+    _this.containerNode = null;
+    _this.ignoreNextScrollEvents = false;
+    _this.viewLength = 0;
+    _this.startX = 0;
+    _this.lastX = 0;
+    _this.vx = 0;
+    _this.startY = 0;
+    _this.isSwiping = undefined;
+    _this.started = false;
+    _this.startIndex = 0;
+    _this.transitionListener = null;
+    _this.touchMoveListener = null;
+    _this.activeSlide = null;
+    _this.indexCurrent = null;
+    _this.firstRenderTimeout = null;
+
+    _this.setRootNode = function (node) {
+      _this.rootNode = node;
+    };
+
+    _this.setContainerNode = function (node) {
+      _this.containerNode = node;
+    };
+
+    _this.setActiveSlide = function (node) {
+      _this.activeSlide = node;
+
+      _this.updateHeight();
+    };
+
+    _this.handleSwipeStart = function (event) {
+      var axis = _this.props.axis;
+      var touch = applyRotationMatrix(event.touches[0], axis);
+      _this.viewLength = _this.rootNode.getBoundingClientRect()[axisProperties.length[axis]];
+      _this.startX = touch.pageX;
+      _this.lastX = touch.pageX;
+      _this.vx = 0;
+      _this.startY = touch.pageY;
+      _this.isSwiping = undefined;
+      _this.started = true;
+      var computedStyle = window.getComputedStyle(_this.containerNode);
+      var transform = computedStyle.getPropertyValue('-webkit-transform') || computedStyle.getPropertyValue('transform');
+
+      if (transform && transform !== 'none') {
+        var transformValues = transform.split('(')[1].split(')')[0].split(',');
+        var rootStyle = window.getComputedStyle(_this.rootNode);
+        var tranformNormalized = applyRotationMatrix({
+          pageX: parseInt(transformValues[4], 10),
+          pageY: parseInt(transformValues[5], 10)
+        }, axis);
+        _this.startIndex = -tranformNormalized.pageX / (_this.viewLength - parseInt(rootStyle.paddingLeft, 10) - parseInt(rootStyle.paddingRight, 10)) || 0;
+      }
+    };
+
+    _this.handleSwipeMove = function (event) {
+      // The touch start event can be cancel.
+      // Makes sure we set a starting point.
+      if (!_this.started) {
+        _this.handleTouchStart(event);
+
+        return;
+      } // We are not supposed to hanlde this touch move.
+
+
+      if (nodeWhoClaimedTheScroll !== null && nodeWhoClaimedTheScroll !== _this.rootNode) {
+        return;
+      }
+
+      var _this$props = _this.props,
+          axis = _this$props.axis,
+          children = _this$props.children,
+          ignoreNativeScroll = _this$props.ignoreNativeScroll,
+          onSwitching = _this$props.onSwitching,
+          resistance = _this$props.resistance;
+      var touch = applyRotationMatrix(event.touches[0], axis); // We don't know yet.
+
+      if (_this.isSwiping === undefined) {
+        var dx = Math.abs(touch.pageX - _this.startX);
+        var dy = Math.abs(touch.pageY - _this.startY);
+        var isSwiping = dx > dy && dx > _reactSwipeableViewsCore.constant.UNCERTAINTY_THRESHOLD; // We let the parent handle the scroll.
+
+        if (!resistance && (axis === 'y' || axis === 'y-reverse') && (_this.indexCurrent === 0 && _this.startX < touch.pageX || _this.indexCurrent === _react.default.Children.count(_this.props.children) - 1 && _this.startX > touch.pageX)) {
+          _this.isSwiping = false;
+          return;
+        } // We are likely to be swiping, let's prevent the scroll event.
+
+
+        if (dx > dy) {
+          event.preventDefault();
+        }
+
+        if (isSwiping === true || dy > _reactSwipeableViewsCore.constant.UNCERTAINTY_THRESHOLD) {
+          _this.isSwiping = isSwiping;
+          _this.startX = touch.pageX; // Shift the starting point.
+
+          return; // Let's wait the next touch event to move something.
+        }
+      }
+
+      if (_this.isSwiping !== true) {
+        return;
+      } // We are swiping, let's prevent the scroll event.
+
+
+      event.preventDefault(); // Low Pass filter.
+
+      _this.vx = _this.vx * 0.5 + (touch.pageX - _this.lastX) * 0.5;
+      _this.lastX = touch.pageX;
+
+      var _computeIndex = (0, _reactSwipeableViewsCore.computeIndex)({
+        children: children,
+        resistance: resistance,
+        pageX: touch.pageX,
+        startIndex: _this.startIndex,
+        startX: _this.startX,
+        viewLength: _this.viewLength
+      }),
+          index = _computeIndex.index,
+          startX = _computeIndex.startX; // Add support for native scroll elements.
+
+
+      if (nodeWhoClaimedTheScroll === null && !ignoreNativeScroll) {
+        var domTreeShapes = getDomTreeShapes(event.target, _this.rootNode);
+        var hasFoundNativeHandler = findNativeHandler({
+          domTreeShapes: domTreeShapes,
+          startX: _this.startX,
+          pageX: touch.pageX,
+          axis: axis
+        }); // We abort the touch move handler.
+
+        if (hasFoundNativeHandler) {
+          return;
+        }
+      } // We are moving toward the edges.
+
+
+      if (startX) {
+        _this.startX = startX;
+      } else if (nodeWhoClaimedTheScroll === null) {
+        nodeWhoClaimedTheScroll = _this.rootNode;
+      }
+
+      _this.setIndexCurrent(index);
+
+      var callback = function callback() {
+        if (onSwitching) {
+          onSwitching(index, 'move');
+        }
+      };
+
+      if (_this.state.displaySameSlide || !_this.state.isDragging) {
+        _this.setState({
+          displaySameSlide: false,
+          isDragging: true
+        }, callback);
+      }
+
+      callback();
+    };
+
+    _this.handleSwipeEnd = function () {
+      nodeWhoClaimedTheScroll = null; // The touch start event can be cancel.
+      // Makes sure that a starting point is set.
+
+      if (!_this.started) {
+        return;
+      }
+
+      _this.started = false;
+
+      if (_this.isSwiping !== true) {
+        return;
+      }
+
+      var indexLatest = _this.state.indexLatest;
+      var indexCurrent = _this.indexCurrent;
+      var delta = indexLatest - indexCurrent;
+      var indexNew; // Quick movement
+
+      if (Math.abs(_this.vx) > _this.props.threshold) {
+        if (_this.vx > 0) {
+          indexNew = Math.floor(indexCurrent);
+        } else {
+          indexNew = Math.ceil(indexCurrent);
+        }
+      } else if (Math.abs(delta) > _this.props.hysteresis) {
+        // Some hysteresis with indexLatest.
+        indexNew = delta > 0 ? Math.floor(indexCurrent) : Math.ceil(indexCurrent);
+      } else {
+        indexNew = indexLatest;
+      }
+
+      var indexMax = _react.default.Children.count(_this.props.children) - 1;
+
+      if (indexNew < 0) {
+        indexNew = 0;
+      } else if (indexNew > indexMax) {
+        indexNew = indexMax;
+      }
+
+      _this.setIndexCurrent(indexNew);
+
+      _this.setState({
+        indexLatest: indexNew,
+        isDragging: false
+      }, function () {
+        if (_this.props.onSwitching) {
+          _this.props.onSwitching(indexNew, 'end');
+        }
+
+        if (_this.props.onChangeIndex && indexNew !== indexLatest) {
+          _this.props.onChangeIndex(indexNew, indexLatest, {
+            reason: 'swipe'
+          });
+        } // Manually calling handleTransitionEnd in that case as isn't otherwise.
+
+
+        if (indexCurrent === indexLatest) {
+          _this.handleTransitionEnd();
+        }
+      });
+    };
+
+    _this.handleTouchStart = function (event) {
+      if (_this.props.onTouchStart) {
+        _this.props.onTouchStart(event);
+      }
+
+      _this.handleSwipeStart(event);
+    };
+
+    _this.handleTouchEnd = function (event) {
+      if (_this.props.onTouchEnd) {
+        _this.props.onTouchEnd(event);
+      }
+
+      _this.handleSwipeEnd(event);
+    };
+
+    _this.handleMouseDown = function (event) {
+      if (_this.props.onMouseDown) {
+        _this.props.onMouseDown(event);
+      }
+
+      event.persist();
+
+      _this.handleSwipeStart(adaptMouse(event));
+    };
+
+    _this.handleMouseUp = function (event) {
+      if (_this.props.onMouseUp) {
+        _this.props.onMouseUp(event);
+      }
+
+      _this.handleSwipeEnd(adaptMouse(event));
+    };
+
+    _this.handleMouseLeave = function (event) {
+      if (_this.props.onMouseLeave) {
+        _this.props.onMouseLeave(event);
+      } // Filter out events
+
+
+      if (_this.started) {
+        _this.handleSwipeEnd(adaptMouse(event));
+      }
+    };
+
+    _this.handleMouseMove = function (event) {
+      if (_this.props.onMouseMove) {
+        _this.props.onMouseMove(event);
+      } // Filter out events
+
+
+      if (_this.started) {
+        _this.handleSwipeMove(adaptMouse(event));
+      }
+    };
+
+    _this.handleScroll = function (event) {
+      if (_this.props.onScroll) {
+        _this.props.onScroll(event);
+      } // Ignore events bubbling up.
+
+
+      if (event.target !== _this.rootNode) {
+        return;
+      }
+
+      if (_this.ignoreNextScrollEvents) {
+        _this.ignoreNextScrollEvents = false;
+        return;
+      }
+
+      var indexLatest = _this.state.indexLatest;
+      var indexNew = Math.ceil(event.target.scrollLeft / event.target.clientWidth) + indexLatest;
+      _this.ignoreNextScrollEvents = true; // Reset the scroll position.
+
+      event.target.scrollLeft = 0;
+
+      if (_this.props.onChangeIndex && indexNew !== indexLatest) {
+        _this.props.onChangeIndex(indexNew, indexLatest, {
+          reason: 'focus'
+        });
+      }
+    };
+
+    _this.updateHeight = function () {
+      if (_this.activeSlide !== null) {
+        var child = _this.activeSlide.children[0];
+
+        if (child !== undefined && child.offsetHeight !== undefined && _this.state.heightLatest !== child.offsetHeight) {
+          _this.setState({
+            heightLatest: child.offsetHeight
+          });
+        }
+      }
+    };
+
+    if ("development" !== 'production') {
+      (0, _reactSwipeableViewsCore.checkIndexBounds)(props);
+    }
+
+    _this.state = {
+      indexLatest: props.index,
+      // Set to true as soon as the component is swiping.
+      // It's the state counter part of this.isSwiping.
+      isDragging: false,
+      // Help with SSR logic and lazy loading logic.
+      renderOnlyActive: !props.disableLazyLoading,
+      heightLatest: 0,
+      // Let the render method that we are going to display the same slide than previously.
+      displaySameSlide: true
+    };
+
+    _this.setIndexCurrent(props.index);
+
+    return _this;
+  }
+
+  (0, _createClass2.default)(SwipeableViews, [{
+    key: "getChildContext",
+    value: function getChildContext() {
+      var _this2 = this;
+
+      return {
+        swipeableViews: {
+          slideUpdateHeight: function slideUpdateHeight() {
+            _this2.updateHeight();
+          }
+        }
+      };
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this3 = this; // Subscribe to transition end events.
+
+
+      this.transitionListener = addEventListener(this.containerNode, 'transitionend', function (event) {
+        if (event.target !== _this3.containerNode) {
+          return;
+        }
+
+        _this3.handleTransitionEnd();
+      }); // Block the thread to handle that event.
+
+      this.touchMoveListener = addEventListener(this.rootNode, 'touchmove', function (event) {
+        // Handling touch events is disabled.
+        if (_this3.props.disabled) {
+          return;
+        }
+
+        _this3.handleSwipeMove(event);
+      }, {
+        passive: false
+      });
+
+      if (!this.props.disableLazyLoading) {
+        this.firstRenderTimeout = setTimeout(function () {
+          _this3.setState({
+            renderOnlyActive: false
+          });
+        }, 0);
+      } // Send all functions in an object if action param is set.
+
+
+      if (this.props.action) {
+        this.props.action({
+          updateHeight: this.updateHeight
+        });
+      }
+    }
+  }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      var index = nextProps.index;
+
+      if (typeof index === 'number' && index !== this.props.index) {
+        if ("development" !== 'production') {
+          (0, _reactSwipeableViewsCore.checkIndexBounds)(nextProps);
+        }
+
+        this.setIndexCurrent(index);
+        this.setState({
+          // If true, we are going to change the children. We shoudn't animate it.
+          displaySameSlide: (0, _reactSwipeableViewsCore.getDisplaySameSlide)(this.props, nextProps),
+          indexLatest: index
+        });
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.transitionListener.remove();
+      this.touchMoveListener.remove();
+      clearTimeout(this.firstRenderTimeout);
+    }
+  }, {
+    key: "setIndexCurrent",
+    value: function setIndexCurrent(indexCurrent) {
+      if (!this.props.animateTransitions && this.indexCurrent !== indexCurrent) {
+        this.handleTransitionEnd();
+      }
+
+      this.indexCurrent = indexCurrent;
+
+      if (this.containerNode) {
+        var axis = this.props.axis;
+        var transform = axisProperties.transform[axis](indexCurrent * 100);
+        this.containerNode.style.WebkitTransform = transform;
+        this.containerNode.style.transform = transform;
+      }
+    }
+  }, {
+    key: "handleTransitionEnd",
+    value: function handleTransitionEnd() {
+      if (!this.props.onTransitionEnd) {
+        return;
+      } // Filters out when changing the children
+
+
+      if (this.state.displaySameSlide) {
+        return;
+      } // The rest callback is triggered when swiping. It's just noise.
+      // We filter it out.
+
+
+      if (!this.state.isDragging) {
+        this.props.onTransitionEnd();
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this4 = this;
+
+      var _this$props2 = this.props,
+          action = _this$props2.action,
+          animateHeight = _this$props2.animateHeight,
+          animateTransitions = _this$props2.animateTransitions,
+          axis = _this$props2.axis,
+          children = _this$props2.children,
+          containerStyleProp = _this$props2.containerStyle,
+          disabled = _this$props2.disabled,
+          disableLazyLoading = _this$props2.disableLazyLoading,
+          enableMouseEvents = _this$props2.enableMouseEvents,
+          hysteresis = _this$props2.hysteresis,
+          ignoreNativeScroll = _this$props2.ignoreNativeScroll,
+          index = _this$props2.index,
+          onChangeIndex = _this$props2.onChangeIndex,
+          onSwitching = _this$props2.onSwitching,
+          onTransitionEnd = _this$props2.onTransitionEnd,
+          resistance = _this$props2.resistance,
+          slideStyleProp = _this$props2.slideStyle,
+          slideClassName = _this$props2.slideClassName,
+          springConfig = _this$props2.springConfig,
+          style = _this$props2.style,
+          threshold = _this$props2.threshold,
+          other = (0, _objectWithoutProperties2.default)(_this$props2, ["action", "animateHeight", "animateTransitions", "axis", "children", "containerStyle", "disabled", "disableLazyLoading", "enableMouseEvents", "hysteresis", "ignoreNativeScroll", "index", "onChangeIndex", "onSwitching", "onTransitionEnd", "resistance", "slideStyle", "slideClassName", "springConfig", "style", "threshold"]);
+      var _this$state = this.state,
+          displaySameSlide = _this$state.displaySameSlide,
+          heightLatest = _this$state.heightLatest,
+          indexLatest = _this$state.indexLatest,
+          isDragging = _this$state.isDragging,
+          renderOnlyActive = _this$state.renderOnlyActive;
+      var touchEvents = !disabled ? {
+        onTouchStart: this.handleTouchStart,
+        onTouchEnd: this.handleTouchEnd
+      } : {};
+      var mouseEvents = !disabled && enableMouseEvents ? {
+        onMouseDown: this.handleMouseDown,
+        onMouseUp: this.handleMouseUp,
+        onMouseLeave: this.handleMouseLeave,
+        onMouseMove: this.handleMouseMove
+      } : {}; // There is no point to animate if we are already providing a height.
+
+      "development" !== "production" ? (0, _warning.default)(!animateHeight || !containerStyleProp || !containerStyleProp.height, "react-swipeable-view: You are setting animateHeight to true but you are\nalso providing a custom height.\nThe custom height has a higher priority than the animateHeight property.\nSo animateHeight is most likely having no effect at all.") : void 0;
+      var slideStyle = (0, _extends2.default)({}, styles.slide, slideStyleProp);
+      var transition;
+      var WebkitTransition;
+
+      if (isDragging || !animateTransitions || displaySameSlide) {
+        transition = 'all 0s ease 0s';
+        WebkitTransition = 'all 0s ease 0s';
+      } else {
+        transition = createTransition('transform', springConfig);
+        WebkitTransition = createTransition('-webkit-transform', springConfig);
+
+        if (heightLatest !== 0) {
+          var additionalTranstion = ", ".concat(createTransition('height', springConfig));
+          transition += additionalTranstion;
+          WebkitTransition += additionalTranstion;
+        }
+      }
+
+      var containerStyle = {
+        height: null,
+        WebkitFlexDirection: axisProperties.flexDirection[axis],
+        flexDirection: axisProperties.flexDirection[axis],
+        WebkitTransition: WebkitTransition,
+        transition: transition
+      }; // Apply the styles for SSR considerations
+
+      if (!renderOnlyActive) {
+        var transform = axisProperties.transform[axis](this.indexCurrent * 100);
+        containerStyle.WebkitTransform = transform;
+        containerStyle.transform = transform;
+      }
+
+      if (animateHeight) {
+        containerStyle.height = heightLatest;
+      }
+
+      return _react.default.createElement("div", (0, _extends2.default)({
+        ref: this.setRootNode,
+        style: (0, _extends2.default)({}, axisProperties.root[axis], style)
+      }, other, touchEvents, mouseEvents, {
+        onScroll: this.handleScroll
+      }), _react.default.createElement("div", {
+        ref: this.setContainerNode,
+        style: (0, _extends2.default)({}, containerStyle, styles.container, containerStyleProp),
+        className: "react-swipeable-view-container"
+      }, _react.default.Children.map(children, function (child, indexChild) {
+        if (renderOnlyActive && indexChild !== indexLatest) {
+          return null;
+        }
+
+        "development" !== "production" ? (0, _warning.default)(_react.default.isValidElement(child), "react-swipeable-view: one of the children provided is invalid: ".concat(child, ".\nWe are expecting a valid React Element")) : void 0;
+        var ref;
+        var hidden = true;
+
+        if (indexChild === indexLatest) {
+          hidden = false;
+
+          if (animateHeight) {
+            ref = _this4.setActiveSlide;
+            slideStyle.overflowY = 'hidden';
+          }
+        }
+
+        return _react.default.createElement("div", {
+          ref: ref,
+          style: slideStyle,
+          className: slideClassName,
+          "aria-hidden": hidden,
+          "data-swipeable": "true"
+        }, child);
+      })));
+    }
+  }]);
+  return SwipeableViews;
+}(_react.default.Component); // Added as an ads for people using the React dev tools in production.
+// So they know, the tool used to build the awesome UI they
+// are looking at/retro engineering.
+
+
+SwipeableViews.displayName = 'ReactSwipableView';
+SwipeableViews.propTypes = "development" !== "production" ? {
+  /**
+   * This is callback property. It's called by the component on mount.
+   * This is useful when you want to trigger an action programmatically.
+   * It currently only supports updateHeight() action.
+   *
+   * @param {object} actions This object contains all posible actions
+   * that can be triggered programmatically.
+   */
+  action: _propTypes.default.func,
+
+  /**
+   * If `true`, the height of the container will be animated to match the current slide height.
+   * Animating another style property has a negative impact regarding performance.
+   */
+  animateHeight: _propTypes.default.bool,
+
+  /**
+   * If `false`, changes to the index prop will not cause an animated transition.
+   */
+  animateTransitions: _propTypes.default.bool,
+
+  /**
+   * The axis on which the slides will slide.
+   */
+  axis: _propTypes.default.oneOf(['x', 'x-reverse', 'y', 'y-reverse']),
+
+  /**
+   * Use this property to provide your slides.
+   */
+  children: _propTypes.default.node.isRequired,
+
+  /**
+   * This is the inlined style that will be applied
+   * to each slide container.
+   */
+  containerStyle: _propTypes.default.object,
+
+  /**
+   * If `true`, it will disable touch events.
+   * This is useful when you want to prohibit the user from changing slides.
+   */
+  disabled: _propTypes.default.bool,
+
+  /**
+   * This is the config used to disable lazyloding,
+   * if `true` will render all the views in first rendering.
+   */
+  disableLazyLoading: _propTypes.default.bool,
+
+  /**
+   * If `true`, it will enable mouse events.
+   * This will allow the user to perform the relevant swipe actions with a mouse.
+   */
+  enableMouseEvents: _propTypes.default.bool,
+
+  /**
+   * Configure hysteresis between slides. This value determines how far
+   * should user swipe to switch slide.
+   */
+  hysteresis: _propTypes.default.number,
+
+  /**
+   * If `true`, it will ignore native scroll container.
+   * It can be used to filter out false positive that blocks the swipe.
+   */
+  ignoreNativeScroll: _propTypes.default.bool,
+
+  /**
+   * This is the index of the slide to show.
+   * This is useful when you want to change the default slide shown.
+   * Or when you have tabs linked to each slide.
+   */
+  index: _propTypes.default.number,
+
+  /**
+   * This is callback prop. It's call by the
+   * component when the shown slide change after a swipe made by the user.
+   * This is useful when you have tabs linked to each slide.
+   *
+   * @param {integer} index This is the current index of the slide.
+   * @param {integer} indexLatest This is the oldest index of the slide.
+   * @param {object} meta Meta data containing more information about the event.
+   */
+  onChangeIndex: _propTypes.default.func,
+
+  /**
+   * @ignore
+   */
+  onMouseDown: _propTypes.default.func,
+
+  /**
+   * @ignore
+   */
+  onMouseLeave: _propTypes.default.func,
+
+  /**
+   * @ignore
+   */
+  onMouseMove: _propTypes.default.func,
+
+  /**
+   * @ignore
+   */
+  onMouseUp: _propTypes.default.func,
+
+  /**
+   * @ignore
+   */
+  onScroll: _propTypes.default.func,
+
+  /**
+   * This is callback prop. It's called by the
+   * component when the slide switching.
+   * This is useful when you want to implement something corresponding
+   * to the current slide position.
+   *
+   * @param {integer} index This is the current index of the slide.
+   * @param {string} type Can be either `move` or `end`.
+   */
+  onSwitching: _propTypes.default.func,
+
+  /**
+   * @ignore
+   */
+  onTouchEnd: _propTypes.default.func,
+
+  /**
+   * @ignore
+   */
+  onTouchMove: _propTypes.default.func,
+
+  /**
+   * @ignore
+   */
+  onTouchStart: _propTypes.default.func,
+
+  /**
+   * The callback that fires when the animation comes to a rest.
+   * This is useful to defer CPU intensive task.
+   */
+  onTransitionEnd: _propTypes.default.func,
+
+  /**
+   * If `true`, it will add bounds effect on the edges.
+   */
+  resistance: _propTypes.default.bool,
+
+  /**
+   * This is the className that will be applied
+   * on the slide component.
+   */
+  slideClassName: _propTypes.default.string,
+
+  /**
+   * This is the inlined style that will be applied
+   * on the slide component.
+   */
+  slideStyle: _propTypes.default.object,
+
+  /**
+   * This is the config used to create CSS transitions.
+   * This is useful to change the dynamic of the transition.
+   */
+  springConfig: _propTypes.default.shape({
+    delay: _propTypes.default.string,
+    duration: _propTypes.default.string,
+    easeFunction: _propTypes.default.string
+  }),
+
+  /**
+   * This is the inlined style that will be applied
+   * on the root component.
+   */
+  style: _propTypes.default.object,
+
+  /**
+   * This is the threshold used for detecting a quick swipe.
+   * If the computed speed is above this value, the index change.
+   */
+  threshold: _propTypes.default.number
+} : {};
+SwipeableViews.defaultProps = {
+  animateHeight: false,
+  animateTransitions: true,
+  axis: 'x',
+  disabled: false,
+  disableLazyLoading: false,
+  enableMouseEvents: false,
+  hysteresis: 0.6,
+  ignoreNativeScroll: false,
+  index: 0,
+  threshold: 5,
+  springConfig: {
+    duration: '0.35s',
+    easeFunction: 'cubic-bezier(0.15, 0.3, 0.25, 1)',
+    delay: '0s'
+  },
+  resistance: false
+};
+SwipeableViews.childContextTypes = {
+  swipeableViews: _propTypes.default.shape({
+    slideUpdateHeight: _propTypes.default.func
+  })
+};
+var _default = SwipeableViews;
+exports.default = _default;
+},{"@babel/runtime/helpers/interopRequireDefault":"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/interopRequireDefault.js","@babel/runtime/helpers/extends":"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/extends.js","@babel/runtime/helpers/objectWithoutProperties":"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/objectWithoutProperties.js","@babel/runtime/helpers/classCallCheck":"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/classCallCheck.js","@babel/runtime/helpers/createClass":"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/createClass.js","@babel/runtime/helpers/possibleConstructorReturn":"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js","@babel/runtime/helpers/getPrototypeOf":"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/getPrototypeOf.js","@babel/runtime/helpers/inherits":"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/inherits.js","react":"../../node_modules/react/index.js","prop-types":"../../node_modules/prop-types/index.js","warning":"../../node_modules/warning/warning.js","react-swipeable-views-core":"../../node_modules/react-swipeable-views-core/lib/index.js"}],"../../node_modules/react-swipeable-views/lib/index.js":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _SwipeableViews = _interopRequireDefault(require("./SwipeableViews"));
+
+var _default = _SwipeableViews.default;
+exports.default = _default;
+},{"@babel/runtime/helpers/interopRequireDefault":"../../node_modules/react-swipeable-views/node_modules/@babel/runtime/helpers/interopRequireDefault.js","./SwipeableViews":"../../node_modules/react-swipeable-views/lib/SwipeableViews.js"}],"../components/WechatArticle.tsx":[function(require,module,exports) {
 "use strict";
 
 var __assign = this && this.__assign || function () {
@@ -84975,7 +86472,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.SimpleTabs = void 0;
+exports.TabletorAccaordin = void 0;
 
 var react_1 = __importDefault(require("react"));
 
@@ -84992,6 +86489,37 @@ var Typography_1 = __importDefault(require("@material-ui/core/Typography"));
 var Box_1 = __importDefault(require("@material-ui/core/Box"));
 
 var core_1 = require("@material-ui/core/");
+
+var WechatAccordin_1 = require("./WechatAccordin");
+
+var react_swipeable_views_1 = __importDefault(require("react-swipeable-views"));
+
+var useIndexContentStyle = styles_1.makeStyles(function (theme) {
+  return {
+    card: {
+      width: "100%",
+      //height : "110vh",
+      position: "relative",
+      borderRadius: 0,
+      boxShadow: "none"
+    },
+    picture: {
+      height: "105vh"
+    },
+    content: {
+      position: "absolute",
+      top: 0,
+      paddingTop: 0,
+      width: "100%"
+    },
+    text: {
+      userSelect: "none"
+    },
+    meetingButton: {
+      fontWeight: 700
+    }
+  };
+});
 
 function TabPanel(props) {
   var children = props.children,
@@ -85041,6 +86569,12 @@ function SimpleTabs() {
       value = _a[0],
       setValue = _a[1];
 
+  var handleChangeIndex = function handleChangeIndex(index) {
+    setValue(index);
+  };
+
+  var theme = styles_1.useTheme();
+
   var handleChange = function handleChange(event, newValue) {
     setValue(newValue);
   };
@@ -85054,7 +86588,8 @@ function SimpleTabs() {
     className: classes.root
   }, react_1.default.createElement(AppBar_1.default, {
     position: "static",
-    color: "default"
+    elevation: 0,
+    color: "transparent"
   }, react_1.default.createElement(Tabs_1.default, {
     value: value,
     onChange: handleChange,
@@ -85077,7 +86612,11 @@ function SimpleTabs() {
     label: "Scientific Writing"
   }, a11yProps(5))), react_1.default.createElement(Tab_1.default, __assign({
     label: "Punctuation"
-  }, a11yProps(6))))), react_1.default.createElement(TabPanel, {
+  }, a11yProps(6))))), react_1.default.createElement(react_swipeable_views_1.default, {
+    axis: theme.direction === 'rtl' ? 'x-reverse' : 'x',
+    index: value,
+    onChangeIndex: handleChangeIndex
+  }, react_1.default.createElement(TabPanel, {
     value: value,
     index: 0
   }, react_1.default.createElement(core_1.Grid, {
@@ -85101,6 +86640,7 @@ function SimpleTabs() {
   }, react_1.default.createElement(core_1.Grid, {
     item: true
   }, react_1.default.createElement(core_1.Button, {
+    disableElevation: true,
     color: "primary",
     variant: "contained",
     href: 'https://mp.weixin.qq.com/s/drKUt0ywFnue86HRo8N1RQ'
@@ -85119,6 +86659,7 @@ function SimpleTabs() {
   }, react_1.default.createElement(core_1.Grid, {
     item: true
   }, react_1.default.createElement(core_1.Button, {
+    disableElevation: true,
     color: "primary",
     variant: "contained",
     href: 'https://mp.weixin.qq.com/s/ktA132RlyLiebUSR6tw38w'
@@ -85150,6 +86691,7 @@ function SimpleTabs() {
   }, react_1.default.createElement(core_1.Grid, {
     item: true
   }, react_1.default.createElement(core_1.Button, {
+    disableElevation: true,
     color: "primary",
     variant: "contained",
     href: 'https://mp.weixin.qq.com/s/6lndlaNlSsACit9fxX0Gxg'
@@ -85181,6 +86723,7 @@ function SimpleTabs() {
   }, react_1.default.createElement(core_1.Grid, {
     item: true
   }, react_1.default.createElement(core_1.Button, {
+    disableElevation: true,
     color: "primary",
     variant: "contained",
     href: 'https://mp.weixin.qq.com/s/KnxGHWTP_Jh6LSGm6N092w'
@@ -85212,6 +86755,7 @@ function SimpleTabs() {
   }, react_1.default.createElement(core_1.Grid, {
     item: true
   }, react_1.default.createElement(core_1.Button, {
+    disableElevation: true,
     color: "primary",
     variant: "contained",
     href: 'https://mp.weixin.qq.com/s/blcvXpTBv_XSHQu8Uic5aw'
@@ -85230,6 +86774,7 @@ function SimpleTabs() {
   }, react_1.default.createElement(core_1.Grid, {
     item: true
   }, react_1.default.createElement(core_1.Button, {
+    disableElevation: true,
     color: "primary",
     variant: "contained",
     href: 'https://mp.weixin.qq.com/s/oqm0jeVejZ3S0eUPmyUXPQ'
@@ -85248,6 +86793,7 @@ function SimpleTabs() {
   }, react_1.default.createElement(core_1.Grid, {
     item: true
   }, react_1.default.createElement(core_1.Button, {
+    disableElevation: true,
     color: "primary",
     variant: "contained",
     href: 'https://mp.weixin.qq.com/s/FWakgann_ihtFgCORJps9w'
@@ -85279,6 +86825,7 @@ function SimpleTabs() {
   }, react_1.default.createElement(core_1.Grid, {
     item: true
   }, react_1.default.createElement(core_1.Button, {
+    disableElevation: true,
     color: "primary",
     variant: "contained",
     href: 'https://mp.weixin.qq.com/s/NV-nYi62KoISaWkKY0g2yw'
@@ -85297,6 +86844,7 @@ function SimpleTabs() {
   }, react_1.default.createElement(core_1.Grid, {
     item: true
   }, react_1.default.createElement(core_1.Button, {
+    disableElevation: true,
     color: "primary",
     variant: "contained",
     href: 'https://mp.weixin.qq.com/s/U_Q5y8EgAwFyGYtNJ_f_5Q'
@@ -85328,6 +86876,7 @@ function SimpleTabs() {
   }, react_1.default.createElement(core_1.Grid, {
     item: true
   }, react_1.default.createElement(core_1.Button, {
+    disableElevation: true,
     color: "primary",
     variant: "contained",
     href: 'https://mp.weixin.qq.com/s/O4P-c47DOozSZevGMuYKEA'
@@ -85346,6 +86895,7 @@ function SimpleTabs() {
   }, react_1.default.createElement(core_1.Grid, {
     item: true
   }, react_1.default.createElement(core_1.Button, {
+    disableElevation: true,
     color: "primary",
     variant: "contained",
     href: 'https://mp.weixin.qq.com/s/QlTO6kUSATFup51Skek9Zw'
@@ -85364,6 +86914,7 @@ function SimpleTabs() {
   }, react_1.default.createElement(core_1.Grid, {
     item: true
   }, react_1.default.createElement(core_1.Button, {
+    disableElevation: true,
     color: "primary",
     variant: "contained",
     href: 'https://mp.weixin.qq.com/s/aNqRfSF6xVWGrfelqNp0DA'
@@ -85382,6 +86933,7 @@ function SimpleTabs() {
   }, react_1.default.createElement(core_1.Grid, {
     item: true
   }, react_1.default.createElement(core_1.Button, {
+    disableElevation: true,
     color: "primary",
     variant: "contained",
     href: 'https://mp.weixin.qq.com/s/pP7_is4sVcB4TKztdAQ3IQ'
@@ -85400,6 +86952,7 @@ function SimpleTabs() {
   }, react_1.default.createElement(core_1.Grid, {
     item: true
   }, react_1.default.createElement(core_1.Button, {
+    disableElevation: true,
     color: "primary",
     variant: "contained",
     href: 'https://mp.weixin.qq.com/s/2uYc821srVyXGhrtym6jVA'
@@ -85418,6 +86971,7 @@ function SimpleTabs() {
   }, react_1.default.createElement(core_1.Grid, {
     item: true
   }, react_1.default.createElement(core_1.Button, {
+    disableElevation: true,
     color: "primary",
     variant: "contained",
     href: 'https://mp.weixin.qq.com/s/oVv5zrkns0XuvSDoohNFpQ'
@@ -85436,6 +86990,7 @@ function SimpleTabs() {
   }, react_1.default.createElement(core_1.Grid, {
     item: true
   }, react_1.default.createElement(core_1.Button, {
+    disableElevation: true,
     color: "primary",
     variant: "contained",
     href: 'https://mp.weixin.qq.com/s/K1Ze15bNwukTvku3DRsCjA'
@@ -85467,6 +87022,7 @@ function SimpleTabs() {
   }, react_1.default.createElement(core_1.Grid, {
     item: true
   }, react_1.default.createElement(core_1.Button, {
+    disableElevation: true,
     color: "primary",
     variant: "contained",
     href: 'https://mp.weixin.qq.com/s/TL_MpwTcmhbfBuG1y6y-tg'
@@ -85485,6 +87041,7 @@ function SimpleTabs() {
   }, react_1.default.createElement(core_1.Grid, {
     item: true
   }, react_1.default.createElement(core_1.Button, {
+    disableElevation: true,
     color: "primary",
     variant: "contained",
     href: 'https://mp.weixin.qq.com/s/TL_MpwTcmhbfBuG1y6y-tg'
@@ -85503,6 +87060,7 @@ function SimpleTabs() {
   }, react_1.default.createElement(core_1.Grid, {
     item: true
   }, react_1.default.createElement(core_1.Button, {
+    disableElevation: true,
     color: "primary",
     variant: "contained",
     href: 'https://mp.weixin.qq.com/s/ni18IFMHTjZUfy0kOaZtJQ'
@@ -85510,11 +87068,41 @@ function SimpleTabs() {
     item: true
   }, react_1.default.createElement(Typography_1.default, {
     component: 'h5'
-  }, "Parenthesis, Exclamation Mark, Quotation Mark | Punctuation Instruction 3")))))))));
+  }, "Parenthesis, Exclamation Mark, Quotation Mark | Punctuation Instruction 3"))))))))));
 }
 
-exports.SimpleTabs = SimpleTabs;
-},{"react":"../../node_modules/react/index.js","@material-ui/core/styles":"../../node_modules/@material-ui/core/esm/styles/index.js","@material-ui/core/AppBar":"../../node_modules/@material-ui/core/esm/AppBar/index.js","@material-ui/core/Tabs":"../../node_modules/@material-ui/core/esm/Tabs/index.js","@material-ui/core/Tab":"../../node_modules/@material-ui/core/esm/Tab/index.js","@material-ui/core/Typography":"../../node_modules/@material-ui/core/esm/Typography/index.js","@material-ui/core/Box":"../../node_modules/@material-ui/core/esm/Box/index.js","@material-ui/core/":"../../node_modules/@material-ui/core/esm/index.js"}],"../components/EventWholeContent.tsx":[function(require,module,exports) {
+function Accordin() {
+  return react_1.default.createElement("div", null, "hello world!");
+}
+
+function TabletorAccaordin() {
+  var theme = styles_1.useTheme();
+  var _a = theme.breakpoints,
+      between = _a.between,
+      down = _a.down,
+      up = _a.up,
+      values = _a.values;
+  var laptop = values.laptop,
+      tablet = values.tablet;
+  var isLargerThanLaptop = core_1.useMediaQuery(up(laptop));
+  var isLaptop = core_1.useMediaQuery(between(tablet, laptop));
+  var isSmallerThanLaptop = core_1.useMediaQuery(down(tablet));
+  var Tablet = SimpleTabs();
+  var AccordinForPhone = WechatAccordin_1.ControlledAccordions();
+
+  if (isLargerThanLaptop) {
+    return Tablet;
+  } else if (isLaptop) {
+    return Tablet;
+  } else if (isSmallerThanLaptop) {
+    return AccordinForPhone;
+  } else {
+    return AccordinForPhone;
+  }
+}
+
+exports.TabletorAccaordin = TabletorAccaordin;
+},{"react":"../../node_modules/react/index.js","@material-ui/core/styles":"../../node_modules/@material-ui/core/esm/styles/index.js","@material-ui/core/AppBar":"../../node_modules/@material-ui/core/esm/AppBar/index.js","@material-ui/core/Tabs":"../../node_modules/@material-ui/core/esm/Tabs/index.js","@material-ui/core/Tab":"../../node_modules/@material-ui/core/esm/Tab/index.js","@material-ui/core/Typography":"../../node_modules/@material-ui/core/esm/Typography/index.js","@material-ui/core/Box":"../../node_modules/@material-ui/core/esm/Box/index.js","@material-ui/core/":"../../node_modules/@material-ui/core/esm/index.js","./WechatAccordin":"../components/WechatAccordin.tsx","react-swipeable-views":"../../node_modules/react-swipeable-views/lib/index.js"}],"../components/EventWholeContent.tsx":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -85609,7 +87197,7 @@ function EventContent() {
         component: "div"
       }, content)));
     }) : ""));
-  })), react_1.default.createElement(WechatArticle_1.SimpleTabs, null));
+  })), react_1.default.createElement(WechatArticle_1.TabletorAccaordin, null), react_1.default.createElement("h1", null, "\u3000"));
 }
 
 exports.EventContent = EventContent;
@@ -85838,7 +87426,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63028" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51443" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

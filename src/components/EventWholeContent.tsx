@@ -5,9 +5,11 @@ import {
     Typography,
     useTheme,
     makeStyles,
-    useMediaQuery
+    useMediaQuery,
+    Paper,
+    Card
 } from "@material-ui/core";
-import { SimpleTabs } from '../components/WechatArticle'
+import { TabletorAccaordin } from '../components/WechatArticle'
 const EventContentData = [
     {
         id : 0,
@@ -112,7 +114,9 @@ function EventContent(){
             })
 
         }</Grid>
-        <SimpleTabs></SimpleTabs>
+        <TabletorAccaordin></TabletorAccaordin>
+        <h1>　</h1>
+
     </Box>
     )
 
