@@ -1,16 +1,44 @@
 import React from 'react';
-import { makeStyles, Theme} from '@material-ui/core/styles';
+import { makeStyles, Theme, useTheme} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import {Grid, Paper,Button} from '@material-ui/core/';
+import {Grid, Paper,Button,useMediaQuery} from '@material-ui/core/';
+import {ControlledAccordions} from './WechatAccordin'
+import SwipeableViews from 'react-swipeable-views';
 interface TabPanelProps {
   children?: React.ReactNode;
   index: any;
   value: any;
 }
+
+const useIndexContentStyle = makeStyles((theme) => ({
+  card : {
+      width : "100%",
+      //height : "110vh",
+      position : "relative",
+      borderRadius : 0,
+      boxShadow : "none"
+  },
+  picture : {
+      height : "105vh"
+  },
+  content : {
+      position : "absolute",
+      top: 0,
+      paddingTop:  0,
+      width : "100%"
+  },
+  text : {
+      userSelect : "none",
+  },
+  meetingButton : {
+      fontWeight : 700,
+  }
+}))
+
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
@@ -59,7 +87,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 function SimpleTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-
+  const handleChangeIndex = (index: number) => {
+    setValue(index);
+  };
+  const theme = useTheme();
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
@@ -70,7 +101,7 @@ function SimpleTabs() {
         
       </Grid>
        <div className={classes.root}>
-      <AppBar position="static" color="default">
+      <AppBar position="static" elevation = {0} color = "transparent">
         <Tabs
           value={value}
           onChange={handleChange}
@@ -89,6 +120,11 @@ function SimpleTabs() {
           <Tab label="Punctuation" {...a11yProps(6)} />
         </Tabs>
       </AppBar>
+      <SwipeableViews
+        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        index={value}
+        onChangeIndex={handleChangeIndex}
+      >
       <TabPanel value={value} index={0}>
       <Grid
         container
@@ -101,7 +137,7 @@ function SimpleTabs() {
                 <Grid container alignContent="space-between" alignItems="center" spacing = {2} >
 
                   <Grid item>
-                    <Button 
+                    <Button disableElevation 
                       color = "primary" variant = "contained" href = { 'https://mp.weixin.qq.com/s/drKUt0ywFnue86HRo8N1RQ' }
                       >
                         Click to view
@@ -116,7 +152,7 @@ function SimpleTabs() {
                 <Grid container alignContent="space-between" alignItems="center" spacing = {2}>
 
                   <Grid item>
-                    <Button 
+                    <Button disableElevation 
                       color = "primary" variant = "contained" href = { 'https://mp.weixin.qq.com/s/ktA132RlyLiebUSR6tw38w' }
                       >
                         Click to view
@@ -143,7 +179,7 @@ function SimpleTabs() {
                 <Grid container alignContent="space-between" alignItems="center" spacing = {2}>
 
                   <Grid item>
-                    <Button 
+                    <Button disableElevation 
                       color = "primary" variant = "contained" href = { 'https://mp.weixin.qq.com/s/6lndlaNlSsACit9fxX0Gxg' }
                       >
                         Click to view
@@ -170,7 +206,7 @@ function SimpleTabs() {
                 <Grid container alignContent="space-between" alignItems="center" spacing = {2}>
 
                   <Grid item>
-                    <Button 
+                    <Button disableElevation 
                       color = "primary" variant = "contained" href = { 'https://mp.weixin.qq.com/s/KnxGHWTP_Jh6LSGm6N092w' }
                       >
                         Click to view
@@ -197,7 +233,7 @@ function SimpleTabs() {
                 <Grid container alignContent="space-between" alignItems="center" spacing = {2}>
 
                   <Grid item>
-                    <Button 
+                    <Button disableElevation 
                       color = "primary" variant = "contained" href = { 'https://mp.weixin.qq.com/s/blcvXpTBv_XSHQu8Uic5aw' }
                       >
                         Click to view
@@ -212,7 +248,7 @@ function SimpleTabs() {
                 <Grid container alignContent="space-between" alignItems="center" spacing = {2}>
 
                   <Grid item>
-                    <Button 
+                    <Button disableElevation 
                       color = "primary" variant = "contained" href = { 'https://mp.weixin.qq.com/s/oqm0jeVejZ3S0eUPmyUXPQ' }
                       >
                         Click to view
@@ -227,7 +263,7 @@ function SimpleTabs() {
                 <Grid container alignContent="space-between" alignItems="center" spacing = {2}>
 
                   <Grid item>
-                    <Button 
+                    <Button disableElevation 
                       color = "primary" variant = "contained" href = { 'https://mp.weixin.qq.com/s/FWakgann_ihtFgCORJps9w' }
                       >
                         Click to view
@@ -255,7 +291,7 @@ function SimpleTabs() {
                 <Grid container alignContent="space-between" alignItems="center" spacing = {2}>
 
                   <Grid item>
-                    <Button 
+                    <Button disableElevation 
                       color = "primary" variant = "contained" href = { 'https://mp.weixin.qq.com/s/NV-nYi62KoISaWkKY0g2yw' }
                       >
                         Click to view
@@ -270,7 +306,7 @@ function SimpleTabs() {
                 <Grid container alignContent="space-between" alignItems="center" spacing = {2}>
 
                   <Grid item>
-                    <Button 
+                    <Button disableElevation 
                       color = "primary" variant = "contained" href = { 'https://mp.weixin.qq.com/s/U_Q5y8EgAwFyGYtNJ_f_5Q' }
                       >
                         Click to view
@@ -296,7 +332,7 @@ function SimpleTabs() {
                 <Grid container alignContent="space-between" alignItems="center" spacing = {2}>
 
                   <Grid item>
-                    <Button 
+                    <Button disableElevation
                       color = "primary" variant = "contained" href = { 'https://mp.weixin.qq.com/s/O4P-c47DOozSZevGMuYKEA' }
                       >
                         Click to view
@@ -311,7 +347,7 @@ function SimpleTabs() {
                 <Grid container alignContent="space-between" alignItems="center" spacing = {2}>
 
                   <Grid item>
-                    <Button 
+                    <Button disableElevation 
                       color = "primary" variant = "contained" href = { 'https://mp.weixin.qq.com/s/QlTO6kUSATFup51Skek9Zw' }
                       >
                         Click to view
@@ -326,7 +362,7 @@ function SimpleTabs() {
                 <Grid container alignContent="space-between" alignItems="center" spacing = {2}>
 
                   <Grid item>
-                    <Button 
+                    <Button disableElevation 
                       color = "primary" variant = "contained" href = { 'https://mp.weixin.qq.com/s/aNqRfSF6xVWGrfelqNp0DA' }
                       >
                         Click to view
@@ -341,7 +377,7 @@ function SimpleTabs() {
                 <Grid container alignContent="space-between" alignItems="center" spacing = {2}>
 
                   <Grid item>
-                    <Button 
+                    <Button disableElevation 
                       color = "primary" variant = "contained" href = { 'https://mp.weixin.qq.com/s/pP7_is4sVcB4TKztdAQ3IQ' }
                       >
                         Click to view
@@ -356,7 +392,7 @@ function SimpleTabs() {
                 <Grid container alignContent="space-between" alignItems="center" spacing = {2}>
 
                   <Grid item>
-                    <Button 
+                    <Button disableElevation 
                       color = "primary" variant = "contained" href = { 'https://mp.weixin.qq.com/s/2uYc821srVyXGhrtym6jVA' }
                       >
                         Click to view
@@ -371,7 +407,7 @@ function SimpleTabs() {
                 <Grid container alignContent="space-between" alignItems="center" spacing = {2}>
 
                   <Grid item>
-                    <Button 
+                    <Button disableElevation 
                       color = "primary" variant = "contained" href = { 'https://mp.weixin.qq.com/s/oVv5zrkns0XuvSDoohNFpQ' }
                       >
                         Click to view
@@ -386,7 +422,7 @@ function SimpleTabs() {
                 <Grid container alignContent="space-between" alignItems="center" spacing = {2}>
 
                   <Grid item>
-                    <Button 
+                    <Button disableElevation 
                       color = "primary" variant = "contained" href = { 'https://mp.weixin.qq.com/s/K1Ze15bNwukTvku3DRsCjA' }
                       >
                         Click to view
@@ -412,7 +448,7 @@ function SimpleTabs() {
                 <Grid container alignContent="space-between" alignItems="center" spacing = {2}>
 
                   <Grid item>
-                    <Button 
+                    <Button disableElevation 
                       color = "primary" variant = "contained" href = { 'https://mp.weixin.qq.com/s/TL_MpwTcmhbfBuG1y6y-tg' }
                       >
                         Click to view
@@ -427,7 +463,7 @@ function SimpleTabs() {
                 <Grid container alignContent="space-between" alignItems="center" spacing = {2}>
 
                   <Grid item>
-                    <Button 
+                    <Button disableElevation 
                       color = "primary" variant = "contained" href = { 'https://mp.weixin.qq.com/s/TL_MpwTcmhbfBuG1y6y-tg' }
                       >
                         Click to view
@@ -442,7 +478,7 @@ function SimpleTabs() {
                 <Grid container alignContent="space-between" alignItems="center" spacing = {2}>
 
                   <Grid item>
-                    <Button 
+                    <Button disableElevation 
                       color = "primary" variant = "contained" href = { 'https://mp.weixin.qq.com/s/ni18IFMHTjZUfy0kOaZtJQ' }
                       >
                         Click to view
@@ -456,9 +492,38 @@ function SimpleTabs() {
             </Grid>
           </Grid>
       </TabPanel>
+      </SwipeableViews>
     </div>
     </Grid>
    
   );
 }
-export{SimpleTabs}
+
+function Accordin() {
+  return(
+    <div>hello world!</div>
+  )
+}
+
+function TabletorAccaordin(){
+  let theme = useTheme();
+  let { between, down, up, values } = theme.breakpoints;
+  let { laptop, tablet } = values;
+
+  let isLargerThanLaptop = useMediaQuery(up(laptop));
+  let isLaptop = useMediaQuery(between(tablet, laptop));
+  let isSmallerThanLaptop = useMediaQuery(down(tablet));
+
+  let Tablet = SimpleTabs()
+  let AccordinForPhone = ControlledAccordions()
+  if (isLargerThanLaptop){
+      return Tablet;
+  } else if (isLaptop){
+      return Tablet;
+  } else if (isSmallerThanLaptop){
+      return AccordinForPhone;
+  } else {
+      return AccordinForPhone;
+  }
+}
+export{TabletorAccaordin}
